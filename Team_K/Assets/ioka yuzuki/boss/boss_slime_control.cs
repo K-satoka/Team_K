@@ -70,10 +70,7 @@ public class boss : MonoBehaviour
         
 
         //その方向に常に移動
-        //rbody.linearVelocity =new Vector2( direction.x * Enemy_speed,0);
-        Vector2 move = direction * Enemy_speed;
-        move.y = 0; // Y成分をゼロにする
-        rbody.linearVelocity = move;
+        rbody.linearVelocity =new Vector2( direction.x * Enemy_speed,0);
 
         //向きを反転
         if (Player.position.x>transform.position.x)

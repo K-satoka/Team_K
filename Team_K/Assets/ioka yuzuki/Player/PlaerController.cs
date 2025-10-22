@@ -13,6 +13,7 @@ public class PlaerController : MonoBehaviour
     public LayerMask GroundLayer;
     bool goJump =false;
 
+    
     //アニメーション対応
     Animator animator;//アニメーター
     public string waiting = "PlayerStop";
