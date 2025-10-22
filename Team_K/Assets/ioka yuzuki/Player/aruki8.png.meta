@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2464223cb9f323b4baaae66672689665
+guid: 674dd2b22f892dc43bc8766b0613ecd3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4268724297362074194
-    second: waiting_0
+      213: 6278344984050333670
+    second: aruki8_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: waiting_0
+      name: aruki8_0
       rect:
         serializedVersion: 2
-        x: 374
-        y: 31
-        width: 846
-        height: 1439
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 343
+        y: 30
+        width: 814
+        height: 1440
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ea597a34ed172c4c0800000000000000
-      internalID: -4268724297362074194
+      spriteID: 6e7fca7bf79212750800000000000000
+      internalID: 6278344984050333670
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 3af8858b555222d44b07a1d44b2ec68d
+    spriteID: ee8e1d2686dbf21458edeffac86cfc2f
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      waiting_0: -4268724297362074194
+      aruki8_0: 6278344984050333670
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

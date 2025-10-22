@@ -10,14 +10,24 @@ public class PlaerController : MonoBehaviour
     public float speed = 805.0f;
 
     public float jump=9.0f;
-    public LayerMask groundLayer;
+    public LayerMask GroundLayer;
     bool goJump =false;
+
+    //アニメーション対応
+    Animator animator;//アニメーター
+    public string waiting = "PlayerStop";
+    public string PlayerMove = "PlayerMove";
+    string nowAnime = "";
+    string oldAnime = "";
 
 
     void Start()
     {
         // Rigidbody2Dをとってくる
-        rbody=this.GetComponent<Rigidbody2D>();
+        rbody=this.GetComponent<Rigidbody2D>();//Rigidbody2Dからとってくる
+        animator = GetComponent<Animator>();  //Animatorをとってくる
+        nowAnime = waiting;                   //停止から開始
+        oldAnime = waiting;                   //停止から開始
     }
 
     // Update is called once per frame
@@ -32,11 +42,13 @@ public class PlaerController : MonoBehaviour
             //Debug.Log("右移動");
             transform.localScale = new Vector2(-1, 1);
         }
+
         else if(axisH<0.0f)
         {
-            Debug.Log("左移動");
+            //Debug.Log("左移動");
             transform.localScale=new Vector2(1, 1);
         }
+
         //キャラクターをジャンプさせる
         if(Input.GetButtonDown("Jump"))
         {
@@ -51,23 +63,48 @@ public class PlaerController : MonoBehaviour
             0.2f,            //円の半径
             Vector2.down,    //発射方向
             0.0f,            //発射距離
-            groundLayer);    //検出するレイヤー
+            GroundLayer);    //検出するレイヤー
+
+        
+
         if (onGround || axisH != 0)
         {
             //地面の上or速度が０ではない
             //速度を更新する
             rbody.linearVelocity = new Vector2(axisH * speed, rbody.linearVelocity.y);
         }
-        if (onGround) Debug.Log("tettse");
+       
+
         if (onGround && goJump) {
             //地面の上でジャンプキーが押された
             //ジャンプさせる
             Vector2 jumpPw = new Vector2(0, jump);//ジャンプさせりベクトルを作る
            rbody.AddForce(jumpPw, ForceMode2D.Impulse);//
             goJump = false;
-            Debug.Log("ジャンプ");
+            //Debug.Log("ジャンプ");
         }
-       
+        // if (onGround) Debug.Log("tettse");
+
+
+        //アニメーションの更新
+        if (onGround)
+        {
+            //地面の上
+            if(axisH==0)
+            {
+                nowAnime = waiting;      //停止中
+            }
+            else
+            {
+                nowAnime = PlayerMove;  //移動
+            }
+        }
+        //else { }   ジャンプアニメーション完成時追加
+        if (nowAnime != oldAnime)
+        {
+            oldAnime = nowAnime;
+            animator.Play(nowAnime);  //アニメーション追加
+        }
     }
  //ジャンプ
  public void Jump()

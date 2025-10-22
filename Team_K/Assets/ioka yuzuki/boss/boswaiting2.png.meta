@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 97352d44576e562439104de264dafb6c
+guid: 3af9bd74e1a3c8347affc478cf5cc156
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5218823490559287709
-    second: Image_0
+      213: 7273314248664880858
+    second: boswaiting2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Image_0
+      name: boswaiting2_0
       rect:
         serializedVersion: 2
-        x: 374
-        y: 30
-        width: 846
-        height: 1440
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 257
+        y: 233
+        width: 939
+        height: 518
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d91204c605cfc6840800000000000000
-      internalID: 5218823490559287709
+      spriteID: ad6157306c000f460800000000000000
+      internalID: 7273314248664880858
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: d9d2163936d8fba418c3d55bb860f23a
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Image_0: 5218823490559287709
+      boswaiting2_0: 7273314248664880858
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

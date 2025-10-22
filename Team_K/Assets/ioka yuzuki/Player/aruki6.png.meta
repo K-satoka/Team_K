@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9a1bf54e434e77346bd821cea5af2fc6
+guid: e635810ae71f44646b87ef5dec5ac12b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -789387857091962884
-    second: aruki4_0
+      213: -871433214829415877
+    second: aruki6_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: aruki4_0
+      name: aruki6_0
       rect:
         serializedVersion: 2
         x: 311
         y: 30
         width: 909
         height: 1440
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cf7d6042de78b05f0800000000000000
-      internalID: -789387857091962884
+      spriteID: b32bd90bb1c08e3f0800000000000000
+      internalID: -871433214829415877
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 03f56e9a52a20d44a9c1e9479005cfb7
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      aruki4_0: -789387857091962884
+      aruki6_0: -871433214829415877
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
