@@ -4,28 +4,19 @@
 TagManager:
   serializedVersion: 3
   tags:
-<<<<<<< HEAD
-  - player
   - Ground
   - enemy
-=======
   - Enemy
->>>>>>> bb1d74a5fc3c559ffb12e3bcb968a9972436e6bd
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Ground
-<<<<<<< HEAD
   - 
   - 
-=======
-  - Playerdamage
-  - Enemy
->>>>>>> bb1d74a5fc3c559ffb12e3bcb968a9972436e6bd
   - 
   - 
   - 
