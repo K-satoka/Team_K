@@ -4,6 +4,7 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
+<<<<<<< HEAD
   m_Scenes:
   - enabled: 1
     path: Assets/masuda haruto/Scane/Test_Scene.unity
@@ -16,4 +17,8 @@ EditorBuildSettings:
     guid: de8b16aa3546d47429a2a8429e6b36a4
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+=======
+  m_Scenes: []
+  m_configObjects: {}
+>>>>>>> 1d36fd8408c6e2909f8d7744d8131bb9942d68e3
   m_UseUCBPForAssetBundles: 0
