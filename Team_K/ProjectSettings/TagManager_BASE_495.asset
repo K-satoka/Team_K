@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags:
+<<<<<<< HEAD
+  - Ground
+<<<<<<< HEAD
+  - enemy
+  - Enemy
+=======
+  - Enemy
+=======
+<<<<<<< HEAD
+  - Enemy
+  - Ground
+=======
+  - Ground
+  - Enemy
+>>>>>>> db95514842d25f28ae77725b9821254efe137a16
+  - Attack
+>>>>>>> 1d36fd8408c6e2909f8d7744d8131bb9942d68e3
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+<<<<<<< HEAD
+<<<<<<< HEAD
+  - Player
+  - Water
+  - UI
+  - Ground
+  - 
+=======
+  - PlayerInvincible
+  - Water
+  - UI
+=======
+  - PlayerInvincible
+  - Water
+  - UI
+<<<<<<< HEAD
+  - Ground
+  - 
+=======
+>>>>>>> db95514842d25f28ae77725b9821254efe137a16
+  - Enemy
+  - Player
+>>>>>>> 1d36fd8408c6e2909f8d7744d8131bb9942d68e3
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  m_RenderingLayers:
+  - Default
