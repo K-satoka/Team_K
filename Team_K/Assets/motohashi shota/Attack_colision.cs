@@ -15,4 +15,13 @@ public class Attack_colision : MonoBehaviour
     {
         attackCollider.enabled = false;
     }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            Debug.Log("“G‚ÉƒqƒbƒgI");
+            // “G‚Éƒ_ƒ[ƒW‚ğ—^‚¦‚éˆ—‚ğ‚±‚±‚É‘‚­
+            other.GetComponent<Enemy>()?.TakeDamage(10);
+        }
+    }
 }
