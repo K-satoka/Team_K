@@ -3,14 +3,14 @@ using UnityEngine.InputSystem;
 
 public class Player_Backstep : MonoBehaviour
 {
-    [Header("ƒoƒbƒNƒXƒeƒbƒvİ’è")]
-    public float stepSpeed = 10f;            // ƒoƒbƒNƒXƒeƒbƒv‘¬“x
-    public float stepDuration = 0.15f;       // ƒoƒbƒNƒXƒeƒbƒvŠÔ
-    public float stepCooldown = 1f;          // ƒN[ƒ‹ƒ^ƒCƒ€
+    [Header("ï¿½oï¿½bï¿½Nï¿½Xï¿½eï¿½bï¿½vï¿½İ’ï¿½")]
+    public float stepSpeed = 10f;            // ï¿½oï¿½bï¿½Nï¿½Xï¿½eï¿½bï¿½vï¿½ï¿½ï¿½x
+    public float stepDuration = 0.15f;       // ï¿½oï¿½bï¿½Nï¿½Xï¿½eï¿½bï¿½vï¿½ï¿½ï¿½ï¿½
+    public float stepCooldown = 1f;          // ï¿½Nï¿½[ï¿½ï¿½ï¿½^ï¿½Cï¿½ï¿½
 
-    private bool isStepping = false;         // ƒXƒeƒbƒv’†‚©‚Ç‚¤‚©
-    private bool isCooldown = false;         // ƒN[ƒ‹ƒ^ƒCƒ€’†‚©‚Ç‚¤‚©
-    private Vector2 stepDirection;           // ƒXƒeƒbƒv•ûŒü
+    private bool isStepping = false;         // ï¿½Xï¿½eï¿½bï¿½vï¿½ï¿½ï¿½ï¿½ï¿½Ç‚ï¿½ï¿½ï¿½
+    private bool isCooldown = false;         // ï¿½Nï¿½[ï¿½ï¿½ï¿½^ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç‚ï¿½ï¿½ï¿½
+    private Vector2 stepDirection;           // ï¿½Xï¿½eï¿½bï¿½vï¿½ï¿½ï¿½ï¿½
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -23,7 +23,7 @@ public class Player_Backstep : MonoBehaviour
 
     void Update()
     {
-        // LeftShiftƒL[‚Å‰ñ”ğ
+        // LeftShiftï¿½Lï¿½[ï¿½Å‰ï¿½ï¿½
         if (Keyboard.current.leftShiftKey.wasPressedThisFrame && !isStepping && !isCooldown)
         {
             StartBackstep();
@@ -31,53 +31,53 @@ public class Player_Backstep : MonoBehaviour
     }
 
     //==============================
-    // ƒoƒbƒNƒXƒeƒbƒvŠJn
+    // ï¿½oï¿½bï¿½Nï¿½Xï¿½eï¿½bï¿½vï¿½Jï¿½n
     //==============================
     void StartBackstep()
     {
         isStepping = true;
         isCooldown = true;
 
-        // ƒvƒŒƒCƒ„[‚ÌŒü‚¢‚Ä‚¢‚é•ûŒü‚Ì”½‘Î‚ÖˆÚ“®
+        // ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ÌŒï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì”ï¿½ï¿½Î‚ÖˆÚ“ï¿½
         float facing = Mathf.Sign(transform.localScale.x);
         stepDirection = new Vector2(facing, 0f);
 
-        // š ‰Ÿ‚µ‚½uŠÔ‚É‘¬“x‚ğ—^‚¦‚Ä“®‚©‚·
-        rb.velocity = stepDirection * stepSpeed;
+        // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½uï¿½Ô‚É‘ï¿½ï¿½xï¿½ï¿½^ï¿½ï¿½ï¿½Ä“ï¿½ï¿½ï¿½ï¿½ï¿½
+        rb.linearVelocity = stepDirection * stepSpeed;
 
-        // š ƒAƒjƒ[ƒVƒ‡ƒ“ŠJniTrigger•û®j
+        // ï¿½ï¿½ ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½nï¿½iTriggerï¿½ï¿½ï¿½ï¿½ï¿½j
         animator?.SetTrigger("Backstep");
 
-        // –³“GƒŒƒCƒ„[‚É•ÏX
+        // ï¿½ï¿½ï¿½Gï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½É•ÏX
         gameObject.layer = LayerMask.NameToLayer("PlayerInvincible");
 
-        // ƒN[ƒ‹ƒ^ƒCƒ€‰ğœ—\–ñ
+        // ï¿½Nï¿½[ï¿½ï¿½ï¿½^ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\ï¿½ï¿½
         CancelInvoke("ResetCooldown");
         Invoke("ResetCooldown", stepCooldown);
 
-        // š ƒoƒbƒNƒXƒeƒbƒvI—¹—\–ñiƒAƒjƒŠÔ‚Æ‡‚í‚¹‚éj
+        // ï¿½ï¿½ ï¿½oï¿½bï¿½Nï¿½Xï¿½eï¿½bï¿½vï¿½Iï¿½ï¿½ï¿½\ï¿½ï¿½iï¿½Aï¿½jï¿½ï¿½ï¿½ï¿½ï¿½Ô‚Æï¿½ï¿½í‚¹ï¿½ï¿½j
         Invoke("EndBackstep", stepDuration);
     }
 
     //==============================
-    // ƒoƒbƒNƒXƒeƒbƒvI—¹
+    // ï¿½oï¿½bï¿½Nï¿½Xï¿½eï¿½bï¿½vï¿½Iï¿½ï¿½
     //==============================
     void EndBackstep()
     {
         isStepping = false;
 
-        // ˆÚ“®‚ğ~‚ß‚é
-        rb.velocity = Vector2.zero;
+        // ï¿½Ú“ï¿½ï¿½ï¿½ï¿½~ï¿½ß‚ï¿½
+        rb.linearVelocity = Vector2.zero;
 
-        // –³“G‰ğœ
+        // ï¿½ï¿½ï¿½Gï¿½ï¿½ï¿½ï¿½
         gameObject.layer = LayerMask.NameToLayer("");
 
-        // ƒfƒoƒbƒOŠm”F—p
-        // Debug.Log("ƒoƒbƒNƒXƒeƒbƒvI—¹");
+        // ï¿½fï¿½oï¿½bï¿½Oï¿½mï¿½Fï¿½p
+        // Debug.Log("ï¿½oï¿½bï¿½Nï¿½Xï¿½eï¿½bï¿½vï¿½Iï¿½ï¿½");
     }
 
     //==============================
-    // ƒN[ƒ‹ƒ^ƒCƒ€‰ğœ
+    // ï¿½Nï¿½[ï¿½ï¿½ï¿½^ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     //==============================
     void ResetCooldown()
     {
