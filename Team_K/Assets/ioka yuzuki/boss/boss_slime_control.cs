@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 //ENEMY
@@ -9,25 +10,19 @@ using UnityEngine;
 [RequireComponent (typeof (Rigidbody2D))]
 public class boss : MonoBehaviour
 {
-    Rigidbody2D rbody;  // Rigidbody2D型の変数
-    public float Enemy_speed;    //スライムの速度
-    public float Enemy_jump=0.0f;//スライムのジャンプ力
-    public float jumpTriggerDistance = 5f;//プレイヤーとの距離
+    Rigidbody2D rbody;
+    public float Enemy_speed = 2f;     // スピード
+    public float Enemy_jump = 6f;      // ジャンプ力
+    public float jumpTriggerDistance = 5f; // 検知距離
+    public float GravityScale = 3.0f;  // 重力倍率
+    public LayerMask GroundLayer;      // 地面レイヤー
+ 
     private Transform Player;
-    public Transform Ground;
-    private string EnemyTag = "Enemy";
-
-   // private bool onGround;
-
-
-
-    public LayerMask GroundLayer;
-    bool goJump = false;
-
+    private bool onGround = false;
     void Start()
     {
         // Rigidbody2Dをとってくる
-        rbody = this.GetComponent<Rigidbody2D>();//Rigidbody2Dからとってくる
+        rbody = GetComponent<Rigidbody2D>();//Rigidbody2Dからとってくる
         //Playerタグが付いたオブジェクトを探す
         GameObject PlayerObj = GameObject.FindGameObjectWithTag("Player");
         if(PlayerObj != null )
@@ -36,18 +31,20 @@ public class boss : MonoBehaviour
         }
         //回転を固定
         rbody.freezeRotation = true;
+        if (onGround = false)
+        {
+            rbody.gravityScale *= GravityScale;
+        }
     }
-    private void Update()
+    void Update()
     {
-        //地上判定
-        bool onGround = Physics2D.CircleCast(transform.position,//発射位置
-        0.2f,            //円の半径
-        Vector2.down,    //発射方向
-        0.0f,            //発射距離
-        GroundLayer);    //検出するレイヤー
+        if (Player == null) return;
+        //float distanceToPlayer = Vector2.Distance(transform.position, Player.position);
+
 
         if (onGround)
         {
+            //Debug.Log("ddddddddddddddddddddddd");
             Jump();
         }
 
@@ -55,22 +52,31 @@ public class boss : MonoBehaviour
 
   void Jump()
     {
-        Vector2 jumpPw = new Vector2(0, Enemy_jump);//ジャンプさせりベクトルを作る
-        rbody.AddForce(jumpPw, ForceMode2D.Force);
-
+        rbody.AddForce(Vector2.up * Enemy_jump, ForceMode2D.Impulse);
+        onGround = false;
+      
     }
 
     void FixedUpdate()
     {
-       // if (Player != null)
-         //   return;
+       
+        Vector2 origin = (Vector2)transform.position + Vector2.down * 0.5f; // 足元あたり
+        float radius = 0.3f;  // 半径
+        float distance = 0.1f; // 判定距離
 
+        onGround = Physics2D.CircleCast(
+            origin,
+            radius,
+            Vector2.down,
+            distance,
+            GroundLayer
+        );
         //プレイヤーのほうに向かす
         Vector2 direction=new Vector2(Player.position.x-transform.position.x,0).normalized;
         
 
-        //その方向に常に移動
-        rbody.linearVelocity =new Vector2( direction.x * Enemy_speed,0);
+         //その方向に常に移動
+        rbody.linearVelocity = new Vector2(direction.x * Enemy_speed, rbody.linearVelocity.y);
 
         //向きを反転
         if (Player.position.x>transform.position.x)
@@ -80,12 +86,9 @@ public class boss : MonoBehaviour
         else
         {
             transform.localScale=new Vector2(4,4);
-        }
-        
-
-       
-        
+        } 
     }
+
 
 
 }

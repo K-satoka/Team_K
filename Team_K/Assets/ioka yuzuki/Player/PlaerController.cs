@@ -12,8 +12,12 @@ public class PlaerController : MonoBehaviour
     public float jump=9.0f;
     public LayerMask GroundLayer;
     bool goJump =false;
+    bool onGround = false;
 
-    
+    public int Max_JumpCount = 2;        //最大ジャンプ回数
+    private int currentJumpCount = 0;
+
+
     //アニメーション対応
     Animator animator;//アニメーター
     public string waiting = "PlayerStop";
@@ -53,7 +57,12 @@ public class PlaerController : MonoBehaviour
         //キャラクターをジャンプさせる
         if(Input.GetButtonDown("Jump"))
         {
-            Jump();
+            if (onGround || currentJumpCount < Max_JumpCount)
+            {
+                Jump();
+                Debug.Log("jannpu");
+            }
+           
         }
     }
 
@@ -74,16 +83,12 @@ public class PlaerController : MonoBehaviour
             //速度を更新する
             rbody.linearVelocity = new Vector2(axisH * speed, rbody.linearVelocity.y);
         }
-       
-
-        if (onGround && goJump) {
-            //地面の上でジャンプキーが押された
-            //ジャンプさせる
-            Vector2 jumpPw = new Vector2(0, jump);//ジャンプさせりベクトルを作る
-           rbody.AddForce(jumpPw, ForceMode2D.Impulse);//
-            goJump = false;
-            //Debug.Log("ジャンプ");
+        if (onGround)
+        {
+            currentJumpCount = 0;
         }
+
+        
         // if (onGround) Debug.Log("tettse");
 
 
@@ -110,6 +115,10 @@ public class PlaerController : MonoBehaviour
  //ジャンプ
  public void Jump()
     {
-        goJump = true;//ジャンプフラグを立てる
+        Vector2 jumpPw = new Vector2(0, jump);//ジャンプさせりベクトルを作る
+        rbody.AddForce(jumpPw, ForceMode2D.Impulse);//
+        goJump = false;
+
+        currentJumpCount++;
     }
 }
