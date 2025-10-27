@@ -70,7 +70,7 @@ public class Player_Backstep : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
 
         // ���G����
-        gameObject.layer = LayerMask.NameToLayer("");
+        gameObject.layer = LayerMask.NameToLayer("Player");
 
         // �f�o�b�O�m�F�p
         // Debug.Log("�o�b�N�X�e�b�v�I��");
