@@ -1,26 +1,26 @@
 using UnityEngine;
 
-public class Attack_colision : MonoBehaviour
+public class AttackCollision : MonoBehaviour
 {
-    public Collider2D attackCollider;
+    private Collider2D attackCollider;
 
-    // 攻撃判定ON
-    public void EnableAttack()
+    private void Awake()
     {
-        attackCollider.enabled = true;
+        attackCollider = GetComponent<Collider2D>();
+        if (attackCollider == null)
+            Debug.LogError("このオブジェクトに Collider2D が見つかりません！");
+        else
+            attackCollider.enabled = false; // 初期はOFF
     }
 
-    // 攻撃判定OFF
-    public void DisableAttack()
-    {
-        attackCollider.enabled = false;
-    }
+    public void EnableAttack() => attackCollider.enabled = true;
+    public void DisableAttack() => attackCollider.enabled = false;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
         {
             Debug.Log("敵にヒット！");
-            // 敵にダメージを与える処理をここに書く
             other.GetComponent<Enemy>()?.TakeDamage(10);
         }
     }

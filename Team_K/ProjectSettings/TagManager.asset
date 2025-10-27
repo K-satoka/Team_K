@@ -3,14 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-<<<<<<< HEAD
-  tags: []
-=======
   tags:
-  - Attack
   - Enemy
-  - Ground
->>>>>>> 5007b306fb7ce88f784dd6188fb17a5b988741a4
+  - Attack
   layers:
   - Default
   - TransparentFX
@@ -18,17 +13,10 @@ TagManager:
   - 
   - Water
   - UI
-<<<<<<< HEAD
-  - 
-  - 
-  - 
-  - 
-=======
   - Ground
   - Player
-  - PlayerInvincible
   - Enemy
->>>>>>> 5007b306fb7ce88f784dd6188fb17a5b988741a4
+  - 
   - 
   - 
   - 
