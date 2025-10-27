@@ -5,7 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class Title : MonoBehaviour
 {
-   public void onClickStartButton()
+    private void Start()
+    {
+        Application.targetFrameRate = 60;
+    }
+    public void onClickStartButton()
     {
         SceneManager.LoadScene("Stage");
     }
