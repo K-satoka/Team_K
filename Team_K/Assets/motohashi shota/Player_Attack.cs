@@ -21,7 +21,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Time.time >= nextAttackTime)
         {
-            if (Keyboard.current.zKey.isPressed)  // デフォルトでマウス左クリック
+            if (Keyboard.current.zKey.isPressed)  // Zキーで攻撃
             {
                 Attack();
                 nextAttackTime = Time.time + 1f / attackRate;
