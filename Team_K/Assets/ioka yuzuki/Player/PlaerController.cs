@@ -22,6 +22,7 @@ public class PlaerController : MonoBehaviour
     Animator animator;//アニメーター
     public string waiting = "PlayerStop";
     public string PlayerMove = "PlayerMove";
+    public string PlayerJump = "PlayerJump";
     string nowAnime = "";
     string oldAnime = "";
 
@@ -105,7 +106,11 @@ public class PlaerController : MonoBehaviour
                 nowAnime = PlayerMove;  //移動
             }
         }
-        //else { }   ジャンプアニメーション完成時追加
+        else 
+        {
+            //空中
+            nowAnime = PlayerJump;
+        }   //ジャンプアニメーション完成時追加
         if (nowAnime != oldAnime)
         {
             oldAnime = nowAnime;

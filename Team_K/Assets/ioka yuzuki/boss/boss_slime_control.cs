@@ -88,7 +88,7 @@ public class boss : MonoBehaviour
             transform.localScale=new Vector2(4,4);
         } 
     }
-
+   
 
 
 }
