@@ -96,13 +96,15 @@ public class PlaerController : MonoBehaviour
         if (onGround)
         {
             //地面の上
-            if(axisH==0)
+            if(axisH>=1||axisH<=1)
             {
-                nowAnime = waiting;      //停止中
+                Debug.Log(axisH);
+                nowAnime = PlayerMove;     //停止中
             }
             else
-            {
-                nowAnime = PlayerMove;  //移動
+            { 
+                nowAnime = waiting;   //移動
+                //Debug.Log("あるき");
             }
         }
         //else { }   ジャンプアニメーション完成時追加
