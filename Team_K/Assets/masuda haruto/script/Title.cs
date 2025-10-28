@@ -11,7 +11,7 @@ public class Title : MonoBehaviour
     }
     public void onClickStartButton()
     {
-        SceneManager.LoadScene("Stage");
+        SceneManager.LoadScene("Test");
     }
 
 }
