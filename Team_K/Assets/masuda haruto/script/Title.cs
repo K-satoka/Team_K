@@ -5,9 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class Title : MonoBehaviour
 {
-   public void onClickStartButton()
+    private void Start()
     {
-        SceneManager.LoadScene("Stage");
+        Application.targetFrameRate = 60;
+    }
+    public void onClickStartButton()
+    {
+        SceneManager.LoadScene("Test");
     }
 
 }
