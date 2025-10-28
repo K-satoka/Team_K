@@ -1,27 +1,56 @@
 using UnityEngine;
 
-public class Attack_colision : MonoBehaviour
+public class AttackCollision : MonoBehaviour
 {
-    public Collider2D attackCollider;
+    private Collider2D[] childColliders; // 子の当たり判定を保持
+    private Collider2D selfCollider;     // 親自身の当たり判定を保持（残す用）
 
-    // 攻撃判定ON
+    private void Awake()
+    {
+        // 親自身の Collider2D を取得
+        selfCollider = GetComponent<Collider2D>();
+
+        // 子オブジェクトにある全ての Collider2D を取得（非アクティブも含む）
+        childColliders = GetComponentsInChildren<Collider2D>(includeInactive: true);
+
+        // 自分自身を除外して、初期状態では子の当たり判定をOFFに
+        foreach (var col in childColliders)
+        {
+            if (col != selfCollider)
+                col.enabled = false;
+        }
+    }
+
+    /// <summary>
+    /// 子の当たり判定をONにする
+    /// </summary>
     public void EnableAttack()
     {
-        attackCollider.enabled = true;
+        foreach (var col in childColliders)
+        {
+            if (col != selfCollider)
+                col.enabled = true;
+        }
     }
 
-    // 攻撃判定OFF
+    /// <summary>
+    /// 子の当たり判定をOFFにする
+    /// </summary>
     public void DisableAttack()
     {
-        attackCollider.enabled = false;
+        foreach (var col in childColliders)
+        {
+            if (col != selfCollider)
+                col.enabled = false;
+        }
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
         {
             Debug.Log("敵にヒット！");
-            // 敵にダメージを与える処理をここに書く
-            other.GetComponent<Enemy>()?.TakeDamage(10);
+            other.GetComponent<EnemyHp>()?.TakeDamage(10);
         }
     }
 }
