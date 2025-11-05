@@ -61,7 +61,7 @@ public class PlaerController : MonoBehaviour
             if (onGround || currentJumpCount < Max_JumpCount)
             {
                 Jump();
-                Debug.Log("jannpu");
+               // Debug.Log("jannpu");
             }
            
         }
@@ -99,7 +99,7 @@ public class PlaerController : MonoBehaviour
             //地面の上
             if(axisH>=1||axisH<=1)
             {
-                Debug.Log(axisH);
+                //Debug.Log(axisH);
                 nowAnime = PlayerMove;     //停止中
             }
             else
@@ -119,8 +119,24 @@ public class PlaerController : MonoBehaviour
             animator.Play(nowAnime);  //アニメーション追加
         }
     }
- //ジャンプ
- public void Jump()
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            this.rbody.AddForce(transform.up * 400.0f);
+            this.rbody.AddForce(transform.right * -400.0f);
+        }
+        if (transform.localScale.x >= 0)
+        {
+            this.rbody.AddForce(transform.right * -400.0f);
+        }
+        else
+        {
+            this.rbody.AddForce(transform.right * 400.0f);
+        }//向きでノックバック方向を判断
+    }
+    //ジャンプ
+    public void Jump()
     {
         Vector2 jumpPw = new Vector2(0, jump);//ジャンプさせりベクトルを作る
         rbody.AddForce(jumpPw, ForceMode2D.Impulse);//

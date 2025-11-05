@@ -8,6 +8,10 @@ public class PlayerHP : MonoBehaviour
     public float CollisionCooldown = 0.0f;
     public int Player_MAX_Hp=100;
     public int Player_Current_Hp;
+    public float knock_back=10f;
+
+    Rigidbody2D rbody;
+
 
    // public Slider Player_Slider;
 
@@ -15,11 +19,7 @@ public class PlayerHP : MonoBehaviour
 
     void Start()
     {
-        //if (Player_Slider != null)
-        //{
-        //    Player_Slider.maxValue = Player_MAX_Hp;//スライダーの最大値
-        //    Player_Slider.value = Player_Current_Hp;//初期値
-        //}
+     rbody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -42,6 +42,17 @@ public class PlayerHP : MonoBehaviour
             death();
         }
        
+    }
+
+    //攻撃を受けたときに呼ぶ
+    public void ApplyKnockback(Vector2 sourcePosition)
+    {
+        Debug.Log("Knockback!");
+        //吹き飛ぶ計算
+        Vector2 direction = (transform.position - (Vector3)sourcePosition).normalized;
+
+        rbody.AddForce(direction * knock_back, ForceMode2D.Impulse);
+
     }
 
     //public void TakeDamage(int damage)
