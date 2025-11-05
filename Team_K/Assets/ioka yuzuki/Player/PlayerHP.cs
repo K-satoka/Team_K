@@ -1,4 +1,6 @@
-﻿using UnityEngine.SceneManagement;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -45,15 +47,7 @@ public class PlayerHP : MonoBehaviour
     }
 
     //攻撃を受けたときに呼ぶ
-    public void ApplyKnockback(Vector2 sourcePosition)
-    {
-        Debug.Log("Knockback!");
-        //吹き飛ぶ計算
-        Vector2 direction = (transform.position - (Vector3)sourcePosition).normalized;
-
-        rbody.AddForce(direction * knock_back, ForceMode2D.Impulse);
-
-    }
+   
 
     //public void TakeDamage(int damage)
     //{
