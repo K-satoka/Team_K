@@ -388,6 +388,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 977759c86a0ae1b419fbe49c813c9d64, type: 2}
+    - target: {fileID: 159682702861531964, guid: 2785b4b24fa80cf4db2d1d4d81970e49, type: 3}
+      propertyPath: m_GravityScale
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 652971417976225937, guid: 2785b4b24fa80cf4db2d1d4d81970e49, type: 3}
       propertyPath: m_Name
       value: Image_player
@@ -409,8 +413,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3867460328766728542, guid: 2785b4b24fa80cf4db2d1d4d81970e49, type: 3}
+      propertyPath: jump
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 3867460328766728542, guid: 2785b4b24fa80cf4db2d1d4d81970e49, type: 3}
+      propertyPath: knock_back_left
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3867460328766728542, guid: 2785b4b24fa80cf4db2d1d4d81970e49, type: 3}
+      propertyPath: knock_back_right
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3867460328766728542, guid: 2785b4b24fa80cf4db2d1d4d81970e49, type: 3}
       propertyPath: GroundLayer.m_Bits
       value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 4786284405527964557, guid: 2785b4b24fa80cf4db2d1d4d81970e49, type: 3}
+      propertyPath: Player_MAX_Hp
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4786284405527964557, guid: 2785b4b24fa80cf4db2d1d4d81970e49, type: 3}
       propertyPath: Player_Slider
@@ -420,6 +440,10 @@ PrefabInstance:
       propertyPath: PlayerhpSlider
       value: 
       objectReference: {fileID: 1269434155}
+    - target: {fileID: 4786284405527964557, guid: 2785b4b24fa80cf4db2d1d4d81970e49, type: 3}
+      propertyPath: Player_Current_Hp
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8937681394848637377, guid: 2785b4b24fa80cf4db2d1d4d81970e49, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -953,7 +977,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3558001758588385280, guid: 801a20b51f6e41d4b812ad7c6c59be90, type: 3}
       propertyPath: GroundLayer.m_Bits
-      value: 0
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 6668328777631949848, guid: 801a20b51f6e41d4b812ad7c6c59be90, type: 3}
       propertyPath: m_LocalPosition.x
