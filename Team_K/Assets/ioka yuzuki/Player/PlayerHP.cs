@@ -1,17 +1,14 @@
-<<<<<<< HEAD
-﻿
+﻿﻿
 ﻿using Unity.VisualScripting;
 
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-=======
-﻿using Unity.VisualScripting;
+using Unity.VisualScripting;
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
->>>>>>> 90ba052da3fe04a1ae4dcf645327a73850bfd032
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -33,11 +30,6 @@ public class PlayerHP : MonoBehaviour
 
     void Start()
     {
-<<<<<<< HEAD
-
-=======
-// HEAD
->>>>>>> 90ba052da3fe04a1ae4dcf645327a73850bfd032
         Player_Current_Hp = Player_MAX_Hp;
 
         // スライダー初期化
@@ -48,11 +40,6 @@ public class PlayerHP : MonoBehaviour
         }
 
      rbody = GetComponent<Rigidbody2D>();
-<<<<<<< HEAD
-
-=======
-// 0ddffe4b332d391624d52345ad0ea1ea5bc59a64
->>>>>>> 90ba052da3fe04a1ae4dcf645327a73850bfd032
     }
 
     // Update is called once per frame
@@ -81,9 +68,6 @@ public class PlayerHP : MonoBehaviour
 
     }
 
-<<<<<<< HEAD
-
-=======
     //攻撃を受けたときに呼ぶ
    
 
@@ -99,7 +83,6 @@ public class PlayerHP : MonoBehaviour
 
     //}
 
->>>>>>> 90ba052da3fe04a1ae4dcf645327a73850bfd032
     void death()
     {
         // シーンを切り替える
