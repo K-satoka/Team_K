@@ -3,12 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-<<<<<<< HEAD
-  tags: []
-=======
   tags:
   - Enemy
->>>>>>> b23be0166dd4dfae2916626c727d4c91c3fb7d04
   layers:
   - Default
   - TransparentFX
@@ -16,11 +12,7 @@ TagManager:
   - 
   - Water
   - UI
-<<<<<<< HEAD
-  - 
-=======
   - Ground
->>>>>>> b23be0166dd4dfae2916626c727d4c91c3fb7d04
   - 
   - 
   - 
