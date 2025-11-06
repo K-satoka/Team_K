@@ -3,32 +3,38 @@ using System.Collections;
 
 public class stage2_Boss_Attack : MonoBehaviour
 {
-
     [Header("攻撃プレハブ")]
     public GameObject fistPrefab;
     public GameObject laserPrefab;
 
     [Header("攻撃間隔")]
-    public float attackInterval = 2.5f; // 攻撃を行う頻度（共通）
+    public float attackInterval = 2.5f;
 
     [Header("こぶしパラメータ")]
-    public float fistFallSpeed = 5.0f;
+    public float fistFallSpeed = 6.0f;
 
     [Header("レーザーパラメータ")]
-    public float laserSpeed = 10.0f;
+    public float laserSpeed = 12.0f;
     public float laserDuration = 2.0f;
+    public float laserAimTime = 1.0f; // ← 撃つ前に照準を合わせる時間
+
+    [Header("ターゲット設定")]
+    public Transform player; // プレイヤーをInspectorで指定
 
     private float attackTimer;
+    private int lastAttack = -1;
     private Camera cam;
 
     void Start()
     {
         cam = Camera.main;
-        attackTimer = Random.Range(0f, attackInterval); // ランダム開始
+        attackTimer = Random.Range(0f, attackInterval);
     }
 
     void Update()
     {
+        if (player == null) return;
+
         attackTimer += Time.deltaTime;
 
         if (attackTimer >= attackInterval)
@@ -40,26 +46,21 @@ public class stage2_Boss_Attack : MonoBehaviour
 
     void DoRandomAttack()
     {
-        // 0 = こぶし, 1 = レーザー
-        int attackType = Random.Range(0, 2);
+        int attackType;
+        do { attackType = Random.Range(0, 2); } while (attackType == lastAttack);
+        lastAttack = attackType;
 
         if (attackType == 0)
-        {
-            SpawnFist();
-        }
+            SpawnFistAtPlayer();
         else
-        {
-            StartCoroutine(FireLaser());
-        }
+            StartCoroutine(FireLaserWithAim());
     }
 
-    void SpawnFist()
+    // ===== こぶし攻撃 =====
+    void SpawnFistAtPlayer()
     {
-        float screenWidth = cam.orthographicSize * cam.aspect;
-        float x = Random.Range(-screenWidth, screenWidth);
-        Vector3 spawnPos = new Vector3(x, cam.orthographicSize + 1f, 0);
+        Vector3 spawnPos = new Vector3(player.position.x, cam.orthographicSize + 1f, 0);
         GameObject fist = Instantiate(fistPrefab, spawnPos, Quaternion.identity);
-
         StartCoroutine(FallDown(fist.transform));
     }
 
@@ -70,24 +71,38 @@ public class stage2_Boss_Attack : MonoBehaviour
             fist.position += Vector3.down * fistFallSpeed * Time.deltaTime;
             yield return null;
         }
-
-        if (fist != null)
-            Destroy(fist.gameObject);
+        if (fist != null) Destroy(fist.gameObject);
     }
 
-    IEnumerator FireLaser()
+    // ===== レーザー攻撃（照準→固定発射） =====
+    IEnumerator FireLaserWithAim()
     {
-        float screenWidth = cam.orthographicSize * cam.aspect;
-        float y = Random.Range(-cam.orthographicSize * 0.5f, cam.orthographicSize * 0.8f);
+        // --- ① 照準フェーズ ---
+        float aimTimer = 0f;
+        Vector3 dir = Vector3.right; // 初期方向
+        GameObject laser = Instantiate(laserPrefab, transform.position, Quaternion.identity);
 
-        Vector3 spawnPos = new Vector3(transform.position.x, y, 0);
-        GameObject laser = Instantiate(laserPrefab, spawnPos, Quaternion.identity);
-
-        float timer = 0f;
-        while (timer < laserDuration)
+        while (aimTimer < laserAimTime)
         {
-            laser.transform.position += Vector3.right * laserSpeed * Time.deltaTime;
-            timer += Time.deltaTime;
+            if (player != null)
+                dir = (player.position - transform.position).normalized;
+
+            // レーザーの向きをプレイヤー方向に更新
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            laser.transform.rotation = Quaternion.Euler(0, 0, angle);
+
+            aimTimer += Time.deltaTime;
+            yield return null;
+        }
+
+        // --- ② 発射フェーズ（照準固定） ---
+        Vector3 fireDir = dir; // この時点の方向を固定
+        float moveTimer = 0f;
+
+        while (moveTimer < laserDuration)
+        {
+            laser.transform.position += fireDir * laserSpeed * Time.deltaTime;
+            moveTimer += Time.deltaTime;
             yield return null;
         }
 
