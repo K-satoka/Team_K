@@ -21,16 +21,15 @@ public class NextStage : MonoBehaviour
             if (i < stageUnlock)
             {
                 _stageButton[i].interactable = true;
-                Debug.Log("はい！！！！");
             }
             else
                 _stageButton[i].interactable = false;
         }
     }
 
-    public void StageSelect(int stage)
+    public void StageSelect(int Stage)
     {
         //受け取った因数(stage)のステージをロード
-        SceneManager.LoadScene(stage);
+        SceneManager.LoadScene(Stage);
     }
 }
