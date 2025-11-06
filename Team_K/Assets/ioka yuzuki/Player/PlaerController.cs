@@ -17,6 +17,8 @@ public class PlaerController : MonoBehaviour
     public int Max_JumpCount = 2;        //最大ジャンプ回数
     private int currentJumpCount = 0;
 
+    public float knock_back_right;
+    public float knock_back_left;
 
     //アニメーション対応
     Animator animator;//アニメーター
@@ -61,7 +63,7 @@ public class PlaerController : MonoBehaviour
             if (onGround || currentJumpCount < Max_JumpCount)
             {
                 Jump();
-                Debug.Log("jannpu");
+               // Debug.Log("jannpu");
             }
            
         }
@@ -99,7 +101,7 @@ public class PlaerController : MonoBehaviour
             //地面の上
             if(axisH>=1||axisH<=1)
             {
-                Debug.Log(axisH);
+                //Debug.Log(axisH);
                 nowAnime = PlayerMove;     //停止中
             }
             else
@@ -119,8 +121,31 @@ public class PlaerController : MonoBehaviour
             animator.Play(nowAnime);  //アニメーション追加
         }
     }
- //ジャンプ
- public void Jump()
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        //if (collision.gameObject.tag == "Enemy")
+        //{
+        //    this.rbody.AddForce(transform.up * 4000.0f);
+        //    this.rbody.AddForce(transform.right * -4000.0f);
+        //}
+        if (collision.gameObject.tag == "Enemy")
+        {
+            if (transform.localScale.x >= 0)
+            {
+                Vector2 knockback = (transform.right * 1.3f + transform.up * 1.5f).normalized;
+                this.rbody.AddForce(knockback * knock_back_left);
+                Debug.Log("うえ");
+            }
+            else
+            {
+                Vector2 knockback2 = (transform.right * -1.3f + transform.up * 1.5f).normalized;
+                this.rbody.AddForce(knockback2 * knock_back_right);
+            }//向きでノックバック方向を判断
+        }
+        
+    }
+    //ジャンプ
+    public void Jump()
     {
         Vector2 jumpPw = new Vector2(0, jump);//ジャンプさせりベクトルを作る
         rbody.AddForce(jumpPw, ForceMode2D.Impulse);//
