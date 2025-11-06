@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EnemyHp : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class EnemyHp : MonoBehaviour
     public int damageOnContact = 10;
 
     public Slider hpSlider;
+   
+
     void Start()
     {
        Enemy_Current_Hp = Enemy_MAX_Hp;   //初期値を最大値に設定
@@ -39,7 +42,26 @@ public class EnemyHp : MonoBehaviour
 void Die()
     {
         Debug.Log("死んだぜ!");
-        Destroy(gameObject);//ゲームオブジェクトを削除
+
+        //次のステージの解放処理
+        
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        //現在のステージが最新だったら次を解放
+        int stageUnlock = PlayerPrefs.GetInt("StageUnlock", 1);
+        if (currentSceneIndex>=stageUnlock)
+        {
+            PlayerPrefs.SetInt("StageUnlock", stageUnlock + 1);
+            PlayerPrefs.Save();
+            Debug.Log("次に進めるぜ、相棒");
+        }
+
+        
+            Destroy(gameObject);//ゲームオブジェクトを削除
+       
+        //すてせれに戻る
+        SceneManager.LoadScene("StageSelect");
+    
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -58,8 +80,8 @@ void Die()
     //private void OnCollisionEnter2D(Collision2D collision)
     //{
     //    if (collision.gameObject.CompareTag("Player"))
-    //        {
-    //        Debug.Log("");
+    //    {
+    //        Debug.Log("aaaaa");
 
     //        TakeDamage(damageOnContact);
     //    }
