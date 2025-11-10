@@ -10,6 +10,10 @@ public class NextStage : MonoBehaviour
     [SerializeField]
     private
         Button[] _stageButton;
+
+    [SerializeField]
+    private
+        GameObject[] _lockImages;//南京錠アイコン配列
     void Start()
     {
         //ステージのCLEAR数を取得
@@ -18,12 +22,13 @@ public class NextStage : MonoBehaviour
         //ステージボタンの表示・非表示
         for(int i=0;i < _stageButton.Length;i++)
         {
-            if (i < stageUnlock)
+            bool unlocked = i < stageUnlock;
+
+            _stageButton[i].interactable = unlocked;
+            if(_lockImages!=null&&i<_lockImages.Length)
             {
-                _stageButton[i].interactable = true;
+                _lockImages[i].SetActive(!unlocked);//反転して表示
             }
-            else
-                _stageButton[i].interactable = false;
         }
     }
 
