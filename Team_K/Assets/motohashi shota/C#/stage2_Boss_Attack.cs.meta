@@ -1,14 +1,2 @@
 fileFormatVersion: 2
 guid: 2c211151fb904c6418430087c83825d8
-MonoImporter:
-  externalObjects: {}
-  serializedVersion: 2
-  defaultReferences:
-  - fistPrefab: {fileID: 8521377998600833397, guid: e2173dc8d15ebf64a99a7a01fd96e553, type: 3}
-  - laserPrefab: {fileID: 3873254504510606583, guid: 861e6e1f92f2d224eba3255351769fe9, type: 3}
-  - player: {instanceID: 0}
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
