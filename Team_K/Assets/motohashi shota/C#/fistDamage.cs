@@ -11,11 +11,11 @@ public class fistDamage : MonoBehaviour
             Debug.Log("こぶしヒット！");
 
             // プレイヤーにHPスクリプトがあれば呼び出す
-            PlayerHealth hp = other.GetComponent<PlayerHealth>();
-            if (hp != null)
-            {
-                hp.TakeDamage(damage);
-            }
+            //PlayerHealth hp = other.GetComponent<PlayerHealth>();
+            //if (hp != null)
+            //{
+            //    hp.TakeDamage(damage);
+            //}
 
             // こぶしを消す
             Destroy(gameObject);
