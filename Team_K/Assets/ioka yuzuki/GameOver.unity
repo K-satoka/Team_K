@@ -400,7 +400,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2196035622865519434, guid: 2e3d7c235a81aa44f823e7e2ac59ff28, type: 3}
+  m_Sprite: {fileID: -2196035622865519434, guid: 84e4a4f442b8c1742b2f1cdb9fe1cac8, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -763,7 +763,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 764d9e46e74c1e547b4ed1cd162c9d86, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 46e89b41d5d9b3a48b36368878005e24, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -870,7 +870,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2117679717}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11500000, guid: f79727fdbc0c65049ac750892690f6eb, type: 3}
+        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2117679717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -891,7 +903,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -7960818194000818557, guid: b3449b7de17cd684e9e8f10954c70c01, type: 3}
+  m_Sprite: {fileID: -7960818194000818557, guid: 751a055c42be25c4bbde3ad4cb633140, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
