@@ -84,16 +84,16 @@ public class PlayerHP : MonoBehaviour
     //    }
 
     //}
-    private void Awake()
-    {
-        //しーんきりかえ時に消えないように
-        DontDestroyOnLoad(this.gameObject);
-    }
+    //private void Awake()
+    //{
+    //    //しーんきりかえ時に消えないように
+    //    DontDestroyOnLoad(this.gameObject);
+    //}
 
     void death()
     {
-        //今のシーンを保存
-        previousSceneName=SceneManager.GetActiveScene().name;
+        ////今のシーンを保存
+        //previousSceneName=SceneManager.GetActiveScene().name;
         
         // シーンを切り替える
         SceneManager.LoadScene("GameOver");
