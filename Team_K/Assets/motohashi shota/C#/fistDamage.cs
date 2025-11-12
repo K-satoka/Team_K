@@ -3,12 +3,17 @@
 public class fistDamage : MonoBehaviour
 {
     public int damage = 1; // ダメージ量
+    public Animator animator;
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void Start()
     {
-        if (other.CompareTag("Player"))
+        animator = GetComponent<Animator>();
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("こぶしヒット！");
+            Debug.Log("当たったぁ！");
 
             // プレイヤーにHPスクリプトがあれば呼び出す
             //PlayerHealth hp = other.GetComponent<PlayerHealth>();
@@ -18,7 +23,23 @@ public class fistDamage : MonoBehaviour
             //}
 
             // こぶしを消す
-            Destroy(gameObject);
+            animator.SetTrigger("HIT");
+            Destroy(gameObject,0.3f);
+        }
+        if (collision.gameObject.tag == "Ground")
+        {
+            Debug.Log("地面に当たったぁ！");
+
+            // プレイヤーにHPスクリプトがあれば呼び出す
+            //PlayerHealth hp = other.GetComponent<PlayerHealth>();
+            //if (hp != null)
+            //{
+            //    hp.TakeDamage(damage);
+            //}
+
+            // こぶしを消す
+            animator.SetTrigger("HIT");
+            Destroy(gameObject,0.3f);
         }
     }
 }
