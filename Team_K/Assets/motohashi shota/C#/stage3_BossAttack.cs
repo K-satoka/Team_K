@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class stage2_Boss_Attack : MonoBehaviour
+public class stage3_BossAttack : MonoBehaviour
 {
     [Header("攻撃プレハブ")]
     public GameObject fistPrefab;
@@ -46,14 +46,14 @@ public class stage2_Boss_Attack : MonoBehaviour
 
     void DoRandomAttack()
     {
-       // int attackType;
-       // do { attackType = Random.Range(0, 2); } while (attackType == lastAttack);
-       //  lastAttack = attackType;
+         int attackType;
+         do { attackType = Random.Range(0, 2); } while (attackType == lastAttack);
+          lastAttack = attackType;
 
-       // if (attackType == 0)
-            SpawnFistAtPlayer();
-       // else
-       //   StartCoroutine(FireLaserWithAim());
+         if (attackType == 0)
+        SpawnFistAtPlayer();
+         else
+           StartCoroutine(FireLaserWithAim());
     }
 
     // ===== こぶし攻撃 =====
@@ -75,7 +75,7 @@ public class stage2_Boss_Attack : MonoBehaviour
     }
 
     // ===== レーザー攻撃（照準→固定発射） =====
-    /*IEnumerator FireLaserWithAim()
+    IEnumerator FireLaserWithAim()
     {
         // --- ① 照準フェーズ ---
         float aimTimer = 0f;
@@ -107,5 +107,5 @@ public class stage2_Boss_Attack : MonoBehaviour
         }
 
         Destroy(laser);
-    }*/
+    }
 }
