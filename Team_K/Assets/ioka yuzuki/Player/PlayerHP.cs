@@ -21,6 +21,8 @@ public class PlayerHP : MonoBehaviour
     public int Player_Current_Hp;
     public float knock_back=10f;
 
+    public static string previousSceneName;//前のシーン名を保存
+
     Rigidbody2D rbody;
 
 
@@ -69,7 +71,7 @@ public class PlayerHP : MonoBehaviour
     }
 
     //攻撃を受けたときに呼ぶ
-   
+
 
     //public void TakeDamage(int damage)
     //{
@@ -82,9 +84,17 @@ public class PlayerHP : MonoBehaviour
     //    }
 
     //}
+    //private void Awake()
+    //{
+    //    //しーんきりかえ時に消えないように
+    //    DontDestroyOnLoad(this.gameObject);
+    //}
 
     void death()
     {
+        ////今のシーンを保存
+        //previousSceneName=SceneManager.GetActiveScene().name;
+        
         // シーンを切り替える
         SceneManager.LoadScene("GameOver");
     }
