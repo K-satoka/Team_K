@@ -1,11 +1,11 @@
-ï»¿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class EnemyHp : MonoBehaviour
 {
-    public int Enemy_MAX_Hp = 10;//æœ€å¤§hp
-    public int Enemy_Current_Hp;//ç¾åœ¨ã®hp
+    public int Enemy_MAX_Hp = 10;//Å‘åhp
+    public int Enemy_Current_Hp;//Œ»İ‚Ìhp
 
     public int damageOnContact = 10;
 
@@ -14,12 +14,12 @@ public class EnemyHp : MonoBehaviour
 
     void Start()
     {
-       Enemy_Current_Hp = Enemy_MAX_Hp;   //åˆæœŸå€¤ã‚’æœ€å¤§å€¤ã«è¨­å®š
+       Enemy_Current_Hp = Enemy_MAX_Hp;   //‰Šú’l‚ğÅ‘å’l‚Éİ’è
 
         if (hpSlider != null)
         {
-            hpSlider.maxValue = Enemy_MAX_Hp;//ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã®æœ€å¤§å€¤
-            hpSlider.value = Enemy_Current_Hp;//åˆæœŸå€¤
+            hpSlider.maxValue = Enemy_MAX_Hp;//ƒXƒ‰ƒCƒ_[‚ÌÅ‘å’l
+            hpSlider.value = Enemy_Current_Hp;//‰Šú’l
         }
     
     }
@@ -27,11 +27,11 @@ public class EnemyHp : MonoBehaviour
     public void TakeDamage(int damage)
     {
        Enemy_Current_Hp -= damage;
-        if (Enemy_Current_Hp < 0) Enemy_Current_Hp = 0;//HPãŒãƒã‚¤ãƒŠã‚¹ã«ãªã‚‰ãªã„ã‚ˆã†ã«
-        Debug.Log("æ•µãŒ" + damage +"ã®ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’å—ã‘ãŸã€‚æ®‹ã‚Š:" +  Enemy_Current_Hp+ "/" + Enemy_MAX_Hp);
+        if (Enemy_Current_Hp < 0) Enemy_Current_Hp = 0;//HP‚ªƒ}ƒCƒiƒX‚É‚È‚ç‚È‚¢‚æ‚¤‚É
+        Debug.Log("“G‚ª" + damage +"‚Ìƒ_ƒ[ƒW‚ğó‚¯‚½Bc‚è:" +  Enemy_Current_Hp+ "/" + Enemy_MAX_Hp);
         if (hpSlider != null)
         {
-            hpSlider.value = Enemy_Current_Hp;//HPãƒãƒ¼æ›´æ–°
+            hpSlider.value = Enemy_Current_Hp;//HPƒo[XV
         }
         if ( Enemy_Current_Hp <= 0)
         {
@@ -41,25 +41,25 @@ public class EnemyHp : MonoBehaviour
 
 void Die()
     {
-        Debug.Log("æ­»ã‚“ã ãœ!");
+        Debug.Log("€‚ñ‚¾‚º!");
 
-        //æ¬¡ã®ã‚¹ãƒ†ãƒ¼ã‚¸ã®è§£æ”¾å‡¦ç†
+        //Ÿ‚ÌƒXƒe[ƒW‚Ì‰ğ•úˆ—
         
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
-        //ç¾åœ¨ã®ã‚¹ãƒ†ãƒ¼ã‚¸ãŒæœ€æ–°ã ã£ãŸã‚‰æ¬¡ã‚’è§£æ”¾
+        //Œ»İ‚ÌƒXƒe[ƒW‚ªÅV‚¾‚Á‚½‚çŸ‚ğ‰ğ•ú
         int stageUnlock = PlayerPrefs.GetInt("StageUnlock", 1);
         if (currentSceneIndex>=stageUnlock)
         {
             PlayerPrefs.SetInt("StageUnlock", stageUnlock + 1);
             PlayerPrefs.Save();
-            Debug.Log("æ¬¡ã«é€²ã‚ã‚‹ãœã€ç›¸æ£’");
+            Debug.Log("Ÿ‚Éi‚ß‚é‚ºA‘Š–_");
         }
 
         
-            Destroy(gameObject);//ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‰Šé™¤
+            Destroy(gameObject);//ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚ğíœ
        
-        //ã™ã¦ã›ã‚Œã«æˆ»ã‚‹
+        //‚·‚Ä‚¹‚ê‚É–ß‚é
         SceneManager.LoadScene("StageSelect");
     
     }
