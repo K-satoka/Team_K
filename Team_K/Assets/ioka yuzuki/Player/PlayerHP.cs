@@ -101,7 +101,7 @@ public class PlayerHP : MonoBehaviour
 
     public void IncreaseMaxHP(int aumount)
     {
-        Player_MAX_Hp = aumount;
+        Player_MAX_Hp += aumount;
         Player_Current_Hp += aumount;
         Debug.Log("Å‘åHP‚ª" + aumount + "‘‚¦‚½‚æ‚¨‚ñB¡‚ÌÅ‘åHP‚Í" + Player_MAX_Hp);
     }
