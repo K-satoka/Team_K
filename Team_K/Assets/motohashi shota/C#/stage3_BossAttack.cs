@@ -4,36 +4,38 @@ using System.Collections;
 public class stage3_BossAttack : MonoBehaviour
 {
     [Header("攻撃プレハブ")]
-    public GameObject fistPrefab;
-    public GameObject laserPrefab;
+    public GameObject CQCPrefab;      // 近接攻撃エフェクトなど
+    public GameObject SnowBallPrefab; // 雪玉攻撃用
 
     [Header("攻撃間隔")]
     public float attackInterval = 2.5f;
 
-    [Header("こぶしパラメータ")]
-    public float fistFallSpeed = 6.0f;
+    [Header("CQCパラメータ")]
+    public float moveSpeed = 5.0f;         // 近づく速度
+    public float attackRange = 1.2f;       // 攻撃距離
+    public float retreatDistance = 3.0f;   // 攻撃後に下がる距離
+    public float attackDuration = 0.5f;    // 攻撃モーション時間
 
-    [Header("レーザーパラメータ")]
-    public float laserSpeed = 12.0f;
-    public float laserDuration = 2.0f;
-    public float laserAimTime = 1.0f; // ← 撃つ前に照準を合わせる時間
+    [Header("雪玉パラメータ")]
+    public float snowballSpeed = 10.0f;
+    public float snowballLifetime = 3.0f;
+    public float aimTime = 0.5f; // 照準時間
 
     [Header("ターゲット設定")]
-    public Transform player; // プレイヤーをInspectorで指定
+    public Transform player;
 
     private float attackTimer;
     private int lastAttack = -1;
-    private Camera cam;
+    private bool isAttacking = false;
 
     void Start()
     {
-        cam = Camera.main;
         attackTimer = Random.Range(0f, attackInterval);
     }
 
     void Update()
     {
-        if (player == null) return;
+        if (player == null || isAttacking) return;
 
         attackTimer += Time.deltaTime;
 
@@ -46,66 +48,83 @@ public class stage3_BossAttack : MonoBehaviour
 
     void DoRandomAttack()
     {
-         int attackType;
-         do { attackType = Random.Range(0, 2); } while (attackType == lastAttack);
-          lastAttack = attackType;
+        int attackType;
+        do { attackType = Random.Range(0, 2); } while (attackType == lastAttack);
+        lastAttack = attackType;
 
-         if (attackType == 0)
-        SpawnFistAtPlayer();
-         else
-           StartCoroutine(FireLaserWithAim());
+        if (attackType == 0)
+            StartCoroutine(CQC_Attack());
+        else
+            StartCoroutine(FireSnowBall());
     }
 
-    // ===== こぶし攻撃 =====
-    void SpawnFistAtPlayer()
+    // ======= 近接攻撃（プレイヤーに接近して攻撃） =======
+    IEnumerator CQC_Attack()
     {
-        Vector3 spawnPos = new Vector3(player.position.x, cam.orthographicSize + 1f, 0);
-        GameObject fist = Instantiate(fistPrefab, spawnPos, Quaternion.identity);
-        StartCoroutine(FallDown(fist.transform));
-    }
+        isAttacking = true;
 
-    IEnumerator FallDown(Transform fist)
-    {
-        while (fist != null && fist.position.y > -cam.orthographicSize - 2f)
+        // ① プレイヤーに接近
+        while (Vector3.Distance(transform.position, player.position) > attackRange)
         {
-            fist.position += Vector3.down * fistFallSpeed * Time.deltaTime;
+            Vector3 dir = (player.position - transform.position).normalized;
+            transform.position += dir * moveSpeed * Time.deltaTime;
             yield return null;
         }
-        if (fist != null) Destroy(fist.gameObject);
+
+        // ② 攻撃モーション（拳エフェクトなど出す）
+        if (CQCPrefab != null)
+        {
+            GameObject punch = Instantiate(CQCPrefab, player.position, Quaternion.identity);
+            Destroy(punch, attackDuration);
+        }
+
+        yield return new WaitForSeconds(attackDuration);
+
+        // ③ 後退（プレイヤーから少し離れる）
+        Vector3 retreatDir = (transform.position - player.position).normalized;
+        float retreatMoved = 0f;
+
+        while (retreatMoved < retreatDistance)
+        {
+            transform.position += retreatDir * moveSpeed * Time.deltaTime;
+            retreatMoved += moveSpeed * Time.deltaTime;
+            yield return null;
+        }
+
+        isAttacking = false;
     }
 
-    // ===== レーザー攻撃（照準→固定発射） =====
-    IEnumerator FireLaserWithAim()
+    // ======= 雪玉攻撃 =======
+    IEnumerator FireSnowBall()
     {
-        // --- ① 照準フェーズ ---
-        float aimTimer = 0f;
-        Vector3 dir = Vector3.right; // 初期方向
-        GameObject laser = Instantiate(laserPrefab, transform.position, Quaternion.identity);
+        isAttacking = true;
 
-        while (aimTimer < laserAimTime)
+        // 照準フェーズ
+        float timer = 0f;
+        Vector3 dir = Vector3.right;
+        while (timer < aimTime)
         {
             if (player != null)
                 dir = (player.position - transform.position).normalized;
-
-            // レーザーの向きをプレイヤー方向に更新
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            laser.transform.rotation = Quaternion.Euler(0, 0, angle);
-
-            aimTimer += Time.deltaTime;
+            timer += Time.deltaTime;
             yield return null;
         }
 
-        // --- ② 発射フェーズ（照準固定） ---
-        Vector3 fireDir = dir; // この時点の方向を固定
-        float moveTimer = 0f;
+        // 発射
+        GameObject snow = Instantiate(SnowBallPrefab, transform.position, Quaternion.identity);
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        snow.transform.rotation = Quaternion.Euler(0, 0, angle);
 
-        while (moveTimer < laserDuration)
+        float life = 0f;
+        while (life < snowballLifetime && snow != null)
         {
-            laser.transform.position += fireDir * laserSpeed * Time.deltaTime;
-            moveTimer += Time.deltaTime;
+            snow.transform.position += dir * snowballSpeed * Time.deltaTime;
+            life += Time.deltaTime;
             yield return null;
         }
 
-        Destroy(laser);
+        if (snow != null) Destroy(snow);
+
+        isAttacking = false;
     }
 }
