@@ -1,11 +1,11 @@
-ï»¿ï»¿
-ï»¿using Unity.VisualScripting;
 
-ï»¿using System.Collections;
+using Unity.VisualScripting;
+
+using System.Collections;
 using System.Collections.Generic;
 
 using Unity.VisualScripting;
-ï»¿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
@@ -21,20 +21,20 @@ public class PlayerHP : MonoBehaviour
     public int Player_Current_Hp;
     public float knock_back=10f;
 
-    public static string previousSceneName;//å‰ã®ã‚·ãƒ¼ãƒ³åã‚’ä¿å­˜
+    public static string previousSceneName;//‘O‚ÌƒV[ƒ“–¼‚ğ•Û‘¶
 
     Rigidbody2D rbody;
 
 
     public Slider PlayerhpSlider;
 
-    public string gameOverSceneName = "GameOver";//ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼ã‚·ãƒ¼ãƒ³
+    public string gameOverSceneName = "GameOver";//ƒQ[ƒ€ƒI[ƒo[ƒV[ƒ“
 
     void Start()
     {
         Player_Current_Hp = Player_MAX_Hp;
 
-        // ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼åˆæœŸåŒ–
+        // ƒXƒ‰ƒCƒ_[‰Šú‰»
         if (PlayerhpSlider != null)
         {
             PlayerhpSlider.maxValue = Player_MAX_Hp;
@@ -47,7 +47,7 @@ public class PlayerHP : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã‚’å¸¸ã«ç¾åœ¨HPã«åˆã‚ã›ã‚‹
+        // ƒXƒ‰ƒCƒ_[‚ğí‚ÉŒ»İHP‚É‡‚í‚¹‚é
         if (PlayerhpSlider != null)
         {
             PlayerhpSlider.value = Player_Current_Hp;
@@ -70,33 +70,40 @@ public class PlayerHP : MonoBehaviour
 
     }
 
-    //æ”»æ’ƒã‚’å—ã‘ãŸã¨ãã«å‘¼ã¶
+    //UŒ‚‚ğó‚¯‚½‚Æ‚«‚ÉŒÄ‚Ô
 
 
     //public void TakeDamage(int damage)
     //{
     //    Player_Current_Hp -= damage;
-    //    if (Player_Current_Hp < 0) Player_Current_Hp = 0;//HPãŒãƒã‚¤ãƒŠã‚¹ã«ãªã‚‰ãªã„ã‚ˆã†ã«
+    //    if (Player_Current_Hp < 0) Player_Current_Hp = 0;//HP‚ªƒ}ƒCƒiƒX‚É‚È‚ç‚È‚¢‚æ‚¤‚É
 
     //    if (Player_Slider != null)
     //    {
-    //        Player_Slider.value = Player_Current_Hp;//HPãƒãƒ¼æ›´æ–°
+    //        Player_Slider.value = Player_Current_Hp;//HPƒo[XV
     //    }
 
     //}
     //private void Awake()
     //{
-    //    //ã—ãƒ¼ã‚“ãã‚Šã‹ãˆæ™‚ã«æ¶ˆãˆãªã„ã‚ˆã†ã«
+    //    //‚µ[‚ñ‚«‚è‚©‚¦‚ÉÁ‚¦‚È‚¢‚æ‚¤‚É
     //    DontDestroyOnLoad(this.gameObject);
     //}
 
     void death()
     {
-        ////ä»Šã®ã‚·ãƒ¼ãƒ³ã‚’ä¿å­˜
+        ////¡‚ÌƒV[ƒ“‚ğ•Û‘¶
         //previousSceneName=SceneManager.GetActiveScene().name;
         
-        // ã‚·ãƒ¼ãƒ³ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
+        // ƒV[ƒ“‚ğØ‚è‘Ö‚¦‚é
         SceneManager.LoadScene("GameOver");
+    }
+
+    public void IncreaseMaxHP(int aumount)
+    {
+        Player_MAX_Hp += aumount;
+        Player_Current_Hp += aumount;
+        Debug.Log("Å‘åHP‚ª" + aumount + "‘‚¦‚½‚æ‚¨‚ñB¡‚ÌÅ‘åHP‚Í" + Player_MAX_Hp);
     }
 
 }
