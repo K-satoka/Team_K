@@ -61,6 +61,10 @@ public class stage2_Boss_Attack : MonoBehaviour
     {
         Vector3 spawnPos = new Vector3(player.position.x, cam.orthographicSize + 1f, 0);
         GameObject fist = Instantiate(fistPrefab, spawnPos, Quaternion.identity);
+
+        // ‚±‚±‚ÅŒ‚Ì‘å‚«‚³‚ğ•ÏX‚µ‚Ä‚İ‚é
+        fist.transform.localScale = new Vector3(1f, 1f, 1f); // D‚«‚È‘å‚«‚³‚É•ÏX
+
         StartCoroutine(FallDown(fist.transform));
     }
 
