@@ -108,11 +108,11 @@ TextureImporter:
         serializedVersion: 2
         x: 41
         y: 1007
-        width: 1318
+        width: 1459
         height: 1136
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 25, y: 201, z: 312, w: 126}
       customData: 
       outline: []
       physicsShape: []
@@ -124,33 +124,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: fire3_1
-      rect:
-        serializedVersion: 2
-        x: 1216
-        y: 1607
-        width: 243
-        height: 86
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 238671debf99fbe30800000000000000
-      internalID: 4521501858196842546
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: def8928ccffe5ca4aada9cb90a455c17
     internalID: 0
     vertices: []
     indices: 
