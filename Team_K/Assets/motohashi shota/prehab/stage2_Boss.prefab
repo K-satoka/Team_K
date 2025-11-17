@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c211151fb904c6418430087c83825d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fistPrefab: {fileID: 7131909362606615127}
+  fistPrefab: {fileID: 0}
   laserPrefab: {fileID: 0}
   attackInterval: 2.5
   fistFallSpeed: 6

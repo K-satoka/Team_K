@@ -1,4 +1,4 @@
-ï»¿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,8 +9,10 @@ public class Title : MonoBehaviour
     {
         Application.targetFrameRate = 60;
         
-        PlayerPrefs.DeleteAll();//ä¿å­˜ãƒ‡ãƒ¼ãƒˆã‚’å‰Šé™¤
+        PlayerPrefs.DeleteAll();//•Û‘¶ƒf[ƒg‚ğíœ
         PlayerPrefs.Save();
+
+        PlayerData.Instance.ResetData();
     }
     public void onClickStartButton()
     {

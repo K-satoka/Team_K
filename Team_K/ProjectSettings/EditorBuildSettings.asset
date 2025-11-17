@@ -20,5 +20,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ioka yuzuki/GameOver.unity
     guid: 6f9409e9ae0fd6d4c9aa40ca7e03c319
+  - enabled: 1
+    path: Assets/masuda haruto/Reward/Reward.unity
+    guid: a70b349c221fa734d844652f7ec66db8
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
