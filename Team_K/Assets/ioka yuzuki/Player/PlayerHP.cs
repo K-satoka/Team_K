@@ -32,16 +32,22 @@ public class PlayerHP : MonoBehaviour
 
     void Start()
     {
-        Player_Current_Hp = Player_MAX_Hp;
+        Player_Current_Hp =Player_MAX_Hp + PlayerData.Instance.maxHP_Up;
 
         // スライダー初期化
         if (PlayerhpSlider != null)
         {
-            PlayerhpSlider.maxValue = Player_MAX_Hp;
+            PlayerhpSlider.maxValue = Player_Current_Hp;
             PlayerhpSlider.value = Player_Current_Hp;
         }
 
      rbody = GetComponent<Rigidbody2D>();
+
+
+
+        // 増加分のログ
+        Debug.Log($"カードで増えた合計HP: {PlayerData.Instance.maxHP_Up}");
+        Debug.Log($"現在の最大HP: {Player_Current_Hp}");
     }
 
     // Update is called once per frame
@@ -62,7 +68,7 @@ public class PlayerHP : MonoBehaviour
             Debug.Log(Player_Current_Hp);
         }
 
-        if (Player_Current_Hp == 0)
+        if (Player_Current_Hp <= 0)
         {
             Destroy(gameObject);
             death();
@@ -99,11 +105,11 @@ public class PlayerHP : MonoBehaviour
         SceneManager.LoadScene("GameOver");
     }
 
-    public void IncreaseMaxHP(int aumount)
+    /*public void IncreaseMaxHP(int aumount)
     {
         Player_MAX_Hp += aumount;
         Player_Current_Hp += aumount;
         Debug.Log("最大HPが" + aumount + "増えたよおん。今の最大HPは" + Player_MAX_Hp);
     }
-
+    */
 }

@@ -9,6 +9,7 @@ public class AttackCollision : MonoBehaviour
     private int baseAttack = 10;//基礎攻撃力
     private int currentAttack;//現在値(カードで強化される)
 
+    
     private void Awake()
     {
         // 親自身の Collider2D を取得
@@ -24,7 +25,14 @@ public class AttackCollision : MonoBehaviour
                 col.enabled = false;
         }
 
-    currentAttack = baseAttack;
+    currentAttack = baseAttack+PlayerData.Instance.attack_up;
+    }
+
+    private void Start()
+    {
+        
+        currentAttack =baseAttack+ PlayerData.Instance.attack_up;
+        Debug.Log("Start後の攻撃力: " + currentAttack);
     }
 
     /// <summary>
@@ -66,7 +74,9 @@ public class AttackCollision : MonoBehaviour
   
     public void IncreaseAttack(int value)
     {
-        currentAttack = value;
+        currentAttack += value;
+
+        PlayerData.Instance.attack_up += value;
         Debug.Log($"攻撃力上がったよ！今は{currentAttack} {value}");
     }
     ///<summary
