@@ -729,51 +729,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1349383595104807666, guid: 88bd02737f2c978408294bd09fae051e, type: 3}
   m_PrefabInstance: {fileID: 1713049978}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
---- !u!1 &903110318 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 652971417976225937, guid: 2785b4b24fa80cf4db2d1d4d81970e49, type: 3}
-  m_PrefabInstance: {fileID: 303639152}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &903110320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 903110318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf14786b52ce2164992f11c02a1bfa6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackRange: 1.5
-  attackDamage: 20
-  attackRate: 100
-  enemyLayers:
-    serializedVersion: 2
-    m_Bits: 128
-  attackPoint: {fileID: 665585006}
---- !u!4 &903110328 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8937681394848637377, guid: 2785b4b24fa80cf4db2d1d4d81970e49, type: 3}
-  m_PrefabInstance: {fileID: 303639152}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &903110329
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 903110318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4294c01a99581e84a90364f32636a0b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseAttack: 10
-=======
->>>>>>> e083541c5761fe9dac3458860cd25b0d1e8c9997
 --- !u!1 &918072105
 GameObject:
   m_ObjectHideFlags: 0
@@ -1024,7 +979,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3123337689382938097, guid: 801a20b51f6e41d4b812ad7c6c59be90, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3558001758588385280, guid: 801a20b51f6e41d4b812ad7c6c59be90, type: 3}
       propertyPath: Enemy_jump
