@@ -63,7 +63,7 @@ public class stage2_Boss_Attack : MonoBehaviour
         GameObject fist = Instantiate(fistPrefab, spawnPos, Quaternion.identity);
 
         // ここで拳の大きさを変更してみる
-        fist.transform.localScale = new Vector3(1f, 1f, 1f); // 好きな大きさに変更
+        fist.transform.localScale = new Vector3(3f, 3f, 3f); // 好きな大きさに変更
 
         StartCoroutine(FallDown(fist.transform));
     }

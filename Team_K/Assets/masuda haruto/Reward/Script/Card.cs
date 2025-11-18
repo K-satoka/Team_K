@@ -64,11 +64,11 @@ public class Card : MonoBehaviour
             switch(cardType)
             {
                 case CardType.HP:
-                    cardText.text = $"HPカード+{value}";
+                    cardText.text = $"HP+{value}";
                     break;
 
                 case CardType.Attack:
-                    cardText.text = $"Attackカード+{value}";
+                    cardText.text = $"Attack+{value}";
                     break;
                     
             }

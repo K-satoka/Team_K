@@ -60,7 +60,7 @@ void Die()
             Destroy(gameObject);//ゲームオブジェクトを削除
        
         //すてせれに戻る
-        SceneManager.LoadScene("StageSelect");
+        SceneManager.LoadScene("Reward");
     
     }
 
