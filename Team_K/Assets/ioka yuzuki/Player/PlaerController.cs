@@ -13,6 +13,7 @@ public class PlaerController : MonoBehaviour
     public LayerMask GroundLayer;
     bool goJump =false;
     bool onGround = false;
+    bool isAttacking = false;
 
     public int Max_JumpCount = 2;        //最大ジャンプ回数
     private int currentJumpCount = 0;
@@ -25,6 +26,7 @@ public class PlaerController : MonoBehaviour
     public string waiting = "PlayerStop";
     public string PlayerMove = "PlayerMove";
     public string PlayerJump = "PlayerJump";
+    public string PlayerAttack = "Player_Attack";
     string nowAnime = "";
     string oldAnime = "";
 
@@ -41,8 +43,13 @@ public class PlaerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isAttacking && Input.GetKeyDown(KeyCode.Z))
+        {
+            isAttacking = true;
+            animator.Play(PlayerAttack);
+            StartCoroutine(EndAttackAnimation());
+        }
 
-        
         //水平方向をチェックする
         axisH = Input.GetAxisRaw("Horizontal");
         if(axisH>0.0f)
@@ -67,6 +74,11 @@ public class PlaerController : MonoBehaviour
             }
            
         }
+        IEnumerator EndAttackAnimation()
+        {
+            yield return new WaitForSeconds(0.5f); // 攻撃アニメの長さに合わせる
+            isAttacking = false;
+        }
     }
 
     void FixedUpdate()
@@ -78,7 +90,7 @@ public class PlaerController : MonoBehaviour
             0.0f,            //発射距離
             GroundLayer);    //検出するレイヤー
 
-        
+
 
         if (onGround || axisH != 0)
         {
@@ -90,35 +102,35 @@ public class PlaerController : MonoBehaviour
         {
             currentJumpCount = 0;
         }
-
-        
         // if (onGround) Debug.Log("tettse");
-
-
-        //アニメーションの更新
-        if (onGround)
+        if (!isAttacking)
         {
-            //地面の上
-            if(axisH!=0)
+            if (onGround)
             {
-                Debug.Log(axisH);
-                nowAnime = PlayerMove;     //停止中
+                //アニメーションの更新
+                nowAnime = axisH != 0 ? PlayerMove : waiting;
+                //中身
+                //if (axisH != 0)
+                //{
+                    //Debug.Log(axisH);
+                    //nowAnime = PlayerMove;     //停止中
+                //}
+                //else
+                //{
+                //    nowAnime = waiting;   //移動
+                //    //Debug.Log("あるき");
+                //}
             }
             else
-            { 
-                nowAnime = waiting;   //移動
-                //Debug.Log("あるき");
+            {
+                //空中
+                nowAnime = PlayerJump;
+            }   //ジャンプアニメーション完成時追加
+            if (nowAnime != oldAnime)
+            {
+                oldAnime = nowAnime;
+                animator.Play(nowAnime);  //アニメーション追加
             }
-        }
-        else 
-        {
-            //空中
-            nowAnime = PlayerJump;
-        }   //ジャンプアニメーション完成時追加
-        if (nowAnime != oldAnime)
-        {
-            oldAnime = nowAnime;
-            animator.Play(nowAnime);  //アニメーション追加
         }
     }
     void OnCollisionEnter2D(Collision2D collision)

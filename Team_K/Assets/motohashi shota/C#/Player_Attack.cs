@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerAttack : MonoBehaviour
+public class Player_Attack : MonoBehaviour
 {
     public float attackRange = 1.5f;
     public int attackDamage = 20;
@@ -10,38 +10,28 @@ public class PlayerAttack : MonoBehaviour
     public Transform attackPoint;
 
     private float nextAttackTime = 0f;
-    private Animator animator;
 
-    void Start()
-    {
-        animator = GetComponent<Animator>();
-    }
-
-    void Update()
-    {
-        if (Time.time >= nextAttackTime)
+        void Update()
         {
-            if (Keyboard.current.zKey.isPressed)  // ZƒL[‚ÅUŒ‚
+            if (Time.time >= nextAttackTime)
             {
-                Attack();
-                nextAttackTime = Time.time + 1f / attackRate;
+                if (Keyboard.current.zKey.wasPressedThisFrame)
+                {
+                    DoAttack();
+                }
             }
         }
-    }
 
-    void Attack()
-    {
-        // UŒ‚ƒAƒjƒ[ƒVƒ‡ƒ“
-        animator.SetTrigger("Attack");
-        // UŒ‚”ÍˆÍ“à‚Ì“G‚ğŒŸo
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-
-        // ŒŸo‚µ‚½“G‚Éƒ_ƒ[ƒW‚ğ—^‚¦‚é
-        foreach (Collider2D enemy in hitEnemies)
+        void DoAttack()
         {
-            enemy.GetComponent<Enemy>()?.TakeDamage(attackDamage);
-            Debug.Log("“G‚ÉUŒ‚ƒqƒbƒgI");
+            nextAttackTime = Time.time + 1f / attackRate;
+
+            // “–‚½‚è”»’è‚¾‚¯‚±‚±‚ÅÀ{
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+            foreach (Collider2D enemy in hitEnemies)
+            {
+                enemy.GetComponent<Enemy>()?.TakeDamage(attackDamage);
+            }
         }
-    }
-    
 }

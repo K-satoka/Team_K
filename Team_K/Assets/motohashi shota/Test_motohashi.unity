@@ -330,6 +330,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Ground
       objectReference: {fileID: 0}
+    - target: {fileID: 1568833486462338398, guid: 873d2577e10d16a4dacdb4879060ba6e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -413,6 +417,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &854064028 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7131909362606615127, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
+  m_PrefabInstance: {fileID: 452270415}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1202860960
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -676,6 +685,34 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1293193100}
+    - target: {fileID: 4321274137955457332, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
+      propertyPath: fistPrefab
+      value: 
+      objectReference: {fileID: 854064028}
+    - target: {fileID: 5020827394811078888, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 11.633333
+      objectReference: {fileID: 0}
+    - target: {fileID: 5020827394811078888, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 20.066668
+      objectReference: {fileID: 0}
+    - target: {fileID: 8141420715039680581, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
+      propertyPath: m_Size.x
+      value: 11.633333
+      objectReference: {fileID: 0}
+    - target: {fileID: 8141420715039680581, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
+      propertyPath: m_Size.y
+      value: 20.066668
+      objectReference: {fileID: 0}
+    - target: {fileID: 8141420715039680581, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2281595177399394963, guid: 1db3845d7b482b04dab5aef48f31dba5, type: 3}
+    - target: {fileID: 8141420715039680581, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
