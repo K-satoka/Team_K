@@ -3,25 +3,25 @@ using System.Collections;
 
 public class Stage3_BossAI : MonoBehaviour
 {
-    [Header("ƒ^[ƒQƒbƒg")]
+    [Header("ï¿½^ï¿½[ï¿½Qï¿½bï¿½g")]
     public Transform player;
 
-    [Header("ˆÚ“®ƒpƒ‰ƒ[ƒ^")]
+    [Header("ï¿½Ú“ï¿½ï¿½pï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½^")]
     public float moveSpeed = 3f;
     public float stopDistance = 2f;
 
-    [Header("UŒ‚İ’è")]
+    [Header("ï¿½Uï¿½ï¿½ï¿½İ’ï¿½")]
     public GameObject CQCPrefab;
     public GameObject SnowBallPrefab;
     public float attackInterval = 2.5f;
 
-    [Header("CQCƒpƒ‰ƒ[ƒ^")]
+    [Header("CQCï¿½pï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½^")]
     public float CQCMoveSpeed = 5f;
     public float attackRange = 1.2f;
     public float retreatDistance = 3f;
     public float attackDuration = 0.5f;
 
-    [Header("á‹Êƒpƒ‰ƒ[ƒ^")]
+    [Header("ï¿½ï¿½Êƒpï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½^")]
     public float snowballSpeed = 10f;
     public float snowballLifetime = 3f;
     public float aimTime = 0.5f;
@@ -36,7 +36,7 @@ public class Stage3_BossAI : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>(); // šƒAƒjƒ[ƒ^[æ“¾
+        anim = GetComponent<Animator>(); // ï¿½ï¿½ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½^ï¿½[ï¿½æ“¾
 
         attackTimer = Random.Range(0f, attackInterval);
     }
@@ -45,13 +45,13 @@ public class Stage3_BossAI : MonoBehaviour
     {
         if (player == null) return;
 
-        // ƒAƒjƒ—pFUŒ‚’†‚È‚ç idle ‚ÉØ‚è‘Ö‚¦‚Ä‚¨‚­
+        // ï¿½Aï¿½jï¿½ï¿½ï¿½pï¿½Fï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ idle ï¿½ÉØ‚ï¿½Ö‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½
         anim.SetBool("isAttacking", isAttacking);
 
-        // UŒ‚’†‚ÍˆÚ“®‚µ‚È‚¢
+        // ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ÍˆÚ“ï¿½ï¿½ï¿½ï¿½È‚ï¿½
         if (isAttacking)
         {
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             anim.SetBool("isMoving", false);
             return;
         }
@@ -60,7 +60,7 @@ public class Stage3_BossAI : MonoBehaviour
 
         if (distance <= stopDistance)
         {
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             anim.SetBool("isMoving", false);
 
             attackTimer += Time.deltaTime;
@@ -80,9 +80,9 @@ public class Stage3_BossAI : MonoBehaviour
     void FollowPlayer()
     {
         Vector2 dir = (player.position - transform.position).normalized;
-        rb.velocity = dir * moveSpeed;
+        rb.linearVelocity = dir * moveSpeed;
 
-        // ƒAƒjƒFˆÚ“®
+        // ï¿½Aï¿½jï¿½ï¿½ï¿½Fï¿½Ú“ï¿½
         anim.SetBool("isMoving", true);
     }
 
@@ -102,16 +102,16 @@ public class Stage3_BossAI : MonoBehaviour
     {
         isAttacking = true;
         anim.SetBool("isMoving", false);
-        anim.SetTrigger("CQC");   // šƒAƒjƒÄ¶
+        anim.SetTrigger("CQC");   // ï¿½ï¿½ï¿½Aï¿½jï¿½ï¿½ï¿½Äï¿½
 
         while (Vector3.Distance(transform.position, player.position) > attackRange)
         {
             Vector3 dir = (player.position - transform.position).normalized;
-            rb.velocity = dir * CQCMoveSpeed;
+            rb.linearVelocity = dir * CQCMoveSpeed;
             yield return null;
         }
 
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
 
         if (CQCPrefab != null)
         {
@@ -126,12 +126,12 @@ public class Stage3_BossAI : MonoBehaviour
 
         while (moved < retreatDistance)
         {
-            rb.velocity = retreatDir * CQCMoveSpeed;
+            rb.linearVelocity = retreatDir * CQCMoveSpeed;
             moved += CQCMoveSpeed * Time.deltaTime;
             yield return null;
         }
 
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         isAttacking = false;
     }
 
@@ -139,7 +139,7 @@ public class Stage3_BossAI : MonoBehaviour
     {
         isAttacking = true;
         anim.SetBool("isMoving", false);
-        anim.SetTrigger("Snow");  // šƒAƒjƒÄ¶
+        anim.SetTrigger("Snow");  // ï¿½ï¿½ï¿½Aï¿½jï¿½ï¿½ï¿½Äï¿½
 
         float timer = 0f;
         Vector3 dir = Vector3.right;
