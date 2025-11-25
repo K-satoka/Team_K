@@ -16,7 +16,7 @@ public class Title : MonoBehaviour
     }
     public void onClickStartButton()
     {
-        FadeManager.Instance.LoadScene("StageSelect",1.0f);
+        SceneManager.LoadScene("StageSelect");
     }
 
 }

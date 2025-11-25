@@ -102,7 +102,7 @@ public class PlayerHP : MonoBehaviour
         //previousSceneName=SceneManager.GetActiveScene().name;
         
         // ƒV[ƒ“‚ğØ‚è‘Ö‚¦‚é
-        FadeManager.Instance.LoadScene("GameOver",0.5f);
+        SceneManager.LoadScene("GameOver");
     }
 
     /*public void IncreaseMaxHP(int aumount)
