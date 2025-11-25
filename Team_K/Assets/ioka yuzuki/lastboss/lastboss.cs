@@ -53,6 +53,7 @@ public class maou : MonoBehaviour
             {
                 
                 teleport();
+                anim.Play("maouteleport");
                 timer = 0f;
             }
         }
@@ -62,6 +63,7 @@ public class maou : MonoBehaviour
             if (timer >= shootInterval)
             {
                 Shoot();
+                anim.Play("maoufire");
                 timer = 0f;
             }
         }
