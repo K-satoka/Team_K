@@ -12,6 +12,7 @@ public class maou : MonoBehaviour
     public float detecDistance = 5f;//”½‰‚·‚é‹——£
     public float detecTime = 2f;    //ª‚É‚¢‚½‚ç”½‰‚·‚é‚Ü‚Å‚ÌŠÔ
 
+    Animator anim;
 
     private float timer;
     public Transform Player;
@@ -19,6 +20,7 @@ public class maou : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        anim=GetComponent<Animator>();
     }
 
     // Update is called once per frame
