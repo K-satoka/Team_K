@@ -10,6 +10,8 @@ public class EnemyHp : MonoBehaviour
     public int damageOnContact = 10;
 
     public Slider hpSlider;
+
+    public int stageNumber = 1;
    
 
     void Start()
@@ -44,14 +46,14 @@ void Die()
         Debug.Log("死んだぜ!");
 
         //次のステージの解放処理
-        
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        int clearedStage = PlayerPrefs.GetInt("StageCleared", 0);
 
         //現在のステージが最新だったら次を解放
-        int stageUnlock = PlayerPrefs.GetInt("StageUnlock", 1);
-        if (currentSceneIndex>=stageUnlock)
+
+        if (stageNumber > clearedStage)
         {
-            PlayerPrefs.SetInt("StageUnlock", stageUnlock + 1);
+            PlayerPrefs.SetInt("StageCleared", stageNumber);
             PlayerPrefs.Save();
             Debug.Log("次に進めるぜ、相棒");
         }
@@ -60,7 +62,7 @@ void Die()
             Destroy(gameObject);//ゲームオブジェクトを削除
        
         //すてせれに戻る
-        SceneManager.LoadScene("Reward");
+        FadeManager.Instance.LoadScene("Reward",0.5f);
     
     }
 

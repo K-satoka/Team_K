@@ -13,7 +13,7 @@ public class Card : MonoBehaviour
 
     [Header("ランダムの範囲")]
     public int minValue = 1;
-    public int maxValue = 20;
+    public int maxValue = 5;
 
     private PlayerHP playerHP;
     private AttackCollision attackCollision;
@@ -21,6 +21,9 @@ public class Card : MonoBehaviour
     {
         playerHP = FindObjectOfType<PlayerHP>();
         attackCollision = FindObjectOfType<AttackCollision>();
+
+        //ステージに合わせて増加
+        SetvaluerageByStage();
 
         //ボタンがあればクリック登録
         Button btn=GetComponentInChildren<Button>();
@@ -32,6 +35,21 @@ public class Card : MonoBehaviour
 
         UpdateText();
     }
+
+    //ステージに合わせてふり幅増幅
+    void SetvaluerageByStage()
+    {
+        int clearedNumber = PlayerPrefs.GetInt("StageCleared", 0);
+
+        //例:ステージが進むほ最大数が増える
+        minValue = 1 + clearedNumber;
+
+         maxValue = minValue + 5 + clearedNumber*2;
+    
+        Debug.Log($"[Card]stage:{clearedNumber},maxValue:{minValue},max:{maxValue}");
+    }
+
+
 
     public void Setup(CardType type ,int randomValue)
     {
@@ -91,6 +109,6 @@ public class Card : MonoBehaviour
             Debug.Log($"{cardType}カードを選択。効果は:{value}");
 
         //ステージセレクトに飛ぶ
-        SceneManager.LoadScene("StageSelect");
+        FadeManager.Instance.LoadScene("StageSelect",1.0f);
     }
 }
