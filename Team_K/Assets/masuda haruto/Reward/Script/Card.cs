@@ -91,6 +91,6 @@ public class Card : MonoBehaviour
             Debug.Log($"{cardType}カードを選択。効果は:{value}");
 
         //ステージセレクトに飛ぶ
-        SceneManager.LoadScene("StageSelect");
+        FadeManager.Instance.LoadScene("StageSelect",1.0f);
     }
 }
