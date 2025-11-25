@@ -1,4 +1,4 @@
-ï»¿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,20 +6,20 @@ using UnityEngine.SceneManagement;
 
 public class NextStage : MonoBehaviour
 {
-    //ãƒœã‚¿ãƒ³ã‚’é…åˆ—ã¨ã—ã¦å®šç¾©
+    //ƒ{ƒ^ƒ“‚ğ”z—ñ‚Æ‚µ‚Ä’è‹`
     [SerializeField]
     private
         Button[] _stageButton;
 
     [SerializeField]
     private
-        GameObject[] _lockImages;//å—äº¬éŒ ã‚¢ã‚¤ã‚³ãƒ³é…åˆ—
+        GameObject[] _lockImages;//“ì‹ùƒAƒCƒRƒ“”z—ñ
     void Start()
     {
-        //ã‚¹ãƒ†ãƒ¼ã‚¸ã®CLEARæ•°ã‚’å–å¾—
+        //ƒXƒe[ƒW‚ÌCLEAR”‚ğæ“¾
         int stageUnlock = PlayerPrefs.GetInt("StageUnlock", 1);
 
-        //ã‚¹ãƒ†ãƒ¼ã‚¸ãƒœã‚¿ãƒ³ã®è¡¨ç¤ºãƒ»éè¡¨ç¤º
+        //ƒXƒe[ƒWƒ{ƒ^ƒ“‚Ì•\¦E”ñ•\¦
         for(int i=0;i < _stageButton.Length;i++)
         {
             bool unlocked = i < stageUnlock;
@@ -27,14 +27,16 @@ public class NextStage : MonoBehaviour
             _stageButton[i].interactable = unlocked;
             if(_lockImages!=null&&i<_lockImages.Length)
             {
-                _lockImages[i].SetActive(!unlocked);//åè»¢ã—ã¦è¡¨ç¤º
+                _lockImages[i].SetActive(!unlocked);//”½“]‚µ‚Ä•\¦
             }
         }
     }
 
-    public void StageSelect(int Stage)
+    public void StageSelect(int StageNumber)
     {
-        //å—ã‘å–ã£ãŸå› æ•°(stage)ã®ã‚¹ãƒ†ãƒ¼ã‚¸ã‚’ãƒ­ãƒ¼ãƒ‰
-        SceneManager.LoadScene(Stage);
+        string scaneName = "Stage" + StageNumber;
+
+        //ó‚¯æ‚Á‚½ˆö”(stage)‚ÌƒXƒe[ƒW‚ğƒ[ƒh
+        FadeManager.Instance.LoadScene(scaneName,1.0f);
     }
 }
