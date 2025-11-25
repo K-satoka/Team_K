@@ -902,6 +902,7 @@ MonoBehaviour:
   Enemy_Current_Hp: 0
   damageOnContact: 10
   hpSlider: {fileID: 396267785}
+  currentStageNumber: 2
 --- !u!1 &814432660
 GameObject:
   m_ObjectHideFlags: 0

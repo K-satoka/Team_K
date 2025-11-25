@@ -10,8 +10,8 @@ public class EnemyHp : MonoBehaviour
     public int damageOnContact = 10;
 
     public Slider hpSlider;
-   
 
+    public int currentStageNumber = 1;
     void Start()
     {
        Enemy_Current_Hp = Enemy_MAX_Hp;   //初期値を最大値に設定
@@ -48,8 +48,9 @@ void Die()
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
         //現在のステージが最新だったら次を解放
+       
         int stageUnlock = PlayerPrefs.GetInt("StageUnlock", 1);
-        if (currentSceneIndex>=stageUnlock)
+        if (currentStageNumber==stageUnlock)
         {
             PlayerPrefs.SetInt("StageUnlock", stageUnlock + 1);
             PlayerPrefs.Save();
