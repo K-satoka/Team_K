@@ -21,9 +21,9 @@ public class firebullet : MonoBehaviour
         else
         {
             rb.linearVelocity = transform.right * speed;
-            Vector2 scale = transform.localScale;
-            scale.x *= -1; // X ÇîΩì]
-            transform.localScale = scale;
+            //Vector2 scale = transform.localScale;
+            //scale.x *= -1; // X ÇîΩì]
+            //transform.localScale = scale;
         }
 
             Destroy(gameObject, lifetime);//éûä‘åoâﬂÇ≈ã Ç™è¡Ç¶ÇÈ
