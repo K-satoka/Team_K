@@ -40,7 +40,6 @@ public class maou : MonoBehaviour
 
         // プレイヤーまでの距離を計算
         float distance = Vector2.Distance(transform.position, Player.position);
-        Debug.Log(distance);
         //------------------------------------------
 
 
@@ -63,7 +62,7 @@ public class maou : MonoBehaviour
             if (timer >= shootInterval)
             {
                 Shoot();
-                anim.Play("maoufire");
+                anim.Play("fireshot_maou");
                 timer = 0f;
             }
         }
@@ -85,7 +84,6 @@ public class maou : MonoBehaviour
 
     void teleport()
     {
-        Debug.Log("aaaaaaaaaaaaaa");
         if (transform.position.x > 0)
         {
             transform.position = new Vector2(-84, -34);

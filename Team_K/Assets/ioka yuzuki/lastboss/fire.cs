@@ -13,8 +13,14 @@ public class firebullet : MonoBehaviour
     void Start()
     {
 
+       
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         rb = GetComponent<Rigidbody2D>();
-        if(transform.position.x>0)
+        if (transform.position.x > 0)
         {
             rb.linearVelocity = -transform.right * speed;
         }
@@ -26,19 +32,12 @@ public class firebullet : MonoBehaviour
             //transform.localScale = scale;
         }
 
-            Destroy(gameObject, lifetime);//éûä‘åoâﬂÇ≈ã Ç™è¡Ç¶ÇÈ
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    
+        Destroy(gameObject, lifetime);//éûä‘åoâﬂÇ≈ã Ç™è¡Ç¶ÇÈ
     }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Ç†Ç†Ç†Ç†Ç†");
         if (collision.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);//Ç†ÇΩÇ¡ÇΩÇÁÇΩÇ‹Ç™Ç´Ç¶ÇÈ
