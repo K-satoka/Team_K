@@ -17,6 +17,10 @@ public class Card : MonoBehaviour
 
     private PlayerHP playerHP;
     private AttackCollision attackCollision;
+
+    //SE
+    public AudioSource AudioSource;
+    public AudioClip CardSelectSE; 
     private void Start()
     {
         playerHP = FindObjectOfType<PlayerHP>();
@@ -79,6 +83,11 @@ public class Card : MonoBehaviour
 
     public void Onselect()
     {
+        if(AudioSource != null&&CardSelectSE!=null)
+        {
+            AudioSource.PlayOneShot(CardSelectSE);
+        }
+
         if (cardType == CardType.HP)
         {
             PlayerData.Instance.maxHP_Up += value;
