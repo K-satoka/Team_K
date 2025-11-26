@@ -9,9 +9,9 @@ public class PlaerController : MonoBehaviour
     float axisH = 0.0f; //入力
     public float speed = 805.0f;
 
-    public float jump=9.0f;
+    public float jump = 9.0f;
     public LayerMask GroundLayer;
-    bool goJump =false;
+    bool goJump = false;
     bool onGround = false;
     bool isAttacking = false;
 
@@ -30,11 +30,10 @@ public class PlaerController : MonoBehaviour
     string nowAnime = "";
     string oldAnime = "";
 
-
     void Start()
     {
         // Rigidbody2Dをとってくる
-        rbody=this.GetComponent<Rigidbody2D>();//Rigidbody2Dからとってくる
+        rbody = this.GetComponent<Rigidbody2D>();//Rigidbody2Dからとってくる
         animator = GetComponent<Animator>();  //Animatorをとってくる
         nowAnime = waiting;                   //停止から開始
         oldAnime = waiting;                   //停止から開始
@@ -43,126 +42,115 @@ public class PlaerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // 攻撃入力
         if (!isAttacking && Input.GetKeyDown(KeyCode.Z))
         {
             isAttacking = true;
-            animator.Play(PlayerAttack);
-            StartCoroutine(EndAttackAnimation());
+            animator.Play(PlayerAttack);           // 攻撃アニメ再生
+            StartCoroutine(EndAttackAnimation());  // 攻撃終了後に待機に戻す
         }
 
         //水平方向をチェックする
         axisH = Input.GetAxisRaw("Horizontal");
-        if(axisH>0.0f)
+        if (axisH > 0.0f)
         {
-            //Debug.Log("右移動");
+            //右移動
             transform.localScale = new Vector2(-1, 1);
         }
-
-        else if(axisH<0.0f)
+        else if (axisH < 0.0f)
         {
-            //Debug.Log("左移動");
-            transform.localScale=new Vector2(1, 1);
+            //左移動
+            transform.localScale = new Vector2(1, 1);
         }
 
         //キャラクターをジャンプさせる
-        if(Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump"))
         {
             if (onGround || currentJumpCount < Max_JumpCount)
             {
-                Jump();
-               // Debug.Log("jannpu");
+                Jump(); //ジャンプ処理
             }
-           
         }
-        IEnumerator EndAttackAnimation()
-        {
-            yield return new WaitForSeconds(0.5f); // 攻撃アニメの長さに合わせる
-            isAttacking = false;
-        }
+    }
+
+    // 攻撃アニメ終了後にフラグをリセットして待機に戻す
+    IEnumerator EndAttackAnimation()
+    {
+        yield return new WaitForSeconds(0.25f); // 攻撃アニメの長さに合わせる
+        isAttacking = false;
+        nowAnime = waiting;
     }
 
     void FixedUpdate()
     {
         //地上判定
-        bool onGround = Physics2D.CircleCast(transform.position,//発射位置
+        onGround = Physics2D.CircleCast(transform.position,//発射位置
             0.2f,            //円の半径
             Vector2.down,    //発射方向
             0.0f,            //発射距離
             GroundLayer);    //検出するレイヤー
 
-
-
+        // 移動処理
         if (onGround || axisH != 0)
         {
-            //地面の上or速度が０ではない
-            //速度を更新する
-            rbody.linearVelocity = new Vector2(axisH * speed, rbody.linearVelocity.y);
+            //地面の上or速度が0ではない → 速度を更新
+            rbody.velocity = new Vector2(axisH * speed, rbody.velocity.y);
         }
+
         if (onGround)
         {
-            currentJumpCount = 0;
+            currentJumpCount = 0; //ジャンプ回数リセット
         }
-        // if (onGround) Debug.Log("tettse");
-        if (!isAttacking)
+
+        //アニメーション更新
+        if (!isAttacking) //攻撃中は他のアニメを上書きしない
         {
             if (onGround)
             {
-                //アニメーションの更新
+                //地面の上：移動中か停止中かでアニメ切り替え
                 nowAnime = axisH != 0 ? PlayerMove : waiting;
-                //中身
-                //if (axisH != 0)
-                //{
-                    //Debug.Log(axisH);
-                    //nowAnime = PlayerMove;     //停止中
-                //}
-                //else
-                //{
-                //    nowAnime = waiting;   //移動
-                //    //Debug.Log("あるき");
-                //}
             }
             else
             {
                 //空中
                 nowAnime = PlayerJump;
-            }   //ジャンプアニメーション完成時追加
+            }
+
+            //前回のアニメと異なる場合のみ再生
             if (nowAnime != oldAnime)
             {
                 oldAnime = nowAnime;
-                animator.Play(nowAnime);  //アニメーション追加
+                animator.Play(nowAnime);
             }
         }
     }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
-        //if (collision.gameObject.tag == "Enemy")
-        //{
-        //    this.rbody.AddForce(transform.up * 4000.0f);
-        //    this.rbody.AddForce(transform.right * -4000.0f);
-        //}
         if (collision.gameObject.tag == "Enemy")
         {
             if (transform.localScale.x >= 0)
             {
+                //右向きノックバック
                 Vector2 knockback = (transform.right * 1.3f + transform.up * 1.5f).normalized;
                 this.rbody.AddForce(knockback * knock_back_left);
                 Debug.Log("うえ");
             }
             else
             {
+                //左向きノックバック
                 Vector2 knockback2 = (transform.right * -1.3f + transform.up * 1.5f).normalized;
                 this.rbody.AddForce(knockback2 * knock_back_right);
-            }//向きでノックバック方向を判断
+            }
         }
-        
     }
-    //ジャンプ
+
+    //ジャンプ処理
     public void Jump()
     {
-        Vector2 jumpPw = new Vector2(0, jump);//ジャンプさせりベクトルを作る
-        rbody.AddForce(jumpPw, ForceMode2D.Impulse);//
+        Vector2 jumpPw = new Vector2(0, jump);//ジャンプ用ベクトル
+        rbody.AddForce(jumpPw, ForceMode2D.Impulse);
         goJump = false;
-
         currentJumpCount++;
     }
 }
