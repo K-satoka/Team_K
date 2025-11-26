@@ -1077,6 +1077,10 @@ PrefabInstance:
       propertyPath: enemyLayers.m_Bits
       value: 128
       objectReference: {fileID: 0}
+    - target: {fileID: 3975725368665439239, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7031613813734444608, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: m_FlipX
       value: 0
@@ -2064,15 +2068,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1096346538369394883, guid: 44e5c9f7dfea3d44b986bfb3841894dd, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1096346538369394883, guid: 44e5c9f7dfea3d44b986bfb3841894dd, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 4402818967661143745, guid: 44e5c9f7dfea3d44b986bfb3841894dd, type: 3}
       propertyPath: lifetime
       value: 6000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8435021450528209503, guid: 44e5c9f7dfea3d44b986bfb3841894dd, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8435021450528209503, guid: 44e5c9f7dfea3d44b986bfb3841894dd, type: 3}
+      propertyPath: m_UsedByEffector
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8537249925259834159, guid: 44e5c9f7dfea3d44b986bfb3841894dd, type: 3}
       propertyPath: m_FlipX

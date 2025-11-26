@@ -2,23 +2,23 @@ using UnityEngine;
 
 public class stage3_BossMove : MonoBehaviour
 {
-    [Header("ƒ^[ƒQƒbƒg")]
+    [Header("ï¿½^ï¿½[ï¿½Qï¿½bï¿½g")]
     public Transform player;
 
-    [Header("ˆÚ“®ƒpƒ‰ƒ[ƒ^")]
-    //ˆÚ“®‘¬“x
+    [Header("ï¿½Ú“ï¿½ï¿½pï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½^")]
+    //ï¿½Ú“ï¿½ï¿½ï¿½ï¿½x
     public float moveSpeed = 3f;
-    //~‚Ü‚é‚Æ‚«‚ÌŠÔ
+    //ï¿½~ï¿½Ü‚ï¿½Æ‚ï¿½ï¿½ÌŠï¿½
     public float stopDistance = 2f;
 
-    //RigidbodyAƒAƒjƒ[ƒ^[AƒXƒvƒ‰ƒCƒgƒŒƒ“ƒ_ƒ‰[—p
+    //Rigidbodyï¿½Aï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½^ï¿½[ï¿½Aï¿½Xï¿½vï¿½ï¿½ï¿½Cï¿½gï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½[ï¿½p
     private Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer sr;
 
     void Start()
     {
-        //ƒAƒjƒ[ƒ^[ARiGidBodyæ“¾
+        //ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½^ï¿½[ï¿½ARiGidBodyï¿½æ“¾
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
@@ -26,29 +26,29 @@ public class stage3_BossMove : MonoBehaviour
 
     void FixedUpdate()
     {
-        //ƒvƒŒƒCƒ„[‚ª‚È‚¢‚Æ’l‚ğ•Ô‚·‚Ë[
+        //ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½È‚ï¿½ï¿½Æ’lï¿½ï¿½Ô‚ï¿½ï¿½Ë[
         if (player == null) return;
 
         float distance = Vector2.Distance(transform.position, player.position);
 
         if (distance < stopDistance)
         {
-            //‹ß‚Ã‚«‚·‚¬‚½‚ç~‚Ü‚é‚Ë[
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            //ï¿½ß‚Ã‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½~ï¿½Ü‚ï¿½Ë[
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             anim.SetBool("isMoving", false);
         }
         else
         {
-            // ƒvƒŒƒCƒ„[‚ğ’Ç‚¢‚©‚¯‚éi‰¡ˆÚ“®‚Ì‚İj
-            float dirX = player.position.x - transform.position.x; // ¶‰E‚Ì·‚ğ‹‚ß‚é
+            // ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½Ç‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½Ú“ï¿½ï¿½Ì‚İj
+            float dirX = player.position.x - transform.position.x; // ï¿½ï¿½ï¿½Eï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß‚ï¿½
             if (dirX != 0)
             {
-                sr.flipX = dirX > 0;//ƒvƒŒƒCƒ„[‚Ì•û‚És‚­
+                sr.flipX = dirX > 0;//ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Ì•ï¿½ï¿½Ésï¿½ï¿½
             }
 
-            dirX = Mathf.Sign(dirX); // ¶‰E‚ÌŒü‚«‚¾‚¯ -1 or 1 ‚É‚·‚é(matif.sign‚Å³‚©‚O‚È‚ç‚P‚ğA•‰‚È‚ç-1‚ğ•Ô‚·)
+            dirX = Mathf.Sign(dirX); // ï¿½ï¿½ï¿½Eï¿½ÌŒï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -1 or 1 ï¿½É‚ï¿½ï¿½ï¿½(matif.signï¿½Åï¿½ï¿½ï¿½ï¿½Oï¿½È‚ï¿½Pï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½È‚ï¿½-1ï¿½ï¿½Ô‚ï¿½)
 
-            rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
+            rb.linearVelocity = new Vector2(dirX * moveSpeed, rb.linearVelocity.y);
             anim.SetBool("isMoving", true);
         }
     }
