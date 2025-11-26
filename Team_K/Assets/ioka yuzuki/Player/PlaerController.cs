@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class PlaerController : MonoBehaviour
 {
-    Rigidbody2D rbody;  // Rigidbody2DŒ^‚Ì•Ï”
-    float axisH = 0.0f; //“ü—Í
+    Rigidbody2D rbody;  // Rigidbody2Dï¿½^ï¿½Ì•Ïï¿½
+    float axisH = 0.0f; //ï¿½ï¿½ï¿½ï¿½
     public float speed = 805.0f;
 
     public float jump = 9.0f;
@@ -15,14 +15,14 @@ public class PlaerController : MonoBehaviour
     bool onGround = false;
     bool isAttacking = false;
 
-    public int Max_JumpCount = 2;        //Å‘åƒWƒƒƒ“ƒv‰ñ”
+    public int Max_JumpCount = 2;        //ï¿½Å‘ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½
     private int currentJumpCount = 0;
 
     public float knock_back_right;
     public float knock_back_left;
 
-    //ƒAƒjƒ[ƒVƒ‡ƒ“‘Î‰
-    Animator animator;//ƒAƒjƒ[ƒ^[
+    //ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Î‰ï¿½
+    Animator animator;//ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½^ï¿½[
     public string waiting = "PlayerStop";
     public string PlayerMove = "PlayerMove";
     public string PlayerJump = "PlayerJump";
@@ -32,91 +32,91 @@ public class PlaerController : MonoBehaviour
 
     void Start()
     {
-        // Rigidbody2D‚ğ‚Æ‚Á‚Ä‚­‚é
-        rbody = this.GetComponent<Rigidbody2D>();//Rigidbody2D‚©‚ç‚Æ‚Á‚Ä‚­‚é
-        animator = GetComponent<Animator>();  //Animator‚ğ‚Æ‚Á‚Ä‚­‚é
-        nowAnime = waiting;                   //’â~‚©‚çŠJn
-        oldAnime = waiting;                   //’â~‚©‚çŠJn
+        // Rigidbody2Dï¿½ï¿½ï¿½Æ‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½
+        rbody = this.GetComponent<Rigidbody2D>();//Rigidbody2Dï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½
+        animator = GetComponent<Animator>();  //Animatorï¿½ï¿½ï¿½Æ‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½
+        nowAnime = waiting;                   //ï¿½ï¿½~ï¿½ï¿½ï¿½ï¿½Jï¿½n
+        oldAnime = waiting;                   //ï¿½ï¿½~ï¿½ï¿½ï¿½ï¿½Jï¿½n
     }
 
     // Update is called once per frame
     void Update()
     {
-        // UŒ‚“ü—Í
+        // ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (!isAttacking && Input.GetKeyDown(KeyCode.Z))
         {
             isAttacking = true;
-            animator.Play(PlayerAttack);           // UŒ‚ƒAƒjƒÄ¶
-            StartCoroutine(EndAttackAnimation());  // UŒ‚I—¹Œã‚É‘Ò‹@‚É–ß‚·
+            animator.Play(PlayerAttack);           // ï¿½Uï¿½ï¿½ï¿½Aï¿½jï¿½ï¿½ï¿½Äï¿½
+            StartCoroutine(EndAttackAnimation());  // ï¿½Uï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½É‘Ò‹@ï¿½É–ß‚ï¿½
         }
 
-        //…•½•ûŒü‚ğƒ`ƒFƒbƒN‚·‚é
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½Fï¿½bï¿½Nï¿½ï¿½ï¿½ï¿½
         axisH = Input.GetAxisRaw("Horizontal");
         if (axisH > 0.0f)
         {
-            //‰EˆÚ“®
+            //ï¿½Eï¿½Ú“ï¿½
             transform.localScale = new Vector2(-1, 1);
         }
         else if (axisH < 0.0f)
         {
-            //¶ˆÚ“®
+            //ï¿½ï¿½ï¿½Ú“ï¿½
             transform.localScale = new Vector2(1, 1);
         }
 
-        //ƒLƒƒƒ‰ƒNƒ^[‚ğƒWƒƒƒ“ƒv‚³‚¹‚é
+        //ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (Input.GetButtonDown("Jump"))
         {
             if (onGround || currentJumpCount < Max_JumpCount)
             {
-                Jump(); //ƒWƒƒƒ“ƒvˆ—
+                Jump(); //ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½ï¿½
             }
         }
     }
 
-    // UŒ‚ƒAƒjƒI—¹Œã‚Éƒtƒ‰ƒO‚ğƒŠƒZƒbƒg‚µ‚Ä‘Ò‹@‚É–ß‚·
+    // ï¿½Uï¿½ï¿½ï¿½Aï¿½jï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½Éƒtï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½bï¿½gï¿½ï¿½ï¿½Ä‘Ò‹@ï¿½É–ß‚ï¿½
     IEnumerator EndAttackAnimation()
     {
-        yield return new WaitForSeconds(0.25f); // UŒ‚ƒAƒjƒ‚Ì’·‚³‚É‡‚í‚¹‚é
+        yield return new WaitForSeconds(0.25f); // ï¿½Uï¿½ï¿½ï¿½Aï¿½jï¿½ï¿½ï¿½Ì’ï¿½ï¿½ï¿½ï¿½Éï¿½ï¿½í‚¹ï¿½ï¿½
         isAttacking = false;
         nowAnime = waiting;
     }
 
     void FixedUpdate()
     {
-        //’nã”»’è
-        onGround = Physics2D.CircleCast(transform.position,//”­ËˆÊ’u
-            0.2f,            //‰~‚Ì”¼Œa
-            Vector2.down,    //”­Ë•ûŒü
-            0.0f,            //”­Ë‹——£
-            GroundLayer);    //ŒŸo‚·‚éƒŒƒCƒ„[
+        //ï¿½nï¿½ã”»ï¿½ï¿½
+        onGround = Physics2D.CircleCast(transform.position,//ï¿½ï¿½ï¿½ËˆÊ’u
+            0.2f,            //ï¿½~ï¿½Ì”ï¿½ï¿½a
+            Vector2.down,    //ï¿½ï¿½ï¿½Ë•ï¿½ï¿½ï¿½
+            0.0f,            //ï¿½ï¿½ï¿½Ë‹ï¿½ï¿½ï¿½
+            GroundLayer);    //ï¿½ï¿½ï¿½oï¿½ï¿½ï¿½éƒŒï¿½Cï¿½ï¿½ï¿½[
 
-        // ˆÚ“®ˆ—
+        // ï¿½Ú“ï¿½ï¿½ï¿½ï¿½ï¿½
         if (onGround || axisH != 0)
         {
-            //’n–Ê‚Ìãor‘¬“x‚ª0‚Å‚Í‚È‚¢ ¨ ‘¬“x‚ğXV
-            rbody.velocity = new Vector2(axisH * speed, rbody.velocity.y);
+            //ï¿½nï¿½Ê‚Ìï¿½orï¿½ï¿½ï¿½xï¿½ï¿½0ï¿½Å‚Í‚È‚ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½Xï¿½V
+            rbody.linearVelocity = new Vector2(axisH * speed, rbody.linearVelocity.y);
         }
 
         if (onGround)
         {
-            currentJumpCount = 0; //ƒWƒƒƒ“ƒv‰ñ”ƒŠƒZƒbƒg
+            currentJumpCount = 0; //ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ñ”ƒï¿½ï¿½Zï¿½bï¿½g
         }
 
-        //ƒAƒjƒ[ƒVƒ‡ƒ“XV
-        if (!isAttacking) //UŒ‚’†‚Í‘¼‚ÌƒAƒjƒ‚ğã‘‚«‚µ‚È‚¢
+        //ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½V
+        if (!isAttacking) //ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½Í‘ï¿½ï¿½ÌƒAï¿½jï¿½ï¿½ï¿½ï¿½ï¿½ã‘ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½
         {
             if (onGround)
             {
-                //’n–Ê‚ÌãFˆÚ“®’†‚©’â~’†‚©‚ÅƒAƒjƒØ‚è‘Ö‚¦
+                //ï¿½nï¿½Ê‚Ìï¿½Fï¿½Ú“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½~ï¿½ï¿½ï¿½ï¿½ï¿½ÅƒAï¿½jï¿½ï¿½ï¿½Ø‚ï¿½Ö‚ï¿½
                 nowAnime = axisH != 0 ? PlayerMove : waiting;
             }
             else
             {
-                //‹ó’†
+                //ï¿½ï¿½
                 nowAnime = PlayerJump;
             }
 
-            //‘O‰ñ‚ÌƒAƒjƒ‚ÆˆÙ‚È‚éê‡‚Ì‚İÄ¶
+            //ï¿½Oï¿½ï¿½ÌƒAï¿½jï¿½ï¿½ï¿½ÆˆÙ‚È‚ï¿½ê‡ï¿½Ì‚İÄï¿½
             if (nowAnime != oldAnime)
             {
                 oldAnime = nowAnime;
@@ -131,24 +131,24 @@ public class PlaerController : MonoBehaviour
         {
             if (transform.localScale.x >= 0)
             {
-                //‰EŒü‚«ƒmƒbƒNƒoƒbƒN
+                //ï¿½Eï¿½ï¿½ï¿½ï¿½ï¿½mï¿½bï¿½Nï¿½oï¿½bï¿½N
                 Vector2 knockback = (transform.right * 1.3f + transform.up * 1.5f).normalized;
                 this.rbody.AddForce(knockback * knock_back_left);
-                Debug.Log("‚¤‚¦");
+                Debug.Log("ï¿½ï¿½ï¿½ï¿½");
             }
             else
             {
-                //¶Œü‚«ƒmƒbƒNƒoƒbƒN
+                //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½mï¿½bï¿½Nï¿½oï¿½bï¿½N
                 Vector2 knockback2 = (transform.right * -1.3f + transform.up * 1.5f).normalized;
                 this.rbody.AddForce(knockback2 * knock_back_right);
             }
         }
     }
 
-    //ƒWƒƒƒ“ƒvˆ—
+    //ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½ï¿½
     public void Jump()
     {
-        Vector2 jumpPw = new Vector2(0, jump);//ƒWƒƒƒ“ƒv—pƒxƒNƒgƒ‹
+        Vector2 jumpPw = new Vector2(0, jump);//ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½vï¿½pï¿½xï¿½Nï¿½gï¿½ï¿½
         rbody.AddForce(jumpPw, ForceMode2D.Impulse);
         goJump = false;
         currentJumpCount++;
