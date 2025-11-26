@@ -1,13 +1,13 @@
-ï»¿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
+//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class boss_jump: MonoBehaviour
 {
-    public float Enemy_jump = 0.0f;//ã‚¹ãƒ©ã‚¤ãƒ ã®ã‚¸ãƒ£ãƒ³ãƒ—åŠ›
+    public float Enemy_jump = 0.0f;//ƒXƒ‰ƒCƒ€‚ÌƒWƒƒƒ“ƒv—Í
     private bool canjump = true;
     public Transform Ground;
     public LayerMask GroundLayer;
@@ -15,12 +15,12 @@ public class boss_jump: MonoBehaviour
     private bool onGround;
 
 
-    Rigidbody2D rbody;  // Rigidbody2Då‹ã®å¤‰æ•°
+    Rigidbody2D rbody;  // Rigidbody2DŒ^‚Ì•Ï”
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        rbody = this.GetComponent<Rigidbody2D>();//Rigidbody2Dã‹ã‚‰ã¨ã£ã¦ãã‚‹
+        rbody = this.GetComponent<Rigidbody2D>();//Rigidbody2D‚©‚ç‚Æ‚Á‚Ä‚­‚é
 
     }
 
@@ -28,32 +28,32 @@ public class boss_jump: MonoBehaviour
     void Update()
     {
 
-        //åœ°ä¸Šåˆ¤å®š
-        bool onGround = Physics2D.CircleCast(transform.position,//ç™ºå°„ä½ç½®
-        0.8f,            //å††ã®åŠå¾„
-        Vector2.down,    //ç™ºå°„æ–¹å‘
-        0.0f,            //ç™ºå°„è·é›¢
-        GroundLayer);    //æ¤œå‡ºã™ã‚‹ãƒ¬ã‚¤ãƒ¤ãƒ¼
+        //’nã”»’è
+        bool onGround = Physics2D.CircleCast(transform.position,//”­ËˆÊ’u
+        0.8f,            //‰~‚Ì”¼Œa
+        Vector2.down,    //”­Ë•ûŒü
+        0.0f,            //”­Ë‹——£
+        GroundLayer);    //ŒŸo‚·‚éƒŒƒCƒ„[
 
         if (onGround&&canjump)
         {
             
             Jump();
             canjump = false;
-            StartCoroutine(ResetJumpDelay()); // å°‘ã—å¾…ã£ã¦ã‹ã‚‰å†ã‚¸ãƒ£ãƒ³ãƒ—è¨±å¯
+            StartCoroutine(ResetJumpDelay()); // ­‚µ‘Ò‚Á‚Ä‚©‚çÄƒWƒƒƒ“ƒv‹–‰Â
         }
     }
     void Jump()
     {
 
-        Vector2 jumpPw = new Vector2(0, Enemy_jump);//ã‚¸ãƒ£ãƒ³ãƒ—ã•ã›ã‚Šãƒ™ã‚¯ãƒˆãƒ«ã‚’ä½œã‚‹
+        Vector2 jumpPw = new Vector2(0, Enemy_jump);//ƒWƒƒƒ“ƒv‚³‚¹‚èƒxƒNƒgƒ‹‚ğì‚é
         rbody.AddForce(jumpPw, ForceMode2D.Impulse);
         Debug.Log("ddddddddddddddddddddddd");
     }
-    // å†ã‚¸ãƒ£ãƒ³ãƒ—ã‚’è¨±å¯ã™ã‚‹ãŸã‚ã®ç°¡æ˜“ã‚¯ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ 
+    // ÄƒWƒƒƒ“ƒv‚ğ‹–‰Â‚·‚é‚½‚ß‚ÌŠÈˆÕƒN[ƒ‹ƒ^ƒCƒ€
     IEnumerator ResetJumpDelay()
     {
-        yield return new WaitForSeconds(1.0f); // 1ç§’å¾…ã¤ï¼ˆèª¿æ•´å¯ï¼‰
+        yield return new WaitForSeconds(1.0f); // 1•b‘Ò‚Âi’²®‰Âj
         canjump = true;
     }
 }
