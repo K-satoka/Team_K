@@ -15,6 +15,7 @@ public class EnemyHp : MonoBehaviour
 
     public AudioSource audioSource;
     public AudioClip EnemydamageSE;
+    public AudioClip EnemyDieSE;
     void Start()
     {
        Enemy_Current_Hp = Enemy_MAX_Hp;   //初期値を最大値に設定
@@ -56,16 +57,33 @@ void Die()
 
         //現在のステージが最新だったら次を解放
        
+        //動きを止めるテスト
+        Rigidbody2D rb=GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.gravityScale = 0f;
+            rb.angularVelocity = 0f;
+            rb.simulated = false;
+        }
+       
+
+        //---------------------
         int stageUnlock = PlayerPrefs.GetInt("StageUnlock", 1);
         if (currentStageNumber==stageUnlock)
         {
+            
+
             PlayerPrefs.SetInt("StageUnlock", stageUnlock + 1);
             PlayerPrefs.Save();
             Debug.Log("次に進めるぜ、相棒");
         }
+        //SE再生
 
-        
-            Destroy(gameObject);//ゲームオブジェクトを削除
+        if (audioSource != null && EnemyDieSE != null)
+            audioSource.PlayOneShot(EnemyDieSE);
+
+        Destroy(gameObject,2.0f);//ゲームオブジェクトを削除
        
         //すてせれに戻る
         FadeManager.Instance.LoadScene("Reward",1.0f);
@@ -94,4 +112,37 @@ void Die()
     //        TakeDamage(damageOnContact);
     //    }
     //}
+
+    //テスト敵のプレーや死亡の時の停止支持
+    public void StopMoment()
+    {
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            try
+            { 
+            rb.linearVelocity = Vector2.zero;
+            rb.gravityScale = 0f;
+            rb.angularVelocity = 0f;
+            rb.simulated = false;
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogWarning("StopMomentで例外発生: " + e.Message);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("StopMoment: Rigidbody2Dが見つかりません");
+        }
+
+        Animator anim = GetComponent<Animator>();
+        if (anim != null)
+        {
+            anim.enabled = false; // アニメも止める
+        }
+    
+
+    }
+
 }

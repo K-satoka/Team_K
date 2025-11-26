@@ -33,6 +33,10 @@ public class PlayerHP : MonoBehaviour
     //SE
     public AudioSource audioSource;
     public AudioClip PlayerDamageSE;
+    public AudioClip PlayerDieSE;
+
+    //€–S‘½d–h~
+    private bool isDead = false;
 
     void Start()
     {
@@ -78,9 +82,11 @@ public class PlayerHP : MonoBehaviour
 
        
 
-        if (Player_Current_Hp <= 0)
+        if (Player_Current_Hp <= 0&&!isDead)
         {
-            Destroy(gameObject);
+
+            isDead = true;
+            Destroy(gameObject, 1.5f);
             death();
         }
 
@@ -108,9 +114,29 @@ public class PlayerHP : MonoBehaviour
 
     void death()
     {
+       
+        if (audioSource != null && PlayerDieSE != null)
+            audioSource.PlayOneShot(PlayerDieSE);
+
+        if (rbody != null)
+        {
+            rbody.velocity = Vector2.zero;
+            rbody.angularVelocity = 0f;
+            rbody.gravityScale = 0f;
+            rbody.simulated = false;
+        }
+
+        // “G‚Ì“®‚«‚ğ~‚ß‚é
+        EnemyHp[] enemies = FindObjectsOfType<EnemyHp>();
+        foreach (var enemy in enemies)
+        {
+            if(enemy!=null)
+            enemy.StopMoment();
+        }
+
         ////¡‚ÌƒV[ƒ“‚ğ•Û‘¶
         //previousSceneName=SceneManager.GetActiveScene().name;
-        
+
         // ƒV[ƒ“‚ğØ‚è‘Ö‚¦‚é
         FadeManager.Instance.LoadScene("GameOver", 1.0f);
     }

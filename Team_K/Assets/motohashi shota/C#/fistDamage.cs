@@ -1,45 +1,51 @@
-ï»¿using UnityEngine;
+using UnityEngine;
 
 public class fistDamage : MonoBehaviour
 {
-    public int damage = 1; // ãƒ€ãƒ¡ãƒ¼ã‚¸é‡
+    public int damage = 1; // ƒ_ƒ[ƒW—Ê
     public Animator animator;
+
+    //’Ç‰Á
+    private Collider2D col;
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>(); 
+        col=GetComponent<Collider2D>();
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("å½“ãŸã£ãŸãï¼");
+            Debug.Log("“–‚½‚Á‚½‚ŸI");
 
-            // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«HPã‚¹ã‚¯ãƒªãƒ—ãƒˆãŒã‚ã‚Œã°å‘¼ã³å‡ºã™
-            //PlayerHealth hp = other.GetComponent<PlayerHealth>();
-            //if (hp != null)
-            //{
-            //    hp.TakeDamage(damage);
-            //}
+           // ƒvƒŒƒCƒ„[‚ÉHPƒXƒNƒŠƒvƒg‚ª‚ ‚ê‚ÎŒÄ‚Ño‚·
+           //PlayerHealth hp = other.GetComponent<PlayerHealth>();
+           // if (hp != null)
+           // {
+           //     hp.TakeDamage(damage);
+           // }
 
-            // ã“ã¶ã—ã‚’æ¶ˆã™
+           
+            // ‚±‚Ô‚µ‚ğÁ‚·
             animator.SetTrigger("HIT");
             Destroy(gameObject,0.3f);
         }
-        if (collision.gameObject.tag == "Ground")
+        else if (collision.gameObject.tag == "Ground")
         {
-            Debug.Log("åœ°é¢ã«å½“ãŸã£ãŸãï¼");
+            Debug.Log("’n–Ê‚É“–‚½‚Á‚½‚ŸI");
 
-            // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«HPã‚¹ã‚¯ãƒªãƒ—ãƒˆãŒã‚ã‚Œã°å‘¼ã³å‡ºã™
+            
+            // ƒvƒŒƒCƒ„[‚ÉHPƒXƒNƒŠƒvƒg‚ª‚ ‚ê‚ÎŒÄ‚Ño‚·
             //PlayerHealth hp = other.GetComponent<PlayerHealth>();
             //if (hp != null)
             //{
             //    hp.TakeDamage(damage);
             //}
 
-            // ã“ã¶ã—ã‚’æ¶ˆã™
+            // ‚±‚Ô‚µ‚ğÁ‚·
             animator.SetTrigger("HIT");
-            Destroy(gameObject,0.3f);
+            Destroy(gameObject, 0.3f);
         }
     }
 }

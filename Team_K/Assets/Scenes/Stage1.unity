@@ -499,6 +499,7 @@ MonoBehaviour:
   currentStageNumber: 1
   audioSource: {fileID: 257977283}
   EnemydamageSE: {fileID: 8300000, guid: bd890d471690ef940ab0266a9c3b75b7, type: 3}
+  EnemyDieSE: {fileID: 8300000, guid: fec76fad6f7e3c94a9b44a8bc294ef56, type: 3}
 --- !u!82 &257977283
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2183,6 +2184,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 27465250077614231, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
+      propertyPath: PlayerDieSE
+      value: 
+      objectReference: {fileID: 8300000, guid: e5b525c4879c61141979294e8c3835fb, type: 3}
     - target: {fileID: 27465250077614231, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: audioSource
       value: 
