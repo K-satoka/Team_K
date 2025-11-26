@@ -62,7 +62,7 @@ public class maou : MonoBehaviour
             if (timer >= shootInterval)
             {
                 Shoot();
-                anim.Play("fireshot_maou");
+                anim.Play("fireshot_maou",1);
                 timer = 0f;
             }
         }

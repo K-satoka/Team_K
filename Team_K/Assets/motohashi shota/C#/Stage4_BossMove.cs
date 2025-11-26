@@ -33,7 +33,7 @@ public class Stage4_BossMove : MonoBehaviour
         if (distance < stopDistance)
         {
             //近づきすぎたら止まるねー
-            rb.velocity = new Vector2(0,rb.velocity.y);
+            rb.linearVelocity = new Vector2(0,rb.linearVelocity.y);
             anim.SetBool("isMoving", false);
         }
         else
@@ -47,7 +47,7 @@ public class Stage4_BossMove : MonoBehaviour
 
             dirX = Mathf.Sign(dirX); // 左右の向きだけ -1 or 1 にする(matif.signで正か０なら１を、負なら-1を返す)
 
-            rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
+            rb.linearVelocity = new Vector2(dirX * moveSpeed, rb.linearVelocity.y);
             anim.SetBool("isMoving", true);
         }
     }
