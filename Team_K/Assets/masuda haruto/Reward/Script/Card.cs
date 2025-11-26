@@ -20,7 +20,11 @@ public class Card : MonoBehaviour
 
     //SE
     public AudioSource AudioSource;
-    public AudioClip CardSelectSE; 
+    public AudioClip CardSelectSE;
+
+    public Button button;
+
+
     private void Start()
     {
         playerHP = FindObjectOfType<PlayerHP>();
@@ -83,6 +87,17 @@ public class Card : MonoBehaviour
 
     public void Onselect()
     {
+        Card[] cards = FindObjectsOfType<Card>();
+        
+        foreach (var c in cards)
+        {
+            if (c.button != null)
+                c.button.interactable = false;
+        }
+
+        if(button != null)
+            button.interactable = false;
+
         if(AudioSource != null&&CardSelectSE!=null)
         {
             AudioSource.PlayOneShot(CardSelectSE);
