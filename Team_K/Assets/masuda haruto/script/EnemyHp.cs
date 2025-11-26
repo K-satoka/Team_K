@@ -12,6 +12,9 @@ public class EnemyHp : MonoBehaviour
     public Slider hpSlider;
 
     public int currentStageNumber = 1;
+
+    public AudioSource audioSource;
+    public AudioClip EnemydamageSE;
     void Start()
     {
        Enemy_Current_Hp = Enemy_MAX_Hp;   //初期値を最大値に設定
@@ -33,6 +36,10 @@ public class EnemyHp : MonoBehaviour
         {
             hpSlider.value = Enemy_Current_Hp;//HPバー更新
         }
+        //SE
+        if (audioSource != null && EnemydamageSE != null)
+            audioSource.PlayOneShot(EnemydamageSE);
+
         if ( Enemy_Current_Hp <= 0)
         {
             Die();

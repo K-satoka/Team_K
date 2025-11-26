@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class Title : MonoBehaviour
 {
+
+    public AudioSource audioSource;
+    public AudioClip StartSE;
     private void Start()
     {
         Application.targetFrameRate = 60;
@@ -16,6 +19,10 @@ public class Title : MonoBehaviour
     }
     public void onClickStartButton()
     {
+        if(audioSource != null&&StartSE)
+        {
+            audioSource.PlayOneShot(StartSE);
+        }
         FadeManager.Instance.LoadScene("StageSelect",1.0f);
     }
 

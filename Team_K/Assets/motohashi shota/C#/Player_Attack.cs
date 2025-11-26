@@ -11,6 +11,9 @@ public class Player_Attack : MonoBehaviour
 
     private float nextAttackTime = 0f;
 
+    public AudioSource AudioSource;
+    public AudioClip AttackSE;
+
         void Update()
         {
             if (Time.time >= nextAttackTime)
@@ -25,6 +28,11 @@ public class Player_Attack : MonoBehaviour
         void DoAttack()
         {
             nextAttackTime = Time.time + 1f / attackRate;
+
+        if (AudioSource != null&&AttackSE!=null)
+        {
+            AudioSource.PlayOneShot(AttackSE);
+        }
 
             // “–‚½‚è”»’è‚¾‚¯‚±‚±‚ÅŽÀŽ{
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);

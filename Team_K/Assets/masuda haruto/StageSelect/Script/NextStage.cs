@@ -14,6 +14,10 @@ public class NextStage : MonoBehaviour
     [SerializeField]
     private
         GameObject[] _lockImages;//南京錠アイコン配列
+
+    public AudioSource audioSource;
+    public AudioClip selectSE;
+
     void Start()
     {
         //ステージのCLEAR数を取得
@@ -22,7 +26,7 @@ public class NextStage : MonoBehaviour
         //ステージボタンの表示・非表示
         for(int i=0;i < _stageButton.Length;i++)
         {
-            bool unlocked = i < stageUnlock;
+            bool unlocked = (i+1) <= stageUnlock;
 
             _stageButton[i].interactable = unlocked;
             if(_lockImages!=null&&i<_lockImages.Length)
@@ -34,6 +38,11 @@ public class NextStage : MonoBehaviour
 
     public void StageSelect(int StageNumber)
     {
+        if (audioSource != null && selectSE != null)
+        {
+            audioSource.PlayOneShot(selectSE);
+        }
+
         string scaneName = "Stage" + StageNumber;
 
         //受け取った因数(stage)のステージをロード

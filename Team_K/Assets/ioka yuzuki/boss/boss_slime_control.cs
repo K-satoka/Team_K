@@ -1,4 +1,4 @@
-ï»¿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
@@ -11,25 +11,31 @@ using UnityEngine;
 public class boss : MonoBehaviour
 {
     Rigidbody2D rbody;
-    public float Enemy_speed = 2f;     // ã‚¹ãƒ”ãƒ¼ãƒ‰
-    public float Enemy_jump = 6f;      // ã‚¸ãƒ£ãƒ³ãƒ—åŠ›
-    public float jumpTriggerDistance = 5f; // æ¤œçŸ¥è·é›¢
-    public float GravityScale = 3.0f;  // é‡åŠ›å€ç‡
-    public LayerMask GroundLayer;      // åœ°é¢ãƒ¬ã‚¤ãƒ¤ãƒ¼
+    public float Enemy_speed = 2f;     // ƒXƒs[ƒh
+    public float Enemy_jump = 6f;      // ƒWƒƒƒ“ƒv—Í
+    public float jumpTriggerDistance = 5f; // ŒŸ’m‹——£
+    public float GravityScale = 3.0f;  // d—Í”{—¦
+    public LayerMask GroundLayer;      // ’n–ÊƒŒƒCƒ„[
  
     private Transform Player;
     private bool onGround = false;
+
+    //SE
+    public AudioSource audioSource;
+    public AudioClip SlimejumpSE;
+
+    private bool wasOnGround = false;//‘OƒtƒŒ[ƒ€‚Ìİ’uó‘Ô
     void Start()
     {
-        // Rigidbody2Dã‚’ã¨ã£ã¦ãã‚‹
-        rbody = GetComponent<Rigidbody2D>();//Rigidbody2Dã‹ã‚‰ã¨ã£ã¦ãã‚‹
-        //Playerã‚¿ã‚°ãŒä»˜ã„ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ¢ã™
+        // Rigidbody2D‚ğ‚Æ‚Á‚Ä‚­‚é
+        rbody = GetComponent<Rigidbody2D>();//Rigidbody2D‚©‚ç‚Æ‚Á‚Ä‚­‚é
+        //Playerƒ^ƒO‚ª•t‚¢‚½ƒIƒuƒWƒFƒNƒg‚ğ’T‚·
         GameObject PlayerObj = GameObject.FindGameObjectWithTag("Player");
         if(PlayerObj != null )
         {
             Player = PlayerObj.transform;
         }
-        //å›è»¢ã‚’å›ºå®š
+        //‰ñ“]‚ğŒÅ’è
         rbody.freezeRotation = true;
         if (onGround = false)
         {
@@ -52,6 +58,8 @@ public class boss : MonoBehaviour
 
   void Jump()
     {
+        
+
         rbody.AddForce(Vector2.up * Enemy_jump, ForceMode2D.Impulse);
         onGround = false;
       
@@ -60,9 +68,9 @@ public class boss : MonoBehaviour
     void FixedUpdate()
     {
        
-        Vector2 origin = (Vector2)transform.position + Vector2.down * 0.5f; // è¶³å…ƒã‚ãŸã‚Š
-        float radius = 0.3f;  // åŠå¾„
-        float distance = 0.1f; // åˆ¤å®šè·é›¢
+        Vector2 origin = (Vector2)transform.position + Vector2.down * 0.5f; // ‘«Œ³‚ ‚½‚è
+        float radius = 0.3f;  // ”¼Œa
+        float distance = 0.1f; // ”»’è‹——£
 
         onGround = Physics2D.CircleCast(
             origin,
@@ -71,14 +79,14 @@ public class boss : MonoBehaviour
             distance,
             GroundLayer
         );
-        //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã»ã†ã«å‘ã‹ã™
+        //ƒvƒŒƒCƒ„[‚Ì‚Ù‚¤‚ÉŒü‚©‚·
         Vector2 direction=new Vector2(Player.position.x-transform.position.x,0).normalized;
         
 
-         //ãã®æ–¹å‘ã«å¸¸ã«ç§»å‹•
+         //‚»‚Ì•ûŒü‚Éí‚ÉˆÚ“®
         rbody.linearVelocity = new Vector2(direction.x * Enemy_speed, rbody.linearVelocity.y);
 
-        //å‘ãã‚’åè»¢
+        //Œü‚«‚ğ”½“]
         if (Player.position.x>transform.position.x)
         {
             transform.localScale=new Vector2(-4,4);
@@ -86,7 +94,12 @@ public class boss : MonoBehaviour
         else
         {
             transform.localScale=new Vector2(4,4);
-        } 
+        }
+        if (!wasOnGround && onGround && SlimejumpSE != null&&audioSource!=null)
+        {
+            audioSource.PlayOneShot(SlimejumpSE);
+        }
+        wasOnGround = onGround;
     }
    
 

@@ -30,6 +30,10 @@ public class PlayerHP : MonoBehaviour
 
     public string gameOverSceneName = "GameOver";//ゲームオーバーシーン
 
+    //SE
+    public AudioSource audioSource;
+    public AudioClip PlayerDamageSE;
+
     void Start()
     {
         Player_Current_Hp =Player_MAX_Hp + PlayerData.Instance.maxHP_Up;
@@ -65,8 +69,14 @@ public class PlayerHP : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Player_Current_Hp -= 1;
+
+            if (audioSource != null && PlayerDamageSE != null)
+                audioSource.PlayOneShot(PlayerDamageSE);
+
             Debug.Log(Player_Current_Hp);
         }
+
+       
 
         if (Player_Current_Hp <= 0)
         {
