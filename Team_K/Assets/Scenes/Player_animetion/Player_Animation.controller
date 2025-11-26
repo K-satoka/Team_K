@@ -133,7 +133,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: waiting
+  m_Name: PlayerStop
   m_Speed: 0.2
   m_CycleOffset: 0
   m_Transitions: []
@@ -146,7 +146,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 4e8eafa786ca0504dbfecfa663c0b780, type: 2}
+  m_Motion: {fileID: 7400000, guid: 7cfb20451ddd4f845862950a605dddcf, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

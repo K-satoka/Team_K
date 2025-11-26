@@ -29,5 +29,8 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/masuda haruto/Status/StatusMenu.unity
     guid: 06327094f182ad5498a241a46478ec59
+  - enabled: 0
+    path: Assets/ioka yuzuki/TestLastBoss.unity
+    guid: 06c9ebfa46dfe6447964ee4fcbe0b597
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
