@@ -76,9 +76,10 @@ public class PlaerController : MonoBehaviour
     // �U���A�j���I����Ƀt���O�����Z�b�g���đҋ@�ɖ߂�
     IEnumerator EndAttackAnimation()
     {
-        yield return new WaitForSeconds(0.25f); // �U���A�j���̒����ɍ��킹��
+        yield return new WaitForSeconds(0.3f); // �U���A�j���̒����ɍ��킹��
         isAttacking = false;
         nowAnime = waiting;
+        animator.Play(waiting);
     }
 
     void FixedUpdate()
