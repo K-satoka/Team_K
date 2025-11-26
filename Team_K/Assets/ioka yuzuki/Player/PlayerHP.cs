@@ -21,28 +21,28 @@ public class PlayerHP : MonoBehaviour
     public int Player_Current_Hp;
     public float knock_back=10f;
 
-    public static string previousSceneName;//‘O‚ÌƒV[ƒ“–¼‚ğ•Û‘¶
+    public static string previousSceneName;//ï¿½Oï¿½ÌƒVï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Û‘ï¿½
 
     Rigidbody2D rbody;
 
 
     public Slider PlayerhpSlider;
 
-    public string gameOverSceneName = "GameOver";//ƒQ[ƒ€ƒI[ƒo[ƒV[ƒ“
+    public string gameOverSceneName = "GameOver";//ï¿½Qï¿½[ï¿½ï¿½ï¿½Iï¿½[ï¿½oï¿½[ï¿½Vï¿½[ï¿½ï¿½
 
     //SE
     public AudioSource audioSource;
     public AudioClip PlayerDamageSE;
     public AudioClip PlayerDieSE;
 
-    //€–S‘½d–h~
+    //ï¿½ï¿½ï¿½Sï¿½ï¿½ï¿½dï¿½hï¿½~
     private bool isDead = false;
 
     void Start()
     {
         Player_Current_Hp =Player_MAX_Hp + PlayerData.Instance.maxHP_Up;
 
-        // ƒXƒ‰ƒCƒ_[‰Šú‰»
+        // ï¿½Xï¿½ï¿½ï¿½Cï¿½_ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (PlayerhpSlider != null)
         {
             PlayerhpSlider.maxValue = Player_Current_Hp;
@@ -53,15 +53,15 @@ public class PlayerHP : MonoBehaviour
 
 
 
-        // ‘‰Á•ª‚ÌƒƒO
-        Debug.Log($"ƒJ[ƒh‚Å‘‚¦‚½‡ŒvHP: {PlayerData.Instance.maxHP_Up}");
-        Debug.Log($"Œ»İ‚ÌÅ‘åHP: {Player_Current_Hp}");
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìƒï¿½ï¿½O
+        Debug.Log($"ï¿½Jï¿½[ï¿½hï¿½Å‘ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½vHP: {PlayerData.Instance.maxHP_Up}");
+        Debug.Log($"ï¿½ï¿½ï¿½İ‚ÌÅ‘ï¿½HP: {Player_Current_Hp}");
     }
 
     // Update is called once per frame
     void Update()
     {
-        // ƒXƒ‰ƒCƒ_[‚ğí‚ÉŒ»İHP‚É‡‚í‚¹‚é
+        // ï¿½Xï¿½ï¿½ï¿½Cï¿½_ï¿½[ï¿½ï¿½ï¿½ï¿½ÉŒï¿½ï¿½ï¿½HPï¿½Éï¿½ï¿½í‚¹ï¿½ï¿½
         if (PlayerhpSlider != null)
         {
             PlayerhpSlider.value = Player_Current_Hp;
@@ -92,23 +92,23 @@ public class PlayerHP : MonoBehaviour
 
     }
 
-    //UŒ‚‚ğó‚¯‚½‚Æ‚«‚ÉŒÄ‚Ô
+    //ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ó‚¯‚ï¿½ï¿½Æ‚ï¿½ï¿½ÉŒÄ‚ï¿½
 
 
     //public void TakeDamage(int damage)
     //{
     //    Player_Current_Hp -= damage;
-    //    if (Player_Current_Hp < 0) Player_Current_Hp = 0;//HP‚ªƒ}ƒCƒiƒX‚É‚È‚ç‚È‚¢‚æ‚¤‚É
+    //    if (Player_Current_Hp < 0) Player_Current_Hp = 0;//HPï¿½ï¿½ï¿½}ï¿½Cï¿½iï¿½Xï¿½É‚È‚ï¿½È‚ï¿½ï¿½æ‚¤ï¿½ï¿½
 
     //    if (Player_Slider != null)
     //    {
-    //        Player_Slider.value = Player_Current_Hp;//HPƒo[XV
+    //        Player_Slider.value = Player_Current_Hp;//HPï¿½oï¿½[ï¿½Xï¿½V
     //    }
 
     //}
     //private void Awake()
     //{
-    //    //‚µ[‚ñ‚«‚è‚©‚¦‚ÉÁ‚¦‚È‚¢‚æ‚¤‚É
+    //    //ï¿½ï¿½ï¿½[ï¿½ñ‚«‚è‚©ï¿½ï¿½ï¿½ï¿½ï¿½Éï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½æ‚¤ï¿½ï¿½
     //    DontDestroyOnLoad(this.gameObject);
     //}
 
@@ -120,13 +120,13 @@ public class PlayerHP : MonoBehaviour
 
         if (rbody != null)
         {
-            rbody.velocity = Vector2.zero;
+            rbody.linearVelocity = Vector2.zero;
             rbody.angularVelocity = 0f;
             rbody.gravityScale = 0f;
             rbody.simulated = false;
         }
 
-        // “G‚Ì“®‚«‚ğ~‚ß‚é
+        // ï¿½Gï¿½Ì“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½~ï¿½ß‚ï¿½
         EnemyHp[] enemies = FindObjectsOfType<EnemyHp>();
         foreach (var enemy in enemies)
         {
@@ -134,10 +134,10 @@ public class PlayerHP : MonoBehaviour
             enemy.StopMoment();
         }
 
-        ////¡‚ÌƒV[ƒ“‚ğ•Û‘¶
+        ////ï¿½ï¿½ï¿½ÌƒVï¿½[ï¿½ï¿½ï¿½ï¿½Û‘ï¿½
         //previousSceneName=SceneManager.GetActiveScene().name;
 
-        // ƒV[ƒ“‚ğØ‚è‘Ö‚¦‚é
+        // ï¿½Vï¿½[ï¿½ï¿½ï¿½ï¿½Ø‚ï¿½Ö‚ï¿½ï¿½ï¿½
         FadeManager.Instance.LoadScene("GameOver", 1.0f);
     }
 
@@ -145,7 +145,7 @@ public class PlayerHP : MonoBehaviour
     {
         Player_MAX_Hp += aumount;
         Player_Current_Hp += aumount;
-        Debug.Log("Å‘åHP‚ª" + aumount + "‘‚¦‚½‚æ‚¨‚ñB¡‚ÌÅ‘åHP‚Í" + Player_MAX_Hp);
+        Debug.Log("ï¿½Å‘ï¿½HPï¿½ï¿½" + aumount + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ‚¨ï¿½ï¿½Bï¿½ï¿½ï¿½ÌÅ‘ï¿½HPï¿½ï¿½" + Player_MAX_Hp);
     }
     */
 }

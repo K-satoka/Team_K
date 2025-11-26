@@ -36,12 +36,16 @@ public class firebullet : MonoBehaviour
     }
 
 
-    void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             Debug.Log("aguhguiraguai");
-            Destroy(gameObject);//‚ ‚½‚Á‚½‚ç‚½‚Ü‚ª‚«‚¦‚é
+            Destroy(gameObject,0.05f);//‚ ‚½‚Á‚½‚ç‚½‚Ü‚ª‚«‚¦‚é
+        }
+        else if(collision.gameObject.tag =="Wall")
+        {
+            Destroy(gameObject);
         }
     }
 }
