@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4294c01a99581e84a90364f32636a0b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCollider: {fileID: 4517975648363830319}
+  baseAttack: 10
 --- !u!1 &5252506301438886062
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,8 +303,10 @@ MonoBehaviour:
   attackRate: 1
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   attackPoint: {fileID: 6854669614271778977}
+  AudioSource: {fileID: 0}
+  AttackSE: {fileID: 0}
 --- !u!114 &3543333227742703813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,7 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4294c01a99581e84a90364f32636a0b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCollider: {fileID: 8133473821554789285}
+  baseAttack: 10
 --- !u!50 &7513089346997064374
 Rigidbody2D:
   serializedVersion: 5
