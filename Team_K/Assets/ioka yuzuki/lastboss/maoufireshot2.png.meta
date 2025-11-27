@@ -119,9 +119,9 @@ TextureImporter:
         y: 0
         width: 1200
         height: 2040
-      alignment: 9
-      pivot: {x: 0.67240685, y: 0.27252695}
-      border: {x: 697, y: 530, z: 246, w: 730}
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -133,11 +133,77 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: maoufireshot2_2
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 1319
+        width: 26
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71f7dd795b94ed420800000000000000
+      internalID: 2656641874480955159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maoufireshot2_3
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 1313
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39b83c19995b76b10800000000000000
+      internalID: 1974746632805387155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maoufireshot2_4
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 1295
+        width: 44
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 253819651fc7045a0800000000000000
+      internalID: -6539089282960620718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: aaebd61cfe452a14daf212eeec3ecd77
+    spriteID: f4356f33c5fb4114b90ae9b1ed91482f
     internalID: 0
     vertices: []
     indices: 

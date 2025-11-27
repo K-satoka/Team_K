@@ -30,6 +30,11 @@ public class stage2_Boss_Attack : MonoBehaviour
     private int lastAttack = -1;
     private Camera cam;
 
+    //SE
+    public AudioSource audioSource;
+    public AudioClip sundArm;
+
+
     void Start()
     {
         cam = Camera.main;
@@ -73,6 +78,11 @@ public class stage2_Boss_Attack : MonoBehaviour
         Vector3 spawnPos = new Vector3(player.position.x, cam.orthographicSize + 1f, 0);
         //その位置にこぶしのプレハブを生成し、まっすぐ落とす。
         GameObject fist = Instantiate(fistPrefab, spawnPos, Quaternion.identity);
+
+        if (audioSource != null&&sundArm!=null)
+        {
+            audioSource.PlayOneShot(sundArm);
+        }
 
         // ここで拳の大きさを変更してみる
         fist.transform.localScale = new Vector3(3f, 3f, 3f); // 好きな大きさに変更
