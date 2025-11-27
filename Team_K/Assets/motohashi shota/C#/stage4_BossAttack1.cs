@@ -1,12 +1,13 @@
 using UnityEngine;
 using System.Collections;
 
-public class stage4_BossAttack : MonoBehaviour
+public class stage4_BossAttack1 : MonoBehaviour
 {
     [Header("ターゲット")]
     public Transform player;
     [Header("遠距離攻撃プレハブ")]
     public GameObject SnowPrefab;
+    public Transform SnowPoint;
     [Header("スタート用")]
     private Animator animator;
     private Rigidbody2D rd;
@@ -22,7 +23,14 @@ public class stage4_BossAttack : MonoBehaviour
     Vector2 attackDirection;
     //待機時間
     private float attackTimer;
+    [Header("アニメーション用")]
+    bool isAttacking = false;
 
+    [Header("近距離攻撃用")]
+    public float meleeRange = 1.5f;       // 近接攻撃の距離
+    public float meleeDuration = 0.5f;    // 攻撃判定が出ている時間
+    public Collider2D meleeCollider;      // 攻撃用コライダー
+    public int meleeDamage = 20;          // 攻撃力
 
     void Start()
     {
@@ -50,8 +58,20 @@ public class stage4_BossAttack : MonoBehaviour
             // タイマーをリセット（次の攻撃に備える）
             attackTimer = 0f;
 
-            // 雪玉攻撃を開始（コルーチンで時間制御しながら動かす）
-            StartCoroutine(FireSnow());
+            float distance = Vector2.Distance(transform.position, player.position);
+
+            // プレイヤーが近ければ近接攻撃、遠ければ雪玉
+            if (distance <= meleeRange)
+                //近接攻撃開始（こっちも同じようにコルーチンで時間制御しながら動かす）
+                StartCoroutine(MeleeAttack());
+            else
+            {
+                // 投げモーションを再生
+                animator.Play("ThrowSnow");
+                // 雪玉攻撃を開始（コルーチンで時間制御しながら動かす）
+                StartCoroutine(FireSnow());
+            }
+               
         }
     }
 
@@ -75,7 +95,7 @@ public class stage4_BossAttack : MonoBehaviour
             // プレイヤーが存在するなら方向を更新
             // normalized は「向きだけ」を取り出す処理
             if (player != null)
-                attackDirection = (player.position - transform.position).normalized;
+                attackDirection = (player.position - SnowPoint.position).normalized;
 
             // フレームごとに経過時間を加算
             timer += Time.deltaTime;
@@ -88,38 +108,62 @@ public class stage4_BossAttack : MonoBehaviour
         // 雪玉プレハブをボスの位置に生成
         // Instantiate はゲームオブジェクトを複製する関数
         // -------------------------------
-        GameObject snow = Instantiate(SnowPrefab, transform.position, Quaternion.identity);
+        GameObject snow = Instantiate(SnowPrefab, SnowPoint.position, Quaternion.identity);
+        snow.transform.localScale = new Vector3(1f, 1f, 1f);
 
         // -------------------------------
         // 雪玉の向きを攻撃方向に合わせる（見た目用）
         // Atan2 で角度を求め、Rad2Deg でラジアン → 度に変換
         // -------------------------------
-        float angle = Mathf.Atan2(attackDirection.y, attackDirection.x) * Mathf.Rad2Deg;
-        snow.transform.rotation = Quaternion.Euler(0, 0, angle);
+        SpriteRenderer snowSR = snow.GetComponent<SpriteRenderer>();
 
-        // -------------------------------
-        // 雪玉が生存している時間を管理するタイマー
-        // life が 3秒になるまで移動し続ける
-        // -------------------------------
-        float life = 0f;
-
-        while (life < 3f)  // 雪玉寿命（3秒）
+        if (snowSR != null)
         {
-            // 途中で雪玉が消えたらループを抜ける
-            if (snow == null) break;
+            // attackDirection.x が負なら左向き、正なら右向き
+            snowSR.flipX = attackDirection.x > 0;
 
-            // 雪玉を一定速度で進める
-            // spead * Time.deltaTime で「1秒あたり spead の速度で動く」
-            snow.transform.position += (Vector3)attackDirection * spead * Time.deltaTime;
+            // attackDirection.y が負なら上下反転させたい場合
+            // snowSR.flipY = attackDirection.y < 0;
 
-            life += Time.deltaTime;
+            // -------------------------------
+            // 雪玉が生存している時間を管理するタイマー
+            // life が 3秒になるまで移動し続ける
+            // -------------------------------
+            float life = 0f;
 
-            // 次のフレームへ
+            while (life < 100f)  // 雪玉寿命（3秒）
+            {
+                // 途中で雪玉が消えたらループを抜ける
+                if (snow == null) break;
+
+                // 雪玉を一定速度で進める
+                // spead * Time.deltaTime で「1秒あたり spead の速度で動く」
+                snow.transform.position += (Vector3)attackDirection * (spead * 2f) * Time.deltaTime;
+
+                life += Time.deltaTime;
+
+                // 次のフレームへ
+                yield return null;
+            }
+
+            // 寿命が来たら雪玉を削除
+            if (snow != null)
+                Destroy(snow);
+        }
+    }
+    IEnumerator MeleeAttack()
+    {
+        if (meleeCollider != null)
+            meleeCollider.enabled = true;
+
+        float timer = 0f;
+        while (timer < meleeDuration)
+        {
+            timer += Time.deltaTime;
             yield return null;
         }
 
-        // 寿命が来たら雪玉を削除
-        if (snow != null)
-            Destroy(snow);
+        if (meleeCollider != null)
+            meleeCollider.enabled = false;
     }
 }

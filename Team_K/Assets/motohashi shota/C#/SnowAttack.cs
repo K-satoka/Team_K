@@ -19,7 +19,7 @@ public class SnowAttack : MonoBehaviour
             //}
 
             // Ç±Ç‘ÇµÇè¡Ç∑
-            Destroy(gameObject, 0.3f);
+            Destroy(gameObject);
         }
         if (collision.gameObject.tag == "Ground")
         {
@@ -33,7 +33,7 @@ public class SnowAttack : MonoBehaviour
             //}
 
             // Ç±Ç‘ÇµÇè¡Ç∑
-            Destroy(gameObject, 0.3f);
+            Destroy(gameObject);
         }
     }
 }

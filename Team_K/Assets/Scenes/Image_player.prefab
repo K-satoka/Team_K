@@ -146,6 +146,7 @@ MonoBehaviour:
   waiting: PlayerStop
   PlayerMove: PlayerMove
   PlayerJump: PlayerJump
+  PlayerAttack: Player_Attack
 --- !u!95 &7601874142315133799
 Animator:
   serializedVersion: 7
@@ -223,6 +224,9 @@ MonoBehaviour:
   knock_back: 10
   PlayerhpSlider: {fileID: 0}
   gameOverSceneName: GameOver
+  audioSource: {fileID: 0}
+  PlayerDamageSE: {fileID: 0}
+  PlayerDieSE: {fileID: 0}
 --- !u!114 &692748623483423171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,6 +246,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   attackPoint: {fileID: 3666933059497573972}
+  AudioSource: {fileID: 0}
+  AttackSE: {fileID: 0}
 --- !u!114 &7613410471225609798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,7 +331,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8345373714454490795}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
