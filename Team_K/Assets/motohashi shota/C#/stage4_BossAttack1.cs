@@ -45,6 +45,9 @@ public class stage4_BossAttack1 : MonoBehaviour
         // プレイヤーが存在しない場合は何もしない
         if (player == null) return;
 
+        //攻撃中に他のアニメーションに切り替わらないようにする処理
+        if (isAttacking) return;
+
         // -------------------------------
         // 攻撃タイマー（攻撃間隔用）を進める
         // Time.deltaTime は「前のフレームからの経過時間」
@@ -63,19 +66,63 @@ public class stage4_BossAttack1 : MonoBehaviour
             // プレイヤーが近ければ近接攻撃、遠ければ雪玉
             if (distance <= meleeRange)
                 //近接攻撃開始（こっちも同じようにコルーチンで時間制御しながら動かす）
-                StartCoroutine(MeleeAttack());
+                StartCoroutine(MeleeAttackRoutine());
             else
-            {
-                // 投げモーションを再生
-                animator.Play("ThrowSnow");
-                // 雪玉攻撃を開始（コルーチンで時間制御しながら動かす）
-                StartCoroutine(FireSnow());
-            }
-               
+                StartCoroutine(SnowAttackRoutine());
+
         }
     }
 
 
+    // ======================================================
+    //   遠距離攻撃（雪玉）アニメーションを最後まで再生＋発射
+    // ======================================================
+    IEnumerator SnowAttackRoutine()
+    {
+        isAttacking = true;
+
+        // アニメーション開始
+        animator.Play("ThrowSnow");
+        // 1フレーム待ってから長さを取得する
+        yield return null;
+
+        // ThrowSnow の長さを取得
+        float animLength = animator.GetCurrentAnimatorStateInfo(0).length;
+
+        // 発射処理とアニメーション再生を同時に進行
+        StartCoroutine(FireSnow());
+
+        // アニメーションが終わるまで待つ
+        yield return new WaitForSeconds(animLength);
+
+        isAttacking = false;
+    }
+    //近距離バージョン
+    IEnumerator MeleeAttackRoutine()
+    {
+        isAttacking = true;
+
+        animator.Play("MeleeAttack");
+        yield return null; // Animator 更新待ち
+
+        float animLength = animator.GetCurrentAnimatorStateInfo(0).length;
+
+        // 攻撃判定ON
+        if (meleeCollider != null)
+            meleeCollider.enabled = true;
+
+        // 攻撃判定が出ている時間だけ待つ
+        yield return new WaitForSeconds(meleeDuration);
+
+        // 攻撃判定OFF
+        if (meleeCollider != null)
+            meleeCollider.enabled = false;
+
+        // アニメ残りの部分を待つ
+        yield return new WaitForSeconds(animLength - meleeDuration);
+
+        isAttacking = false;
+    }
     // ======================================================
     //                 遠距離攻撃（雪玉）
     // ======================================================
@@ -150,20 +197,5 @@ public class stage4_BossAttack1 : MonoBehaviour
             if (snow != null)
                 Destroy(snow);
         }
-    }
-    IEnumerator MeleeAttack()
-    {
-        if (meleeCollider != null)
-            meleeCollider.enabled = true;
-
-        float timer = 0f;
-        while (timer < meleeDuration)
-        {
-            timer += Time.deltaTime;
-            yield return null;
-        }
-
-        if (meleeCollider != null)
-            meleeCollider.enabled = false;
     }
 }
