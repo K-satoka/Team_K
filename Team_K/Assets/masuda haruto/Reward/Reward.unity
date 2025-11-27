@@ -452,7 +452,7 @@ MonoBehaviour:
   cardText: {fileID: 67251159}
   value: 0
   minValue: 1
-  maxValue: 10
+  maxValue: 2
   AudioSource: {fileID: 1086297168}
   CardSelectSE: {fileID: 8300000, guid: 5f8577dcc1e746a409ed64fbeb0bb374, type: 3}
   button: {fileID: 1086297165}
@@ -837,7 +837,7 @@ MonoBehaviour:
   cardText: {fileID: 2066855377}
   value: 0
   minValue: 1
-  maxValue: 10
+  maxValue: 0
   AudioSource: {fileID: 1706468228}
   CardSelectSE: {fileID: 8300000, guid: 9df1eb14d0444714f9d5d88627682845, type: 3}
   button: {fileID: 1706468225}

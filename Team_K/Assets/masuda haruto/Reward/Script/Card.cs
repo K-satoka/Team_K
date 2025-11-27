@@ -13,7 +13,7 @@ public class Card : MonoBehaviour
 
     [Header("ランダムの範囲")]
     public int minValue = 1;
-    public int maxValue = 20;
+    public int maxValue = 3;
 
     private PlayerHP playerHP;
     private AttackCollision attackCollision;
@@ -30,15 +30,25 @@ public class Card : MonoBehaviour
         playerHP = FindObjectOfType<PlayerHP>();
         attackCollision = FindObjectOfType<AttackCollision>();
 
+        int stageUnlock = PlayerPrefs.GetInt("StageUnlock", 1);
+
+        //ステージCLEAR数に応じて最大値を増やす
+
+        maxValue += 3 * (stageUnlock - 1);
+
         //ボタンがあればクリック登録
         Button btn=GetComponentInChildren<Button>();
         if (btn != null )
             btn.onClick.AddListener(Onselect);
 
+
+
         //ランダム決定
         GenerateRandomValue();
 
         UpdateText();
+
+        Debug.Log($"MinValue={minValue} / MaxValue={maxValue}");
     }
 
     public void Setup(CardType type ,int randomValue)
@@ -87,6 +97,8 @@ public class Card : MonoBehaviour
 
     public void Onselect()
     {
+
+        //二回選択できないように
         Card[] cards = FindObjectsOfType<Card>();
         
         foreach (var c in cards)
@@ -97,12 +109,13 @@ public class Card : MonoBehaviour
 
         if(button != null)
             button.interactable = false;
-
+        //SE
         if(AudioSource != null&&CardSelectSE!=null)
         {
             AudioSource.PlayOneShot(CardSelectSE);
         }
 
+        //各カードの結果の反映とログ
         if (cardType == CardType.HP)
         {
             PlayerData.Instance.maxHP_Up += value;
