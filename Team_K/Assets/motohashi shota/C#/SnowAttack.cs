@@ -19,7 +19,7 @@ public class SnowAttack : MonoBehaviour
             //}
 
             // Ç±Ç‘ÇµÇè¡Ç∑
-            Destroy(gameObject);
+            Destroy(gameObject,0.1f);
         }
         if (collision.gameObject.tag == "Ground")
         {
