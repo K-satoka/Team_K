@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class Player_Attack : MonoBehaviour
 {
@@ -13,33 +14,50 @@ public class Player_Attack : MonoBehaviour
 
     public AudioSource AudioSource;
     public AudioClip AttackSE;
+    public AttackCollision attackCollision;
 
-        void Update()
+    void Update()
+    {
+        if (Time.time >= nextAttackTime)
         {
-            if (Time.time >= nextAttackTime)
+            if (Keyboard.current.zKey.wasPressedThisFrame)
             {
-                if (Keyboard.current.zKey.wasPressedThisFrame)
-                {
-                    DoAttack();
-                }
+                DoAttack();
             }
         }
+    }
 
-        void DoAttack()
-        {
-            nextAttackTime = Time.time + 1f / attackRate;
+    void DoAttack()
+    {
+        nextAttackTime = Time.time + 1f / attackRate;
 
-        if (AudioSource != null&&AttackSE!=null)
+        if (AudioSource != null && AttackSE != null)
         {
             AudioSource.PlayOneShot(AttackSE);
         }
 
-            // 当たり判定だけここで実施
-            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-
-            foreach (Collider2D enemy in hitEnemies)
-            {
-                enemy.GetComponent<Enemy>()?.TakeDamage(attackDamage);
-            }
+        // AttackCollision のコライダーをON
+        if (attackCollision != null)
+        {
+            attackCollision.EnableAttack();
+            StartCoroutine(DisableAttackAfterTime(0.5f)); // 攻撃判定の持続時間（アニメに合わせる）
         }
+
+        // 当たり判定だけここで実施
+        // 攻撃判定ON
+        if (attackCollision != null)
+        {
+            attackCollision.EnableAttack();
+            StartCoroutine(DisableAttackAfterTime(0.5f)); // 攻撃アニメーションに合わせて判定時間を調整
+        }
+    }
+    private IEnumerator DisableAttackAfterTime(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+
+        if (attackCollision != null)
+        {
+            attackCollision.DisableAttack();
+        }
+    }
 }

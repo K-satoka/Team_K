@@ -583,11 +583,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1953792669096263363, guid: 76763b4a71331354aa8c00f7fe7455b6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 33.2
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 1953792669096263363, guid: 76763b4a71331354aa8c00f7fe7455b6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -16.8
+      value: -23.1
       objectReference: {fileID: 0}
     - target: {fileID: 1953792669096263363, guid: 76763b4a71331354aa8c00f7fe7455b6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -645,6 +645,10 @@ PrefabInstance:
       propertyPath: SnowPrefab
       value: 
       objectReference: {fileID: 1587330905}
+    - target: {fileID: 8764909333635112837, guid: 76763b4a71331354aa8c00f7fe7455b6, type: 3}
+      propertyPath: meleeRange
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
