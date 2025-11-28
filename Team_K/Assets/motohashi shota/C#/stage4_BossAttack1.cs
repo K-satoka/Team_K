@@ -64,10 +64,10 @@ public class stage4_BossAttack1 : MonoBehaviour
             float distance = Vector2.Distance(transform.position, player.position);
 
             // プレイヤーが近ければ近接攻撃、遠ければ雪玉
-            if (distance <= meleeRange)
+           // if (distance <= meleeRange)
                 //近接攻撃開始（こっちも同じようにコルーチンで時間制御しながら動かす）
-                StartCoroutine(MeleeAttackRoutine());
-            else
+                //StartCoroutine(MeleeAttackRoutine());
+            //else
                 StartCoroutine(SnowAttackRoutine());
 
         }
@@ -156,7 +156,7 @@ public class stage4_BossAttack1 : MonoBehaviour
         // Instantiate はゲームオブジェクトを複製する関数
         // -------------------------------
         GameObject snow = Instantiate(SnowPrefab, SnowPoint.position, Quaternion.identity);
-        snow.transform.localScale = new Vector3(1f, 1f, 1f);
+        snow.transform.localScale = new Vector3(3f, 3f, 3f);
 
         // -------------------------------
         // 雪玉の向きを攻撃方向に合わせる（見た目用）

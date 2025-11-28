@@ -16,6 +16,7 @@ public class Player_Attack : MonoBehaviour
     public AudioClip AttackSE;
     public AttackCollision attackCollision;
 
+    private Coroutine atttackCorotine;
     void Update()
     {
         if (Time.time >= nextAttackTime)
@@ -37,18 +38,26 @@ public class Player_Attack : MonoBehaviour
         }
 
         // AttackCollision のコライダーをON
-        if (attackCollision != null)
-        {
-            attackCollision.EnableAttack();
-            StartCoroutine(DisableAttackAfterTime(0.5f)); // 攻撃判定の持続時間（アニメに合わせる）
-        }
+        //if (attackCollision != null)
+        //{
+        //    attackCollision.EnableAttack();
+        //    StartCoroutine(DisableAttackAfterTime(0.5f)); // 攻撃判定の持続時間（アニメに合わせる）
+        //}
 
         // 当たり判定だけここで実施
         // 攻撃判定ON
         if (attackCollision != null)
         {
             attackCollision.EnableAttack();
-            StartCoroutine(DisableAttackAfterTime(0.5f)); // 攻撃アニメーションに合わせて判定時間を調整
+            //StartCoroutine(DisableAttackAfterTime(0.5f)); // 攻撃アニメーションに合わせて判定時間を調整
+        
+
+            //前のコルーチンが動いてたら止める
+            if (atttackCorotine != null)
+                StopCoroutine(atttackCorotine);
+
+            //新しいコルーチンを開始
+            atttackCorotine = StartCoroutine(DisableAttackAfterTime(0.5f));
         }
     }
     private IEnumerator DisableAttackAfterTime(float duration)
@@ -59,5 +68,7 @@ public class Player_Attack : MonoBehaviour
         {
             attackCollision.DisableAttack();
         }
+
+        atttackCorotine = null;//終わったらクリア
     }
 }

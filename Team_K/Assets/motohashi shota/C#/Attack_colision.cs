@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class AttackCollision : MonoBehaviour
@@ -35,16 +36,27 @@ public class AttackCollision : MonoBehaviour
         Debug.Log("StartŒã‚ÌUŒ‚—Í: " + currentAttack);
     }
 
+
+
     /// <summary>
     /// q‚Ì“–‚½‚è”»’è‚ğON‚É‚·‚é
     /// </summary>
-    public void EnableAttack()
+    public void EnableAttack(float duration=0.5f)
     {
         foreach (var col in childColliders)
         {
             if (col != selfCollider)
                 col.enabled = true;
         }
+
+        //”•bŒã‚É–³Œø‚©@
+        StartCoroutine(DisableAttackAfterSeconds(duration));
+    }
+
+    private IEnumerator DisableAttackAfterSeconds(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        DisableAttack();
     }
 
     /// <summary>
