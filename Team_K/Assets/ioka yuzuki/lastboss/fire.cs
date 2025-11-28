@@ -41,8 +41,8 @@ public class firebullet : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Debug.Log("aguhguiraguai");
-            Destroy(gameObject,0.05f);//‚ ‚½‚Á‚½‚ç‚½‚Ü‚ª‚«‚¦‚é
-        }
+            Destroy(gameObject,0.25f);//‚ ‚½‚Á‚½‚ç‚½‚Ü‚ª‚«‚¦‚é
+        }//                     ªÀ¿ƒ_ƒ[ƒW
         else if(collision.gameObject.tag =="Wall")
         {
             Destroy(gameObject);

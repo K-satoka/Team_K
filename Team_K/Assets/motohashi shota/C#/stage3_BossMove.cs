@@ -40,7 +40,7 @@ public class stage3_BossMove : MonoBehaviour
 
             //float dirX = Mathf.Sign(player.position.x - transform.position.x);
             //rb.velocity = new Vector2(dirX * dashSpeed, rb.velocity.y);
-            rb.velocity = new Vector2(dashDirection * dashSpeed, rb.velocity.y);
+            rb.linearVelocity = new Vector2(dashDirection * dashSpeed, rb.linearVelocity.y);
 
             if (dashTimer >= dashTime)
             {
@@ -57,7 +57,7 @@ public class stage3_BossMove : MonoBehaviour
         if (distance < stopDistance && !isDashing)
         {
             //近づきすぎたら止まる
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             anim.SetBool("isMoving", false);
 
             // ★停止した瞬間に突進開始
@@ -75,7 +75,7 @@ public class stage3_BossMove : MonoBehaviour
 
             dirX = Mathf.Sign(dirX);
 
-            rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
+            rb.linearVelocity = new Vector2(dirX * moveSpeed, rb.linearVelocity.y);
             anim.SetBool("isMoving", true);
         }
     }
@@ -99,7 +99,7 @@ public class stage3_BossMove : MonoBehaviour
     void EndDash()
     {
         isDashing = false;
-        rb.velocity = new Vector2(0, rb.velocity.y);
+        rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
         anim.SetBool("isDashing", false); 
     }
 }
