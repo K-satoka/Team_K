@@ -2,23 +2,26 @@ using UnityEngine;
 
 public class stage3_BossMove : MonoBehaviour
 {
-    [Header("�^�[�Q�b�g")]
+    [Header("ターゲット")]
     public Transform player;
 
-    [Header("�ړ��p�����[�^")]
-    //�ړ����x
+    [Header("移動パラメータ")]
     public float moveSpeed = 3f;
-    //�~�܂�Ƃ��̊�
     public float stopDistance = 2f;
 
-    //Rigidbody�A�A�j���[�^�[�A�X�v���C�g�����_���[�p
+    [Header("突進設定")]
+    public float dashSpeed = 12f;
+    public float dashTime = 0.3f;
+    private bool isDashing = false;
+    private float dashTimer = 0f;
+    private float dashDirection = 0f; // ← 突進方向を固定
+
     private Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer sr;
 
     void Start()
     {
-        //�A�j���[�^�[�ARiGidBody�擾
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
@@ -26,30 +29,77 @@ public class stage3_BossMove : MonoBehaviour
 
     void FixedUpdate()
     {
-        //�v���C���[���Ȃ��ƒl��Ԃ��ˁ[
         if (player == null) return;
 
+        // -----------------------------
+        // ★ 突進中の処理（移動AIは無効）
+        // -----------------------------
+        if (isDashing)
+        {
+            dashTimer += Time.fixedDeltaTime;
+
+            //float dirX = Mathf.Sign(player.position.x - transform.position.x);
+            //rb.velocity = new Vector2(dirX * dashSpeed, rb.velocity.y);
+            rb.velocity = new Vector2(dashDirection * dashSpeed, rb.velocity.y);
+
+            if (dashTimer >= dashTime)
+            {
+                EndDash();
+            }
+            return; // ← 移動AIを止める
+        }
+
+        // -----------------------------
+        // ★ 元の移動コード（ここはほぼそのまま）
+        // -----------------------------
         float distance = Vector2.Distance(transform.position, player.position);
 
-        if (distance < stopDistance)
+        if (distance < stopDistance && !isDashing)
         {
-            //�߂Â���������~�܂�ˁ[
-            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            //近づきすぎたら止まる
+            rb.velocity = new Vector2(0, rb.velocity.y);
             anim.SetBool("isMoving", false);
+
+            // ★停止した瞬間に突進開始
+            StartDash();
         }
         else
         {
-            // �v���C���[��ǂ�������i���ړ��̂݁j
-            float dirX = player.position.x - transform.position.x; // ���E�̍������߂�
+            // プレイヤーを追いかける（横移動のみ）
+            float dirX = player.position.x - transform.position.x;
+
             if (dirX != 0)
             {
-                sr.flipX = dirX > 0;//�v���C���[�̕��ɍs��
+                sr.flipX = dirX > 0;
             }
 
-            dirX = Mathf.Sign(dirX); // ���E�̌������� -1 or 1 �ɂ���(matif.sign�Ő����O�Ȃ�P���A���Ȃ�-1��Ԃ�)
+            dirX = Mathf.Sign(dirX);
 
-            rb.linearVelocity = new Vector2(dirX * moveSpeed, rb.linearVelocity.y);
+            rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
             anim.SetBool("isMoving", true);
         }
+    }
+
+    // -----------------------------
+    // ★ 突進開始
+    // -----------------------------
+    void StartDash()
+    {
+        isDashing = true;
+        dashTimer = 0f;
+
+        dashDirection = Mathf.Sign(player.position.x - transform.position.x); // ← 突進方向固定
+        anim.SetBool("isDashing", true);
+        anim.SetBool("isMoving", false);  // Idle に戻る条件を先に消す
+    }
+
+    // -----------------------------
+    // ★ 突進終了
+    // -----------------------------
+    void EndDash()
+    {
+        isDashing = false;
+        rb.velocity = new Vector2(0, rb.velocity.y);
+        anim.SetBool("isDashing", false); 
     }
 }
