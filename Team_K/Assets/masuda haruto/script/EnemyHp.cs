@@ -86,10 +86,17 @@ void Die()
             audioSource.PlayOneShot(EnemyDieSE);
 
         Destroy(gameObject,2.0f);//ゲームオブジェクトを削除
-       
-        //すてせれに戻る
-        FadeManager.Instance.LoadScene("Reward",1.0f);
-    
+
+        if (currentStageNumber == 5)
+        {
+            FadeManager.Instance.LoadScene("Ending", 1.0f);
+        }
+        else
+        {
+            // 通常は Reward へ
+            FadeManager.Instance.LoadScene("Reward", 1.0f);
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)

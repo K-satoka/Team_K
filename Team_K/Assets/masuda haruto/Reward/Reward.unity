@@ -774,7 +774,7 @@ Transform:
   m_GameObject: {fileID: 1310993716}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 364.3192, y: 195.0212, z: 0}
+  m_LocalPosition: {x: 363.3, y: 201.8, z: 0}
   m_LocalScale: {x: 800.9347, y: 458.7018, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -837,7 +837,7 @@ MonoBehaviour:
   cardText: {fileID: 2066855377}
   value: 0
   minValue: 1
-  maxValue: 0
+  maxValue: 99999
   AudioSource: {fileID: 1706468228}
   CardSelectSE: {fileID: 8300000, guid: 9df1eb14d0444714f9d5d88627682845, type: 3}
   button: {fileID: 1706468225}
