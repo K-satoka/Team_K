@@ -2011,14 +2011,10 @@ PrefabInstance:
     - target: {fileID: 5254313789078171592, guid: cf653d441a8191d4c8994b8128df995f, type: 3}
       propertyPath: m_LocalPosition.y
 <<<<<<< HEAD
-<<<<<<< HEAD
       value: 21.3
 =======
       value: 27.2
 >>>>>>> 5fea09bed26192039736273351c38d476e8769cc
-=======
-      value: -24.8
->>>>>>> parent of ce5f0d2 (ちょ)
       objectReference: {fileID: 0}
     - target: {fileID: 5254313789078171592, guid: cf653d441a8191d4c8994b8128df995f, type: 3}
       propertyPath: m_LocalPosition.z
