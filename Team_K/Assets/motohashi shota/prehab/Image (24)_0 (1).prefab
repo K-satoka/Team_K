@@ -203,3 +203,5 @@ MonoBehaviour:
   stopDistance: 50
   dashSpeed: 100
   dashTime: 3
+  audioSource: {fileID: 0}
+  Boss3SE: {fileID: 0}
