@@ -67,7 +67,6 @@ public class stage3_BossMove : MonoBehaviour
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             anim.SetBool("isMoving", false);
 
-
             float dirX = player.position.x - transform.position.x;
 
             // 繝励Ξ繧､繝､繝ｼ縺ｮ蟾ｦ蜿ｳ縺ｫ蠢懊§縺ｦ蜷代″繧貞､峨∴繧・
@@ -115,6 +114,9 @@ public class stage3_BossMove : MonoBehaviour
     }
 
 
+    //遯・ｲ蜑肴凾髢捺政霈臥畑
+
+    //突進前時間搭載用コード
     //IEnumerator StartDash()
     //{
     //    yield return new WaitForSeconds(1f);

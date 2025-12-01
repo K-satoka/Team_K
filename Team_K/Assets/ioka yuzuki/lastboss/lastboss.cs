@@ -19,6 +19,10 @@ public class maou : MonoBehaviour
     private float timer;
     public Transform Player;
 
+    public AudioSource audioSource;
+    public AudioClip MAouAttackSE;
+    public AudioClip TereportSE;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -53,7 +57,8 @@ public class maou : MonoBehaviour
             timer += Time.deltaTime;
             if(timer > detecTime)
             {
-                
+                if (audioSource != null && TereportSE != null)
+                    audioSource.PlayOneShot(TereportSE);
                 teleport();
                 anim.Play("maouteleport");
                 timer = 0f;
@@ -81,6 +86,8 @@ public class maou : MonoBehaviour
     {
         //Debug.Log("sssssssssssssss");
         Instantiate(fire_bulletPrefab, firePoint.position, firePoint.rotation);
+        if (audioSource != null && MAouAttackSE != null)
+            audioSource.PlayOneShot(MAouAttackSE);
 
     }
 
