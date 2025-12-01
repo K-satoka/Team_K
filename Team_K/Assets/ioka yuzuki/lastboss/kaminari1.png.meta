@@ -106,10 +106,10 @@ TextureImporter:
       name: kaminari1_0
       rect:
         serializedVersion: 2
-        x: 587
-        y: 1828
-        width: 60
-        height: 144
+        x: 0
+        y: 0
+        width: 1500
+        height: 2550
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,33 +124,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: kaminari1_1
-      rect:
-        serializedVersion: 2
-        x: 545
-        y: 920
-        width: 277
-        height: 893
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: abd364ca67d91c730800000000000000
-      internalID: 4017665475613179322
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 927e3e059a74eaa409e209467b25d429
     internalID: 0
     vertices: []
     indices: 
