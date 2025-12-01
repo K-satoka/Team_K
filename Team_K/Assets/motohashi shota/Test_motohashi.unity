@@ -792,6 +792,18 @@ PrefabInstance:
       value: stage3_Boss
       objectReference: {fileID: 0}
     - target: {fileID: 5254313789078171592, guid: cf653d441a8191d4c8994b8128df995f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5254313789078171592, guid: cf653d441a8191d4c8994b8128df995f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5254313789078171592, guid: cf653d441a8191d4c8994b8128df995f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5254313789078171592, guid: cf653d441a8191d4c8994b8128df995f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 33.9
       objectReference: {fileID: 0}
