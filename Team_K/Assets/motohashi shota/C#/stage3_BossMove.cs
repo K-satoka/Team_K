@@ -68,7 +68,7 @@ public class stage3_BossMove : MonoBehaviour
         {
             bool facingRight = dirX > 0;
             sr.flipX = facingRight;
-            FlipCollider(facingRight);
+           FlipCollider(facingRight);
         }
         if (distance < stopDistance && !isDashing)
         {
@@ -83,8 +83,9 @@ public class stage3_BossMove : MonoBehaviour
                 audioSource.PlayOneShot(Boss3SE);
         }
         else
-        { 
-            rb.linearVelocity = new Vector2(dirX * moveSpeed, rb.linearVelocity.y);
+        {
+            float dir = Mathf.Sign(player.position.x - transform.position.x);
+            rb.linearVelocity = new Vector2(dir * moveSpeed, rb.linearVelocity.y);
             anim.SetBool("isMoving", true);
         }
     }
@@ -94,6 +95,7 @@ public class stage3_BossMove : MonoBehaviour
     // -----------------------------
     void StartDash()
     {
+        if (isDashing) return;
 
         isDashing = true;
         dashTimer = 0f;
@@ -133,7 +135,7 @@ public class stage3_BossMove : MonoBehaviour
         if (boxCollider != null)
         {
             Vector2 offset = boxCollider.offset;
-            offset.x = Mathf.Abs(offset.x) * (facingRight ? 1 : -1);
+            offset.x = Mathf.Abs(offset.x) * (facingRight ? 0.1f : -0.1f);
             boxCollider.offset = offset;
         }
     }
