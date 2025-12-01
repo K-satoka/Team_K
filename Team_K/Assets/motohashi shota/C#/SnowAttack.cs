@@ -18,10 +18,10 @@ public class SnowAttack : MonoBehaviour
             //    hp.TakeDamage(damage);
             //}
 
-            // Ç±Ç‘ÇµÇè¡Ç∑
+            // ê·ã Çè¡Ç∑
             Destroy(gameObject,0.1f);
         }
-        if (collision.gameObject.tag == "Ground")
+        else if (collision.gameObject.tag == "Ground")
         {
             Debug.Log("ínñ Ç…ìñÇΩÇ¡ÇΩÇüÅI");
 
@@ -33,6 +33,10 @@ public class SnowAttack : MonoBehaviour
             //}
 
             // Ç±Ç‘ÇµÇè¡Ç∑
+            Destroy(gameObject);
+        }
+        else if(collision.gameObject.tag =="Wall")
+        {
             Destroy(gameObject);
         }
     }
