@@ -954,6 +954,7 @@ MonoBehaviour:
   currentStageNumber: 2
   audioSource: {fileID: 795918665}
   EnemydamageSE: {fileID: 8300000, guid: bd890d471690ef940ab0266a9c3b75b7, type: 3}
+  Enemydamage2SE: {fileID: 0}
   EnemyDieSE: {fileID: 8300000, guid: fec76fad6f7e3c94a9b44a8bc294ef56, type: 3}
 --- !u!82 &795918665
 AudioSource:
@@ -1573,7 +1574,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 350782716252635808, guid: dc30b44fcc2eb7648b1067100715d976, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
