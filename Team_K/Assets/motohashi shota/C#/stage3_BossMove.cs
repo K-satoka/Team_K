@@ -16,11 +16,12 @@ public class stage3_BossMove : MonoBehaviour
     public float dashTime = 0.3f;
     private bool isDashing = false;
     private float dashTimer = 0f;
-    private float dashDirection = 0f; // ← 突進方向を固定
+    private float dashDirection = 0f; //突進方向固定用
 
     private Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer sr;
+    private BoxCollider2D boxCollider;//コライダー反転用
 
     //SE
     public AudioSource audioSource;
@@ -31,6 +32,7 @@ public class stage3_BossMove : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+        boxCollider = GetComponent<BoxCollider2D>();
     }
 
     void FixedUpdate()
@@ -60,21 +62,19 @@ public class stage3_BossMove : MonoBehaviour
         // ★ 元の移動コード（ここはほぼそのまま）
         // -----------------------------
         float distance = Vector2.Distance(transform.position, player.position);
+        float dirX = player.position.x - transform.position.x;
 
+        if (dirX != 0)
+        {
+            bool facingRight = dirX > 0;
+            sr.flipX = facingRight;
+            FlipCollider(facingRight);
+        }
         if (distance < stopDistance && !isDashing)
         {
             //近づきすぎたら止まる
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             anim.SetBool("isMoving", false);
-
-            float dirX = player.position.x - transform.position.x;
-
-            // 繝励Ξ繧､繝､繝ｼ縺ｮ蟾ｦ蜿ｳ縺ｫ蠢懊§縺ｦ蜷代″繧貞､峨∴繧・
-            if (dirX != 0)
-            {
-                sr.flipX = dirX > 0; // 蜿ｳ縺ｪ繧液rue縲∝ｷｦ縺ｪ繧映alse
-            }
-
 
             // ★停止した瞬間に突進開始
             StartDash();
@@ -83,17 +83,7 @@ public class stage3_BossMove : MonoBehaviour
                 audioSource.PlayOneShot(Boss3SE);
         }
         else
-        {
-            // プレイヤーを追いかける（横移動のみ）
-            float dirX = player.position.x - transform.position.x;
-
-            if (dirX != 0)
-            {
-                sr.flipX = dirX > 0;
-            }
-
-            dirX = Mathf.Sign(dirX);
-
+        { 
             rb.linearVelocity = new Vector2(dirX * moveSpeed, rb.linearVelocity.y);
             anim.SetBool("isMoving", true);
         }
@@ -136,5 +126,15 @@ public class stage3_BossMove : MonoBehaviour
         isDashing = false;
         rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
         anim.SetBool("isDashing", false); 
+    }
+
+    void FlipCollider(bool facingRight)
+    {
+        if (boxCollider != null)
+        {
+            Vector2 offset = boxCollider.offset;
+            offset.x = Mathf.Abs(offset.x) * (facingRight ? 1 : -1);
+            boxCollider.offset = offset;
+        }
     }
 }
