@@ -17,6 +17,7 @@ public class NextStage : MonoBehaviour
 
     public AudioSource audioSource;
     public AudioClip selectSE;
+    
 
     void Start()
     {
@@ -41,6 +42,7 @@ public class NextStage : MonoBehaviour
         if (audioSource != null && selectSE != null)
         {
             audioSource.PlayOneShot(selectSE);
+          
         }
 
         string scaneName = "Stage" + StageNumber;

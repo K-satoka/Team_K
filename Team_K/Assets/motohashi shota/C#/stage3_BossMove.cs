@@ -1,24 +1,29 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class stage3_BossMove : MonoBehaviour
 {
-    [Header("ã‚¿ãƒ¼ã‚²ãƒƒãƒˆ")]
+    [Header("ƒ^[ƒQƒbƒg")]
     public Transform player;
 
-    [Header("ç§»å‹•ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿")]
+    [Header("ˆÚ“®ƒpƒ‰ƒ[ƒ^")]
     public float moveSpeed = 3f;
     public float stopDistance = 2f;
 
-    [Header("çªé€²è¨­å®š")]
+    [Header("“Ëiİ’è")]
     public float dashSpeed = 12f;
     public float dashTime = 0.3f;
     private bool isDashing = false;
     private float dashTimer = 0f;
-    private float dashDirection = 0f; // â† çªé€²æ–¹å‘ã‚’å›ºå®š
+    private float dashDirection = 0f; // © “Ëi•ûŒü‚ğŒÅ’è
 
     private Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer sr;
+
+    //SE
+    public AudioSource audioSource;
+    public AudioClip Boss3SE;
 
     void Start()
     {
@@ -32,11 +37,12 @@ public class stage3_BossMove : MonoBehaviour
         if (player == null) return;
 
         // -----------------------------
-        // â˜… çªé€²ä¸­ã®å‡¦ç†ï¼ˆç§»å‹•AIã¯ç„¡åŠ¹ï¼‰
+        // š “Ëi’†‚Ìˆ—iˆÚ“®AI‚Í–³Œøj
         // -----------------------------
         if (isDashing)
         {
             dashTimer += Time.fixedDeltaTime;
+
 
             //float dirX = Mathf.Sign(player.position.x - transform.position.x);
             //rb.velocity = new Vector2(dirX * dashSpeed, rb.velocity.y);
@@ -46,26 +52,29 @@ public class stage3_BossMove : MonoBehaviour
             {
                 EndDash();
             }
-            return; // â† ç§»å‹•AIã‚’æ­¢ã‚ã‚‹
+            return; // © ˆÚ“®AI‚ğ~‚ß‚é
         }
 
         // -----------------------------
-        // â˜… å…ƒã®ç§»å‹•ã‚³ãƒ¼ãƒ‰ï¼ˆã“ã“ã¯ã»ã¼ãã®ã¾ã¾ï¼‰
+        // š Œ³‚ÌˆÚ“®ƒR[ƒhi‚±‚±‚Í‚Ù‚Ú‚»‚Ì‚Ü‚Üj
         // -----------------------------
         float distance = Vector2.Distance(transform.position, player.position);
 
         if (distance < stopDistance && !isDashing)
         {
-            //è¿‘ã¥ãã™ããŸã‚‰æ­¢ã¾ã‚‹
+            //‹ß‚Ã‚«‚·‚¬‚½‚ç~‚Ü‚é
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             anim.SetBool("isMoving", false);
 
-            // â˜…åœæ­¢ã—ãŸç¬é–“ã«çªé€²é–‹å§‹
+            // š’â~‚µ‚½uŠÔ‚É“ËiŠJn
             StartDash();
+
+            if (audioSource != null && Boss3SE != null)
+                audioSource.PlayOneShot(Boss3SE);
         }
         else
         {
-            // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’è¿½ã„ã‹ã‘ã‚‹ï¼ˆæ¨ªç§»å‹•ã®ã¿ï¼‰
+            // ƒvƒŒƒCƒ„[‚ğ’Ç‚¢‚©‚¯‚éi‰¡ˆÚ“®‚Ì‚İj
             float dirX = player.position.x - transform.position.x;
 
             if (dirX != 0)
@@ -81,20 +90,20 @@ public class stage3_BossMove : MonoBehaviour
     }
 
     // -----------------------------
-    // â˜… çªé€²é–‹å§‹
+    // š “ËiŠJn
     // -----------------------------
     void StartDash()
     {
         isDashing = true;
         dashTimer = 0f;
 
-        dashDirection = Mathf.Sign(player.position.x - transform.position.x); // â† çªé€²æ–¹å‘å›ºå®š
+        dashDirection = Mathf.Sign(player.position.x - transform.position.x); // © “Ëi•ûŒüŒÅ’è
         anim.SetBool("isDashing", true);
-        anim.SetBool("isMoving", false);  // Idle ã«æˆ»ã‚‹æ¡ä»¶ã‚’å…ˆã«æ¶ˆã™
+        anim.SetBool("isMoving", false);  // Idle ‚É–ß‚éğŒ‚ğæ‚ÉÁ‚·
     }
 
     // -----------------------------
-    // â˜… çªé€²çµ‚äº†
+    // š “ËiI—¹
     // -----------------------------
     void EndDash()
     {
