@@ -23,6 +23,8 @@ public class stage4_BossAttack1 : MonoBehaviour
     Vector2 attackDirection;
     //待機時間
     private float attackTimer;
+    //個数カウント用
+    private GameObject currentSnowball; // ★生成した雪玉を記録しておく
     [Header("アニメーション用")]
     bool isAttacking = false;
 
@@ -68,11 +70,11 @@ public class stage4_BossAttack1 : MonoBehaviour
             float distance = Vector2.Distance(transform.position, player.position);
 
             // プレイヤーが近ければ近接攻撃、遠ければ雪玉
-           // if (distance <= meleeRange)
-                //近接攻撃開始（こっちも同じようにコルーチンで時間制御しながら動かす）
-                //StartCoroutine(MeleeAttackRoutine());
+            // if (distance <= meleeRange)
+            //近接攻撃開始（こっちも同じようにコルーチンで時間制御しながら動かす）
+            //StartCoroutine(MeleeAttackRoutine());
             //else
-                StartCoroutine(SnowAttackRoutine());
+            StartCoroutine(SnowAttackRoutine());
 
         }
     }
@@ -83,6 +85,15 @@ public class stage4_BossAttack1 : MonoBehaviour
     // ======================================================
     IEnumerator SnowAttackRoutine()
     {
+        // ★★追加：雪玉があるなら壊す、無いなら作る
+        if (currentSnowball != null)
+        {
+            Destroy(currentSnowball);
+            currentSnowball = null;
+            yield break;   // 今回は生成せず終了（壊すだけ）
+        }
+
+
         isAttacking = true;
 
         // アニメーション開始
@@ -153,7 +164,6 @@ public class stage4_BossAttack1 : MonoBehaviour
 
             // フレームごとに経過時間を加算
             timer += Time.deltaTime;
-
             // 次のフレームまで待つ（コルーチンの重要ポイント）
             yield return null;
         }
@@ -162,14 +172,15 @@ public class stage4_BossAttack1 : MonoBehaviour
         // 雪玉プレハブをボスの位置に生成
         // Instantiate はゲームオブジェクトを複製する関数
         // -------------------------------
-        GameObject snow = Instantiate(SnowPrefab, SnowPoint.position, Quaternion.identity);
-        snow.transform.localScale = new Vector3(3f, 3f, 3f);
+        currentSnowball = Instantiate(SnowPrefab, SnowPoint.position, Quaternion.identity);
+        currentSnowball.transform.localScale = new Vector3(3f, 3f, 3f);
+
 
         // -------------------------------
         // 雪玉の向きを攻撃方向に合わせる（見た目用）
         // Atan2 で角度を求め、Rad2Deg でラジアン → 度に変換
         // -------------------------------
-        SpriteRenderer snowSR = snow.GetComponent<SpriteRenderer>();
+        SpriteRenderer snowSR = currentSnowball.GetComponent<SpriteRenderer>();
 
         if (snowSR != null)
         {
@@ -188,11 +199,11 @@ public class stage4_BossAttack1 : MonoBehaviour
             while (life < 100f)  // 雪玉寿命（3秒）
             {
                 // 途中で雪玉が消えたらループを抜ける
-                if (snow == null) break;
+                if (currentSnowball == null) break;
 
                 // 雪玉を一定速度で進める
                 // spead * Time.deltaTime で「1秒あたり spead の速度で動く」
-                snow.transform.position += (Vector3)attackDirection * (spead * 2f) * Time.deltaTime;
+                currentSnowball.transform.position += (Vector3)attackDirection * (spead * 2f) * Time.deltaTime;
 
                 life += Time.deltaTime;
 
@@ -201,8 +212,11 @@ public class stage4_BossAttack1 : MonoBehaviour
             }
 
             // 寿命が来たら雪玉を削除
-            if (snow != null)
-                Destroy(snow);
+            if (currentSnowball != null)
+            {
+                Destroy(currentSnowball);
+                currentSnowball = null;
+            }
         }
     }
 }
