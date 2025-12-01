@@ -4,6 +4,9 @@ public class Ending : MonoBehaviour
 {
     [SerializeField] private GameObject confirmPanel;
 
+
+    public AudioSource audioSource;
+    public AudioClip EndingSE;
     // ボタンを押したときに呼ぶ
     public void OnClickButton()
     {
@@ -15,12 +18,16 @@ public class Ending : MonoBehaviour
     {
         Debug.Log("実行しました");
         confirmPanel.SetActive(false);
+        if (audioSource != null && EndingSE != null)
+            audioSource.PlayOneShot(EndingSE);
         FadeManager.Instance.LoadScene("Title", 1.0f);
     }
 
     // キャンセルボタン
     public void OnClickCancel()
     {
+        if (audioSource != null && EndingSE != null)
+            audioSource.PlayOneShot(EndingSE);
         confirmPanel.SetActive(false);
     }
 }
