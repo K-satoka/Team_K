@@ -32,6 +32,10 @@ public class stage4_BossAttack1 : MonoBehaviour
     public Collider2D meleeCollider;      // 攻撃用コライダー
     public int meleeDamage = 20;          // 攻撃力
 
+
+    //SE
+    public AudioSource audioSource;
+    public AudioClip Boss4SE;
     void Start()
     {
         rd = GetComponent<Rigidbody2D>();
@@ -91,6 +95,9 @@ public class stage4_BossAttack1 : MonoBehaviour
 
         // 発射処理とアニメーション再生を同時に進行
         StartCoroutine(FireSnow());
+
+        if (audioSource != null && Boss4SE != null)
+            audioSource.PlayOneShot(Boss4SE);
 
         // アニメーションが終わるまで待つ
         yield return new WaitForSeconds(animLength);

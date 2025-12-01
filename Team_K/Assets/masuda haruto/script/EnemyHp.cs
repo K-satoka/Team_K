@@ -15,6 +15,7 @@ public class EnemyHp : MonoBehaviour
 
     public AudioSource audioSource;
     public AudioClip EnemydamageSE;
+    public AudioClip Enemydamage2SE;
     public AudioClip EnemyDieSE;
     void Start()
     {
@@ -40,6 +41,7 @@ public class EnemyHp : MonoBehaviour
         //SE
         if (audioSource != null && EnemydamageSE != null)
             audioSource.PlayOneShot(EnemydamageSE);
+        audioSource.PlayOneShot(Enemydamage2SE);
 
         if ( Enemy_Current_Hp <= 0)
         {
