@@ -1988,22 +1988,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: golem
       objectReference: {fileID: 0}
-    - target: {fileID: 3576187171512538088, guid: cf653d441a8191d4c8994b8128df995f, type: 3}
-      propertyPath: m_Size.x
-      value: 2.648216
-      objectReference: {fileID: 0}
-    - target: {fileID: 3576187171512538088, guid: cf653d441a8191d4c8994b8128df995f, type: 3}
-      propertyPath: m_Size.y
-      value: 10.624655
-      objectReference: {fileID: 0}
-    - target: {fileID: 3576187171512538088, guid: cf653d441a8191d4c8994b8128df995f, type: 3}
-      propertyPath: m_Offset.x
-      value: 1.2547408
-      objectReference: {fileID: 0}
-    - target: {fileID: 3576187171512538088, guid: cf653d441a8191d4c8994b8128df995f, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.015208483
-      objectReference: {fileID: 0}
     - target: {fileID: 5254313789078171592, guid: cf653d441a8191d4c8994b8128df995f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 69.3
