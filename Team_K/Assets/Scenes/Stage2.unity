@@ -1238,11 +1238,11 @@ PrefabInstance:
       objectReference: {fileID: 795918665}
     - target: {fileID: 4321274137955457332, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
       propertyPath: fistFallSpeed
-      value: 30
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4321274137955457332, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
       propertyPath: attackInterval
-      value: 3
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4374413644349626780, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
       propertyPath: m_SortingOrder
