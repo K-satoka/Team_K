@@ -1944,6 +1944,7 @@ MonoBehaviour:
   currentStageNumber: 1
   audioSource: {fileID: 0}
   EnemydamageSE: {fileID: 0}
+  Enemydamage2SE: {fileID: 0}
   EnemyDieSE: {fileID: 0}
 --- !u!95 &2066093047
 Animator:
@@ -2042,11 +2043,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 411198190303890849, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 55.2
+      value: -74.8
       objectReference: {fileID: 0}
     - target: {fileID: 411198190303890849, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -12.830871
+      value: -34.5
       objectReference: {fileID: 0}
     - target: {fileID: 411198190303890849, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2080,6 +2081,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5925709560299151482, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
+      propertyPath: Max_JumpCount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7031613813734444608, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: m_SortingOrder
       value: 5
@@ -2111,7 +2116,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4402818967661143745, guid: 44e5c9f7dfea3d44b986bfb3841894dd, type: 3}
       propertyPath: speed
-      value: 80
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 4402818967661143745, guid: 44e5c9f7dfea3d44b986bfb3841894dd, type: 3}
       propertyPath: lifetime
