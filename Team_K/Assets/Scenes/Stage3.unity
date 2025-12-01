@@ -1025,6 +1025,7 @@ MonoBehaviour:
   currentStageNumber: 3
   audioSource: {fileID: 586718450}
   EnemydamageSE: {fileID: 8300000, guid: 569e9011335033e4283528f66f23b3c5, type: 3}
+  Enemydamage2SE: {fileID: 0}
   EnemyDieSE: {fileID: 8300000, guid: 802c20785c4fc10429c6f0d71f04b0d0, type: 3}
 --- !u!82 &586718450
 AudioSource:
@@ -2045,7 +2046,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 453373b32b7b9bd419c5b8604853464c, type: 3}
     - target: {fileID: 7794235645534527054, guid: cf653d441a8191d4c8994b8128df995f, type: 3}
       propertyPath: dashTime
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7794235645534527054, guid: cf653d441a8191d4c8994b8128df995f, type: 3}
       propertyPath: dashSpeed
@@ -2061,7 +2062,7 @@ PrefabInstance:
       objectReference: {fileID: 586718450}
     - target: {fileID: 7794235645534527054, guid: cf653d441a8191d4c8994b8128df995f, type: 3}
       propertyPath: stopDistance
-      value: 50
+      value: 70
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
