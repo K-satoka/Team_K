@@ -130,19 +130,42 @@ public class PlaerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            if (transform.localScale.x >= 0)
+            // 攻撃元から自分への方向
+            Vector2 knockDir = (transform.position - collision.transform.position).normalized;
+
+            // 上方向も加える
+            knockDir += Vector2.up * 0.5f;
+            knockDir.Normalize();
+
+            // 左右で別の力を設定
+            float force = 1.5f;
+            if (knockDir.x > 0)
             {
-                //�E�����m�b�N�o�b�N
-                Vector2 knockback = (transform.right * 1.3f + transform.up * 1.5f).normalized;
-                this.rbody.AddForce(knockback * knock_back_left);
-                Debug.Log("����");
+                // 左から攻撃された → 右に吹っ飛ぶ
+                force = knock_back_right;
             }
             else
             {
-                //�������m�b�N�o�b�N
-                Vector2 knockback2 = (transform.right * -1.3f + transform.up * 1.5f).normalized;
-                this.rbody.AddForce(knockback2 * knock_back_right);
+                // 右から攻撃された → 左に吹っ飛ぶ
+                force = knock_back_left;
             }
+
+            rbody.AddForce(knockDir * force);
+
+            Debug.Log("吹っ飛んだ！");
+            //if (transform.localScale.x >= 0)
+            //{
+            //    //�E�����m�b�N�o�b�N
+            //    Vector2 knockback = (transform.right * 1.3f + transform.up * 1.5f).normalized;
+            //    this.rbody.AddForce(knockback * knock_back_left);
+            //    Debug.Log("����");
+            //}
+            //else
+            //{
+            //    //�������m�b�N�o�b�N
+            //    Vector2 knockback2 = (transform.right * -1.3f + transform.up * 1.5f).normalized;
+            //    this.rbody.AddForce(knockback2 * knock_back_right);
+            //}
         }
     }
 

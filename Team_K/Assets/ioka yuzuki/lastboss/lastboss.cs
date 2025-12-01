@@ -4,14 +4,16 @@ public class maou : MonoBehaviour
 {
     Rigidbody2D rb;
     //fire-------------------------------
-    public GameObject bulletPrefab;
+    public GameObject fire_bulletPrefab;
+    public GameObject thunder_bulletPrefab;
     public Transform firePoint;
+    public Transform thunderPoint;
     public float shootInterval = 2f;
     //------------------------------------
     //telep
     public float detecDistance = 5f;//îΩâûÇ∑ÇÈãóó£
     public float detecTime = 2f;    //Å™Ç…Ç¢ÇΩÇÁîΩâûÇ∑ÇÈÇ‹Ç≈ÇÃéûä‘
-
+    private int firecount;
     Animator anim;
 
     private float timer;
@@ -21,6 +23,7 @@ public class maou : MonoBehaviour
     void Start()
     {
         anim=GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
@@ -42,7 +45,7 @@ public class maou : MonoBehaviour
         float distance = Vector2.Distance(transform.position, Player.position);
         //------------------------------------------
 
-
+        
         if (distance<=detecDistance)
         {
            
@@ -61,7 +64,8 @@ public class maou : MonoBehaviour
             timer += Time.deltaTime;
             if (timer >= shootInterval)
             {
-                Shoot();
+                FireShoot();
+
                 anim.Play("maoufireshot");
                 timer = 0f;
             }
@@ -73,13 +77,17 @@ public class maou : MonoBehaviour
         
     }
 
-    void Shoot()
+    void FireShoot()
     {
         //Debug.Log("sssssssssssssss");
-        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-
+        Instantiate(fire_bulletPrefab, firePoint.position, firePoint.rotation);
 
     }
+
+    //void ThunderShot()
+    //{
+    //    Instantiate(thunder_bulletPrefab, thunderPoint.position, thunderPoint.rotation);
+    //}
 
 
     void teleport()
