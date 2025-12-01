@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class stage3_BossMove : MonoBehaviour
@@ -60,6 +61,14 @@ public class stage3_BossMove : MonoBehaviour
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             anim.SetBool("isMoving", false);
 
+            float dirX = player.position.x - transform.position.x;
+
+            // プレイヤーの左右に応じて向きを変える
+            if (dirX != 0)
+            {
+                sr.flipX = dirX > 0; // 右ならtrue、左ならfalse
+            }
+
             // ★停止した瞬間に突進開始
             StartDash();
         }
@@ -85,6 +94,7 @@ public class stage3_BossMove : MonoBehaviour
     // -----------------------------
     void StartDash()
     {
+
         isDashing = true;
         dashTimer = 0f;
 
@@ -93,6 +103,18 @@ public class stage3_BossMove : MonoBehaviour
         anim.SetBool("isMoving", false);  // Idle に戻る条件を先に消す
     }
 
+    //突進前時間搭載用
+    //IEnumerator StartDash()
+    //{
+    //    yield return new WaitForSeconds(1f);
+
+    //    isDashing = true;
+    //    dashTimer = 0f;
+
+    //    dashDirection = Mathf.Sign(player.position.x - transform.position.x); // ← 突進方向固定
+    //    anim.SetBool("isDashing", true);
+    //    anim.SetBool("isMoving", false);  // Idle に戻る条件を先に消す
+    //}
     // -----------------------------
     // ★ 突進終了
     // -----------------------------
