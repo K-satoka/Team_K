@@ -67,19 +67,15 @@ public class stage3_BossMove : MonoBehaviour
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             anim.SetBool("isMoving", false);
 
-<<<<<<< HEAD
             float dirX = player.position.x - transform.position.x;
 
-            // プレイヤーの左右に応じて向きを変える
+            // プレイヤーの左右に応じて向きを変えめE
             if (dirX != 0)
             {
                 sr.flipX = dirX > 0; // 右ならtrue、左ならfalse
             }
 
-            // ★停止した瞬間に突進開始
-=======
             // ����~�����u�Ԃɓːi�J�n
->>>>>>> e9f51578def6a057da087397100d7e1bfcd49ea5
             StartDash();
 
             if (audioSource != null && Boss3SE != null)
@@ -116,7 +112,7 @@ public class stage3_BossMove : MonoBehaviour
         anim.SetBool("isMoving", false);  // Idle �ɖ߂�������ɏ���
     }
 
-    //突進前時間搭載用
+    //�ːi�O���ԓ��ڗp�R�[�h
     //IEnumerator StartDash()
     //{
     //    yield return new WaitForSeconds(1f);
@@ -124,9 +120,9 @@ public class stage3_BossMove : MonoBehaviour
     //    isDashing = true;
     //    dashTimer = 0f;
 
-    //    dashDirection = Mathf.Sign(player.position.x - transform.position.x); // ← 突進方向固定
+    //    dashDirection = Mathf.Sign(player.position.x - transform.position.x); // ↁE突E��方向固宁E
     //    anim.SetBool("isDashing", true);
-    //    anim.SetBool("isMoving", false);  // Idle に戻る条件を先に消す
+    //    anim.SetBool("isMoving", false);  // Idle に戻る条件を�Eに消す
     //}
     // -----------------------------
     // �� �ːi�I��
