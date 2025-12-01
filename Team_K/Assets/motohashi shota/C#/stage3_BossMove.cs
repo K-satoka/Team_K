@@ -67,10 +67,6 @@ public class stage3_BossMove : MonoBehaviour
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             anim.SetBool("isMoving", false);
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 2aed46936d87bd761e20a2cb6f01097cc0da48f8
             float dirX = player.position.x - transform.position.x;
 
             // 繝励Ξ繧､繝､繝ｼ縺ｮ蟾ｦ蜿ｳ縺ｫ蠢懊§縺ｦ蜷代″繧貞､峨∴繧・
@@ -79,11 +75,7 @@ public class stage3_BossMove : MonoBehaviour
                 sr.flipX = dirX > 0; // 蜿ｳ縺ｪ繧液rue縲∝ｷｦ縺ｪ繧映alse
             }
 
-<<<<<<< HEAD
-            // 笘・●豁｢縺励◆迸ｬ髢薙↓遯・ｲ髢句ｧ・
 
-=======
->>>>>>> 2aed46936d87bd761e20a2cb6f01097cc0da48f8
             // ★停止した瞬間に突進開始
             StartDash();
 
@@ -121,11 +113,10 @@ public class stage3_BossMove : MonoBehaviour
         anim.SetBool("isMoving", false);  // Idle に戻る条件を先に消す
     }
 
-<<<<<<< HEAD
+
     //遯・ｲ蜑肴凾髢捺政霈臥畑
-=======
+
     //突進前時間搭載用コード
->>>>>>> 2aed46936d87bd761e20a2cb6f01097cc0da48f8
     //IEnumerator StartDash()
     //{
     //    yield return new WaitForSeconds(1f);
