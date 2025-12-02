@@ -2382,7 +2382,7 @@ GameObject:
   - component: {fileID: 2066093042}
   - component: {fileID: 2066093041}
   - component: {fileID: 2066093043}
-  - component: {fileID: 2066093049}
+  - component: {fileID: 2066093046}
   - component: {fileID: 2066093047}
   - component: {fileID: 2066093048}
   m_Layer: 7
@@ -2560,6 +2560,27 @@ MonoBehaviour:
   audioSource: {fileID: 2066093048}
   MAouAttackSE: {fileID: 8300000, guid: bcd49ebd2bd39344c8a3d6cd7aee11eb, type: 3}
   TereportSE: {fileID: 8300000, guid: b391f030ef973e7419226b4ac59dfa8c, type: 3}
+--- !u!114 &2066093046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066093038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e45e644e8afb5f468e1fab8d7cb5fbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemy_MAX_Hp: 6400
+  Enemy_Current_Hp: 6400
+  damageOnContact: 10
+  hpSlider: {fileID: 343899429}
+  currentStageNumber: 1
+  audioSource: {fileID: 2066093048}
+  EnemydamageSE: {fileID: 8300000, guid: bd890d471690ef940ab0266a9c3b75b7, type: 3}
+  Enemydamage2SE: {fileID: 0}
+  EnemyDieSE: {fileID: 8300000, guid: fec76fad6f7e3c94a9b44a8bc294ef56, type: 3}
 --- !u!95 &2066093047
 Animator:
   serializedVersion: 7
@@ -2679,27 +2700,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2066093049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2066093038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e45e644e8afb5f468e1fab8d7cb5fbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Enemy_MAX_Hp: 6400
-  Enemy_Current_Hp: 6400
-  damageOnContact: 10
-  hpSlider: {fileID: 343899429}
-  currentStageNumber: 5
-  audioSource: {fileID: 2066093048}
-  EnemydamageSE: {fileID: 8300000, guid: bd890d471690ef940ab0266a9c3b75b7, type: 3}
-  Enemydamage2SE: {fileID: 0}
-  EnemyDieSE: {fileID: 8300000, guid: fec76fad6f7e3c94a9b44a8bc294ef56, type: 3}
 --- !u!1001 &2097462388
 PrefabInstance:
   m_ObjectHideFlags: 0
