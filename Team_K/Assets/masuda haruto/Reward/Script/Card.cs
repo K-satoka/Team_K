@@ -24,9 +24,21 @@ public class Card : MonoBehaviour
 
     public Button button;
 
+    //
+    private bool inputLocked = false;
+    private CanvasGroup canvasGroup;
+
 
     private void Start()
     {
+        //canvasgroupの初期化
+        canvasGroup = GetComponent<CanvasGroup>();
+        if (canvasGroup == null )
+            canvasGroup = gameObject.AddComponent<CanvasGroup>();
+
+        inputLocked = false;//シーン開始の解除
+        UpdateBottunVidual();
+
         playerHP = FindObjectOfType<PlayerHP>();
         attackCollision = FindObjectOfType<AttackCollision>();
 
@@ -95,19 +107,39 @@ public class Card : MonoBehaviour
 
     }
 
+    private void UpdateBottunVidual()
+    {
+        if (canvasGroup != null)
+            canvasGroup.alpha = inputLocked ? 0.5f : 1.0f;//押せない間は半透明
+        if (button != null)
+            button.interactable = !inputLocked;
+    }
+
     public void Onselect()
     {
+        //フェード中(=ロック中)は虫
+        if(inputLocked) return;
+        //フェード開始と同時にロック
+        inputLocked = true;
+        UpdateBottunVidual();
 
+       
         //二回選択できないように
         Card[] cards = FindObjectsOfType<Card>();
         
         foreach (var c in cards)
         {
-            if (c.button != null)
-                c.button.interactable = false;
+            c.inputLocked = true;
+            c.UpdateBottunVidual();
+            //if (c.button != null)
+            //    c.button.interactable = false;
         }
 
-        if(button != null)
+        float fadeTime = 1.0f;
+        StartCoroutine(UnlockInputApprox(fadeTime));
+
+
+        if (button != null)
             button.interactable = false;
         //SE
         if(AudioSource != null&&CardSelectSE!=null)
@@ -129,5 +161,18 @@ public class Card : MonoBehaviour
 
         //ステージセレクトに飛ぶ
         FadeManager.Instance.LoadScene("StageSelect",1.0f);
+    }
+
+    private IEnumerator UnlockInputApprox(float fadeDuraction)
+    {
+        yield return new WaitForSeconds(fadeDuraction * 2f); // フェードアウト＋フェードインを待つ
+
+        // 全カードの操作ロック解除と見た目更新
+        Card[] cards = FindObjectsOfType<Card>();
+        foreach (var c in cards)
+        {
+            c.inputLocked = false;
+            c.UpdateBottunVidual();
+        }
     }
 }
