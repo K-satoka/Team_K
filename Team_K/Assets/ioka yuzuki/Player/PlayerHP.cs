@@ -81,16 +81,6 @@ public class PlayerHP : MonoBehaviour
             if (collision.gameObject.CompareTag("Enemy"))
             {
                 Player_Current_Hp -= dmg;
-                if (audioSource != null && PlayerDamageSE != null)
-                    audioSource.PlayOneShot(PlayerDamageSE);
-
-                Debug.Log(Player_Current_Hp);
-            }
-            if (Player_Current_Hp <= 0 && !isDead)
-            {
-                isDead = true;
-                Destroy(gameObject, 1.5f);
-                death();
             }
         }
         //stage2ボス攻撃ダメージ
@@ -101,16 +91,6 @@ public class PlayerHP : MonoBehaviour
             if (collision.gameObject.CompareTag("BossATK"))
             {
                 Player_Current_Hp -= dmg2;
-                if (audioSource != null && PlayerDamageSE != null)
-                    audioSource.PlayOneShot(PlayerDamageSE);
-
-                Debug.Log(Player_Current_Hp);
-            }
-            if (Player_Current_Hp <= 0 && !isDead)
-            {
-                isDead = true;
-                Destroy(gameObject, 1.5f);
-                death();
             }
         }
         //ステージ3ダメージ
@@ -121,17 +101,20 @@ public class PlayerHP : MonoBehaviour
             if (collision.gameObject.CompareTag("Enemy"))
             {
                 Player_Current_Hp -= st3_dmg;
-                if (audioSource != null && PlayerDamageSE != null)
-                    audioSource.PlayOneShot(PlayerDamageSE);
+            }
+        }
+        if (collision.gameObject.CompareTag("Enemy")||collision.gameObject.CompareTag("BossATK"))
+        {
+            if (audioSource != null && PlayerDamageSE != null)
+                audioSource.PlayOneShot(PlayerDamageSE);
 
-                Debug.Log(Player_Current_Hp);
-            }
-            if (Player_Current_Hp <= 0 && !isDead)
-            {
-                isDead = true;
-                Destroy(gameObject, 1.5f);
-                death();
-            }
+            Debug.Log(Player_Current_Hp);
+        }
+        if (Player_Current_Hp <= 0 && !isDead)
+        {
+            isDead = true;
+            Destroy(gameObject, 1.5f);
+            death();
         }
         //ボス接触時ダメージ_____EnemyTag変更予定
         /*

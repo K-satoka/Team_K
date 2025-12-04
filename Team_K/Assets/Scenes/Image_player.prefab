@@ -221,7 +221,7 @@ MonoBehaviour:
   CollisionCooldown: 0
   Player_MAX_Hp: 30
   Player_Current_Hp: 30
-  knock_back: 10
+  knock_back: 20
   PlayerhpSlider: {fileID: 0}
   gameOverSceneName: GameOver
   audioSource: {fileID: 0}
@@ -248,6 +248,7 @@ MonoBehaviour:
   attackPoint: {fileID: 3666933059497573972}
   AudioSource: {fileID: 0}
   AttackSE: {fileID: 0}
+  attackCollision: {fileID: 0}
 --- !u!114 &7613410471225609798
 MonoBehaviour:
   m_ObjectHideFlags: 0
