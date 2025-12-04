@@ -1252,6 +1252,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 977759c86a0ae1b419fbe49c813c9d64, type: 2}
+    - target: {fileID: 7131909362606615127, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
+      propertyPath: m_TagString
+      value: BossATK
+      objectReference: {fileID: 0}
     - target: {fileID: 8141420715039680581, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
       propertyPath: m_SortingOrder
       value: 3

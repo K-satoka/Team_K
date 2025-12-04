@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Attack
   - Wall
+  - BossATK
   layers:
   - Default
   - TransparentFX

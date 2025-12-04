@@ -1,4 +1,4 @@
-
+﻿
 using Unity.VisualScripting;
 
 using System.Collections;
@@ -68,28 +68,88 @@ public class PlayerHP : MonoBehaviour
         }
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
+        boss bossScript = collision.gameObject.GetComponent<boss>();
+        fistDamage fistDamageScript = collision.gameObject.GetComponent<fistDamage>();
+        S3Atk s3AtkScript=collision.gameObject.GetComponent<S3Atk>();
+        //stage1ボスダメージ
+        if (bossScript != null)
+        {
+            int dmg = bossScript.damage;
+            
+            if (collision.gameObject.CompareTag("Enemy"))
+            {
+                Player_Current_Hp -= dmg;
+                if (audioSource != null && PlayerDamageSE != null)
+                    audioSource.PlayOneShot(PlayerDamageSE);
+
+                Debug.Log(Player_Current_Hp);
+            }
+            if (Player_Current_Hp <= 0 && !isDead)
+            {
+                isDead = true;
+                Destroy(gameObject, 1.5f);
+                death();
+            }
+        }
+        //stage2ボス攻撃ダメージ
+        if (fistDamageScript != null)
+        {
+            int dmg2 = fistDamageScript.damage2;
+
+            if (collision.gameObject.CompareTag("BossATK"))
+            {
+                Player_Current_Hp -= dmg2;
+                if (audioSource != null && PlayerDamageSE != null)
+                    audioSource.PlayOneShot(PlayerDamageSE);
+
+                Debug.Log(Player_Current_Hp);
+            }
+            if (Player_Current_Hp <= 0 && !isDead)
+            {
+                isDead = true;
+                Destroy(gameObject, 1.5f);
+                death();
+            }
+        }
+        //ステージ3ダメージ
+        if (s3AtkScript != null)
+        {
+            int st3_dmg = s3AtkScript.st3_damage;
+
+            if (collision.gameObject.CompareTag("Enemy"))
+            {
+                Player_Current_Hp -= st3_dmg;
+                if (audioSource != null && PlayerDamageSE != null)
+                    audioSource.PlayOneShot(PlayerDamageSE);
+
+                Debug.Log(Player_Current_Hp);
+            }
+            if (Player_Current_Hp <= 0 && !isDead)
+            {
+                isDead = true;
+                Destroy(gameObject, 1.5f);
+                death();
+            }
+        }
+        //ボス接触時ダメージ_____EnemyTag変更予定
+        /*
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Player_Current_Hp -= 1;
-
             if (audioSource != null && PlayerDamageSE != null)
                 audioSource.PlayOneShot(PlayerDamageSE);
 
             Debug.Log(Player_Current_Hp);
         }
-
-       
-
-        if (Player_Current_Hp <= 0&&!isDead)
+        if (Player_Current_Hp <= 0 && !isDead)
         {
-
             isDead = true;
             Destroy(gameObject, 1.5f);
             death();
         }
-
+        */
     }
 
     //�U�����󂯂��Ƃ��ɌĂ�

@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class fistDamage : MonoBehaviour
 {
-    public int damage = 1; // ダメージ量
+    public int damage2 = 10; // ダメージ量
     public Animator animator;
-
+    
     //追加
     private Collider2D col;
 

@@ -24,6 +24,8 @@ public class boss : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip SlimejumpSE;
 
+    public int damage=10;
+
     private bool wasOnGround = false;//前フレームの設置状態
     void Start()
     {
