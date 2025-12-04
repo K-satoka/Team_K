@@ -76,8 +76,7 @@ public class PlayerHP : MonoBehaviour
         //stage1ボスダメージ
         if (bossScript != null)
         {
-            int dmg = bossScript.damage;
-            
+            int dmg = bossScript.damage;         
             if (collision.gameObject.CompareTag("Enemy"))
             {
                 Player_Current_Hp -= dmg;
@@ -87,7 +86,6 @@ public class PlayerHP : MonoBehaviour
         if (fistDamageScript != null)
         {
             int dmg2 = fistDamageScript.damage2;
-
             if (collision.gameObject.CompareTag("BossATK"))
             {
                 Player_Current_Hp -= dmg2;
@@ -97,12 +95,12 @@ public class PlayerHP : MonoBehaviour
         if (s3AtkScript != null)
         {
             int st3_dmg = s3AtkScript.st3_damage;
-
             if (collision.gameObject.CompareTag("Enemy"))
             {
                 Player_Current_Hp -= st3_dmg;
             }
         }
+        //SE----------------------------------------------------------------------------------------
         if (collision.gameObject.CompareTag("Enemy")||collision.gameObject.CompareTag("BossATK"))
         {
             if (audioSource != null && PlayerDamageSE != null)
@@ -110,12 +108,15 @@ public class PlayerHP : MonoBehaviour
 
             Debug.Log(Player_Current_Hp);
         }
+        //------------------------------------------------
+        //死亡
         if (Player_Current_Hp <= 0 && !isDead)
         {
             isDead = true;
             Destroy(gameObject, 1.5f);
             death();
         }
+        //------------------------------------------
         //ボス接触時ダメージ_____EnemyTag変更予定
         /*
         if (collision.gameObject.CompareTag("Enemy"))
