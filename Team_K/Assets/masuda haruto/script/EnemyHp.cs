@@ -32,7 +32,8 @@ public class EnemyHp : MonoBehaviour
     public void TakeDamage(int damage)
     {
        Enemy_Current_Hp -= damage;
-        if (Enemy_Current_Hp < 0) Enemy_Current_Hp = 0;//HPがマイナスにならないように
+        if (Enemy_Current_Hp < 0) 
+            Enemy_Current_Hp = 0;//HPがマイナスにならないように
         Debug.Log("敵が" + damage +"のダメージを受けた。残り:" +  Enemy_Current_Hp+ "/" + Enemy_MAX_Hp);
         if (hpSlider != null)
         {
@@ -68,9 +69,15 @@ void Die()
             rb.angularVelocity = 0f;
             rb.simulated = false;
         }
-       
+
 
         //---------------------
+
+        Collider2D[]colliders = GetComponentsInChildren<Collider2D>();
+        foreach (var col  in colliders)
+        {
+            col.enabled=(false);
+        }
         int stageUnlock = PlayerPrefs.GetInt("StageUnlock", 1);
         if (currentStageNumber==stageUnlock)
         {
