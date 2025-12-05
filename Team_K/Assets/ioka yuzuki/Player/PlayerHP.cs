@@ -73,6 +73,9 @@ public class PlayerHP : MonoBehaviour
         boss bossScript = collision.gameObject.GetComponent<boss>();
         fistDamage fistDamageScript = collision.gameObject.GetComponent<fistDamage>();
         S3Atk s3AtkScript=collision.gameObject.GetComponent<S3Atk>();
+        SnowAttack snowAttackScript=collision.gameObject.GetComponent<SnowAttack>();
+        firebullet firebulletScript=collision.gameObject.GetComponent<firebullet>();
+        icicle icicleScript=collision.gameObject.GetComponent<icicle>();
         //stage1ボスダメージ
         if (bossScript != null)
         {
@@ -98,6 +101,33 @@ public class PlayerHP : MonoBehaviour
             if (collision.gameObject.CompareTag("Enemy"))
             {
                 Player_Current_Hp -= st3_dmg;
+            }
+        }
+        //st4
+        if (snowAttackScript != null)
+        {
+            int st4_dmg = snowAttackScript.s4_damage;
+            if (collision.gameObject.CompareTag("BossATK"))
+            {
+                Player_Current_Hp -= st4_dmg;
+            }
+        }
+        //st5fire
+        if (firebulletScript != null)
+        {
+            int st5_dmg = firebulletScript.fire_damage;
+            if (collision.gameObject.CompareTag("BossATK"))
+            {
+                Player_Current_Hp -= st5_dmg;
+            }
+        }
+        //st5ice
+        if (icicleScript != null)
+        {
+            int st5_icedmg = icicleScript.ice_damage;
+            if (collision.gameObject.CompareTag("BossATK"))
+            {
+                Player_Current_Hp -= st5_icedmg;
             }
         }
         //SE----------------------------------------------------------------------------------------

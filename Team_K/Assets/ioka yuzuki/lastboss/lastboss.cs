@@ -6,8 +6,10 @@ public class maou : MonoBehaviour
     //fire-------------------------------
     public GameObject fire_bulletPrefab;
     public GameObject thunder_bulletPrefab;
+    public GameObject icicle_bulletPrefab;
     public Transform firePoint;
     public Transform thunderPoint;
+    public Transform iciclePoint;
     public float shootInterval = 2f;
     //------------------------------------
     //telep
@@ -26,6 +28,7 @@ public class maou : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        
         anim=GetComponent<Animator>();
         
     }
@@ -69,9 +72,20 @@ public class maou : MonoBehaviour
             timer += Time.deltaTime;
             if (timer >= shootInterval)
             {
-                FireShoot();
+                float rand=Random.Range(1,3);
+                if (rand ==1)
+                {
+                    FireShoot();
+                }
+                else
+                {
+                    icicleShot();
+                }
+                    
 
-                anim.Play("maoufireshot");
+                
+
+
                 timer = 0f;
             }
         }
@@ -84,6 +98,7 @@ public class maou : MonoBehaviour
 
     void FireShoot()
     {
+        anim.Play("maoufireshot");
         //Debug.Log("sssssssssssssss");
         Instantiate(fire_bulletPrefab, firePoint.position, firePoint.rotation);
         if (audioSource != null && MAouAttackSE != null)
@@ -95,7 +110,10 @@ public class maou : MonoBehaviour
     //{
     //    Instantiate(thunder_bulletPrefab, thunderPoint.position, thunderPoint.rotation);
     //}
-
+    void icicleShot()
+    {
+        Instantiate(icicle_bulletPrefab,iciclePoint.position, iciclePoint.rotation);
+    }
 
     void teleport()
     {

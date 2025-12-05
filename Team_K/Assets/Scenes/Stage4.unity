@@ -1181,6 +1181,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: stage3_Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 1390351087653296744, guid: 76763b4a71331354aa8c00f7fe7455b6, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 1493282739266410575, guid: 76763b4a71331354aa8c00f7fe7455b6, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1237,6 +1241,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4461198475684514882, guid: 76763b4a71331354aa8c00f7fe7455b6, type: 3}
+      propertyPath: damage
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461198475684514882, guid: 76763b4a71331354aa8c00f7fe7455b6, type: 3}
+      propertyPath: s4_damage
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 4485118485541451939, guid: 76763b4a71331354aa8c00f7fe7455b6, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.16815
@@ -1261,9 +1273,17 @@ PrefabInstance:
       propertyPath: stopDistance
       value: 75
       objectReference: {fileID: 0}
+    - target: {fileID: 6291056055102965920, guid: 76763b4a71331354aa8c00f7fe7455b6, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6668047478346111293, guid: 76763b4a71331354aa8c00f7fe7455b6, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7910671831188954222, guid: 76763b4a71331354aa8c00f7fe7455b6, type: 3}
+      propertyPath: m_TagString
+      value: BossATK
       objectReference: {fileID: 0}
     - target: {fileID: 8434064870383170611, guid: 76763b4a71331354aa8c00f7fe7455b6, type: 3}
       propertyPath: m_SortingOrder
@@ -3291,7 +3311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy_MAX_Hp: 3200
-  Enemy_Current_Hp: 0
+  Enemy_Current_Hp: 3200
   damageOnContact: 10
   hpSlider: {fileID: 634710773}
   currentStageNumber: 4

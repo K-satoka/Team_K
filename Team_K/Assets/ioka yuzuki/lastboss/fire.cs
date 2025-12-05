@@ -5,7 +5,8 @@ using UnityEngine.UIElements;
 public class firebullet : MonoBehaviour
 {
     private Rigidbody2D rb;
-    
+
+    public int fire_damage=1;
     public float speed = 50.0f;
     public float lifetime = 15f;
 
@@ -41,8 +42,8 @@ public class firebullet : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Debug.Log("aguhguiraguai");
-            Destroy(gameObject,0.25f);//‚ ‚½‚Á‚½‚ç‚½‚Ü‚ª‚«‚¦‚é
-        }//                     ªÀ¿ƒ_ƒ[ƒW
+            Destroy(gameObject);//‚ ‚½‚Á‚½‚ç‚½‚Ü‚ª‚«‚¦‚é
+        }//
         else if(collision.gameObject.tag =="Wall")
         {
             Destroy(gameObject);
