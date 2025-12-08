@@ -1346,6 +1346,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 17e83ff69d71fe94891e83827f06b8e0, type: 2}
+    - target: {fileID: 489816653718093251, guid: 801a20b51f6e41d4b812ad7c6c59be90, type: 3}
+      propertyPath: m_UseAutoMass
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1003558861032053462, guid: 801a20b51f6e41d4b812ad7c6c59be90, type: 3}
       propertyPath: m_FlipX
       value: 0

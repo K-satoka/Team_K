@@ -1160,7 +1160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e45e872bca8f1f4789a73af073e7234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  st3_damage: 30
+  st3_damage: 5
 --- !u!1001 &604677955
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2215,6 +2215,10 @@ PrefabInstance:
     - target: {fileID: 5254313789078171592, guid: cf653d441a8191d4c8994b8128df995f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483392318341165838, guid: cf653d441a8191d4c8994b8128df995f, type: 3}
+      propertyPath: m_Mass
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6483392318341165838, guid: cf653d441a8191d4c8994b8128df995f, type: 3}
       propertyPath: m_Material

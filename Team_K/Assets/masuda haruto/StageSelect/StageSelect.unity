@@ -364,7 +364,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -536, y: 71.90002}
+  m_AnchoredPosition: {x: -222, y: 71.90002}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &276471155
@@ -899,6 +899,7 @@ GameObject:
   - component: {fileID: 941607147}
   - component: {fileID: 941607146}
   - component: {fileID: 941607148}
+  - component: {fileID: 941607149}
   m_Layer: 5
   m_Name: statusATK
   m_TagString: Untagged
@@ -922,7 +923,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -536, y: 110}
+  m_AnchoredPosition: {x: -225, y: 110}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &941607146
@@ -1038,6 +1039,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   atkText: {fileID: 941607146}
   hpText: {fileID: 276471155}
+--- !u!114 &941607149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 941607144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2b059fda5a37bc478a43fc3413737fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  atkText: {fileID: 0}
+  hpText: {fileID: 0}
 --- !u!1 &1110527082
 GameObject:
   m_ObjectHideFlags: 0
