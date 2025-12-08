@@ -78,13 +78,7 @@ public class maou : MonoBehaviour
                 if (rand ==1)
                 {
                     anim.Play("maoufireshot");
-                    attacktimer += Time.deltaTime;
-                    if (attacktimer > timeout)
-                    {
-                        FireShoot();
-                        attacktimer = 0.0f;
-                    }
-                       
+                    FireShoot();
                 }
                 else
                 {
