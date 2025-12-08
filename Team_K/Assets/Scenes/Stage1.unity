@@ -2381,6 +2381,14 @@ PrefabInstance:
       propertyPath: attackCollision
       value: 
       objectReference: {fileID: 1825373604}
+    - target: {fileID: 3666933059497573972, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6466415305838119048, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 25.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7031613813734444608, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: m_SortingOrder
       value: 4

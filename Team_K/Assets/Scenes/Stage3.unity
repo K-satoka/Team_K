@@ -781,6 +781,10 @@ PrefabInstance:
       propertyPath: enemyLayers.m_Bits
       value: 192
       objectReference: {fileID: 0}
+    - target: {fileID: 3666933059497573972, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5925709560299151482, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: knock_back_left
       value: 5000
@@ -788,6 +792,10 @@ PrefabInstance:
     - target: {fileID: 5925709560299151482, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: knock_back_right
       value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6466415305838119048, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 25.5
       objectReference: {fileID: 0}
     - target: {fileID: 7031613813734444608, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: m_SortingOrder

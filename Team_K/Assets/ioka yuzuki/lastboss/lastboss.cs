@@ -19,6 +19,8 @@ public class maou : MonoBehaviour
     Animator anim;
 
     private float timer;
+    private float attacktimer;
+    private float timeout=0.2f;
     public Transform Player;
 
     public AudioSource audioSource;
@@ -75,7 +77,14 @@ public class maou : MonoBehaviour
                 float rand=Random.Range(1,3);
                 if (rand ==1)
                 {
-                    FireShoot();
+                    anim.Play("maoufireshot");
+                    attacktimer += Time.deltaTime;
+                    if (attacktimer > timeout)
+                    {
+                        FireShoot();
+                        attacktimer = 0.0f;
+                    }
+                       
                 }
                 else
                 {
@@ -98,9 +107,8 @@ public class maou : MonoBehaviour
 
     void FireShoot()
     {
-        anim.Play("maoufireshot");
-        //Debug.Log("sssssssssssssss");
-        Instantiate(fire_bulletPrefab, firePoint.position, firePoint.rotation);
+            Instantiate(fire_bulletPrefab, firePoint.position, firePoint.rotation);
+            
         if (audioSource != null && MAouAttackSE != null)
             audioSource.PlayOneShot(MAouAttackSE);
 

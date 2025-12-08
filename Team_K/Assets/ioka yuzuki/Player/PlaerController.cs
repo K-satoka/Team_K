@@ -55,12 +55,12 @@ public class PlaerController : MonoBehaviour
         if (axisH > 0.0f)
         {
             //�E�ړ�
-            transform.localScale = new Vector2(-1, 1);
+            transform.localScale = new Vector2(1, 1);
         }
         else if (axisH < 0.0f)
         {
             //���ړ�
-            transform.localScale = new Vector2(1, 1);
+            transform.localScale = new Vector2(-1, 1);
         }
 
         //�L�����N�^�[���W�����v������
