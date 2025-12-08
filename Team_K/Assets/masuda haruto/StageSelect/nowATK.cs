@@ -19,13 +19,6 @@ public class nowATK : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (atkText!=null&& playerAttack != null)
-        {
-            atkText.text = "ATK:" + playerAttack.attackDamage;
-        }
-        if (hpText != null && playerHP != null) 
-        {
-            hpText.text = "HP:" + playerHP.Player_Current_Hp;
-        }
+         atkText.text = "ATK:" + playerAttack.attackDamage;
     }
 }
