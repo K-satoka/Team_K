@@ -12,6 +12,6 @@ public class icicle_point : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector2(Player.position.x, 100);
+        transform.position = new Vector2(Player.position.x, 120);
     }
 }

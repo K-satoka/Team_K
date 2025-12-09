@@ -17,8 +17,8 @@ public class nowATK : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-         atkText.text = "ATK:" + playerAttack.attackDamage;
-    }
+    //void Update()
+    //{
+    //     atkText.text = "ATK:" + playerAttack.attackDamage;
+    //}
 }

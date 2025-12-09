@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 //using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 //ENEMY
 
@@ -16,10 +17,11 @@ public class boss : MonoBehaviour
     public float jumpTriggerDistance = 5f; // 検知距離
     public float GravityScale = 3.0f;  // 重力倍率
     public LayerMask GroundLayer;      // 地面レイヤー
- 
+
+    public float detecDistance = 5f;//反応する距離
     private Transform Player;
     private bool onGround = false;
-
+    Animator anim;
     //SE
     public AudioSource audioSource;
     public AudioClip SlimejumpSE;
@@ -29,6 +31,7 @@ public class boss : MonoBehaviour
     private bool wasOnGround = false;//前フレームの設置状態
     void Start()
     {
+        anim=GetComponent<Animator>();
         // Rigidbody2Dをとってくる
         rbody = GetComponent<Rigidbody2D>();//Rigidbody2Dからとってくる
         //Playerタグが付いたオブジェクトを探す
@@ -46,6 +49,9 @@ public class boss : MonoBehaviour
     }
     void Update()
     {
+        // プレイヤーまでの距離を計算
+        float Playerdistance = Vector2.Distance(transform.position, Player.position);
+        //------------------------------------------
         if (Player == null) return;
         //float distanceToPlayer = Vector2.Distance(transform.position, Player.position);
 
@@ -53,7 +59,16 @@ public class boss : MonoBehaviour
         if (onGround)
         {
             //Debug.Log("ddddddddddddddddddddddd");
-            Jump();
+            if (Playerdistance <= detecDistance)
+            {
+               
+                Jump();
+            }
+            else if(Playerdistance > detecDistance) 
+            {
+                anim.Play("slime_waiting");
+            }
+               
         }
 
     }
@@ -83,9 +98,9 @@ public class boss : MonoBehaviour
         );
         //プレイヤーのほうに向かす
         Vector2 direction=new Vector2(Player.position.x-transform.position.x,0).normalized;
-        
 
-         //その方向に常に移動
+       
+        //その方向に常に移動
         rbody.linearVelocity = new Vector2(direction.x * Enemy_speed, rbody.linearVelocity.y);
 
         //向きを反転

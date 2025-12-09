@@ -82,6 +82,7 @@ public class maou : MonoBehaviour
                 }
                 else
                 {
+                    anim.Play("maoufireshot");
                     icicleShot();
                 }
                     

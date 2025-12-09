@@ -76,6 +76,7 @@ public class PlayerHP : MonoBehaviour
         SnowAttack snowAttackScript=collision.gameObject.GetComponent<SnowAttack>();
         firebullet firebulletScript=collision.gameObject.GetComponent<firebullet>();
         icicle icicleScript=collision.gameObject.GetComponent<icicle>();
+       
         //stage1ボスダメージ
         if (bossScript != null)
         {
@@ -85,6 +86,7 @@ public class PlayerHP : MonoBehaviour
                 Player_Current_Hp -= dmg;
             }
         }
+        
         //stage2ボス攻撃ダメージ
         if (fistDamageScript != null)
         {

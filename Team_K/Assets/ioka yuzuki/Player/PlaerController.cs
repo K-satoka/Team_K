@@ -21,6 +21,9 @@ public class PlaerController : MonoBehaviour
     public float knock_back_right;
     public float knock_back_left;
 
+    public float at_timer=0f;
+    private float timer;
+
     //�A�j���[�V�����Ή�
     Animator animator;//�A�j���[�^�[
     public string waiting = "PlayerStop";
@@ -42,7 +45,7 @@ public class PlaerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // �U������
+        
         if (!isAttacking && Input.GetKeyDown(KeyCode.Z))
         {
             isAttacking = true;

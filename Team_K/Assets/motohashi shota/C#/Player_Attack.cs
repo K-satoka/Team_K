@@ -10,27 +10,40 @@ public class Player_Attack : MonoBehaviour
     public LayerMask enemyLayers;
     public Transform attackPoint;
 
-    private float nextAttackTime = 0f;
+    public float nextAttackTime = 1.5f;
+    private float timer = 0f;
+
+    Animator anim;
 
     public AudioSource AudioSource;
     public AudioClip AttackSE;
     public AttackCollision attackCollision;
 
     private Coroutine atttackCorotine;
+
+
+    private void Start()
+    {
+       
+    }
+
+
     void Update()
     {
-        if (Time.time >= nextAttackTime)
+        timer += Time.deltaTime;
+        if (timer > nextAttackTime)
         {
             if (Keyboard.current.zKey.wasPressedThisFrame)
             {
                 DoAttack();
+                timer = 0f;
             }
         }
     }
 
     void DoAttack()
     {
-        nextAttackTime = Time.time + 1f / attackRate;
+       // nextAttackTime = Time.time + 1f / attackRate;  Å©Ç®ëOÇ»ÇÒÇ≈Ç±ÇÒÇ»Ç∆Ç±Ç…Ç†ÇÈÇÀÇÒè„ÇÃifì‡Ç≈èàóùÇµÇÎÇ‚
 
         if (AudioSource != null && AttackSE != null)
         {
