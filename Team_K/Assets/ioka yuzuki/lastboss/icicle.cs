@@ -4,6 +4,7 @@ public class icicle : MonoBehaviour
 {
     public int ice_damage;
 
+
     private Rigidbody2D rb;
     public float landing_speed;
     public float lifetime = 15f;

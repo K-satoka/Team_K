@@ -36,8 +36,9 @@ public class Player_Attack : MonoBehaviour
             if (Keyboard.current.zKey.wasPressedThisFrame)
             {
                 DoAttack();
-                timer = 0f;
+                
             }
+            timer = 0f;
         }
     }
 
