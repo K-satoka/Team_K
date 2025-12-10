@@ -143,7 +143,7 @@ MonoBehaviour:
   Max_JumpCount: 1
   knock_back_right: 5000
   knock_back_left: 5000
-  at_timer: 0.3
+  at_timer: 0
   waiting: PlayerStop
   PlayerMove: PlayerMove
   PlayerJump: PlayerJump
@@ -247,7 +247,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   attackPoint: {fileID: 3666933059497573972}
-  nextAttackTime: 0.5
+  nextAttackTime: 0.35
   AudioSource: {fileID: 0}
   AttackSE: {fileID: 0}
   attackCollision: {fileID: 0}

@@ -1042,7 +1042,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e45e644e8afb5f468e1fab8d7cb5fbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy_MAX_Hp: 1600
+  Enemy_MAX_Hp: 2400
   Enemy_Current_Hp: 0
   damageOnContact: 10
   hpSlider: {fileID: 2069966144}

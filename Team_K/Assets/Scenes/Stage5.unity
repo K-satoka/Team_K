@@ -2646,7 +2646,7 @@ PrefabInstance:
       objectReference: {fileID: 460490199}
     - target: {fileID: 27465250077614231, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: Player_MAX_Hp
-      value: 3000
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 27465250077614231, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: PlayerDamageSE
@@ -2658,7 +2658,7 @@ PrefabInstance:
       objectReference: {fileID: 1547654814}
     - target: {fileID: 27465250077614231, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: Player_Current_Hp
-      value: 3000
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 294595988857754427, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: m_Name

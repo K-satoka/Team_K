@@ -3314,8 +3314,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e45e644e8afb5f468e1fab8d7cb5fbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy_MAX_Hp: 3200
-  Enemy_Current_Hp: 3200
+  Enemy_MAX_Hp: 4600
+  Enemy_Current_Hp: 4600
   damageOnContact: 10
   hpSlider: {fileID: 634710773}
   currentStageNumber: 4
