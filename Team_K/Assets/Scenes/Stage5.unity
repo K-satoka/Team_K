@@ -3471,9 +3471,17 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6522112201795324727, guid: cd5d4916cfb14ab4e87def1114c0ed8d, type: 3}
+      propertyPath: IceBreakSE
+      value: 
+      objectReference: {fileID: 8300000, guid: 12f171737a247c04289b57de482a5f5f, type: 3}
+    - target: {fileID: 6522112201795324727, guid: cd5d4916cfb14ab4e87def1114c0ed8d, type: 3}
       propertyPath: ice_damage
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 6522112201795324727, guid: cd5d4916cfb14ab4e87def1114c0ed8d, type: 3}
+      propertyPath: audioSouece
+      value: 
+      objectReference: {fileID: 8473278143982990363}
     - target: {fileID: 6786813833078196521, guid: cd5d4916cfb14ab4e87def1114c0ed8d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 129.4
@@ -3594,9 +3602,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 343899429}
     - target: {fileID: 7926690094284445510, guid: c66e3da376daa444eafbd6355d95266d, type: 3}
+      propertyPath: Enemydamage2SE
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7926690094284445510, guid: c66e3da376daa444eafbd6355d95266d, type: 3}
       propertyPath: currentStageNumber
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 8071386051573201505, guid: c66e3da376daa444eafbd6355d95266d, type: 3}
+      propertyPath: IceSE
+      value: 
+      objectReference: {fileID: 8300000, guid: 78ca309ce23262a4ca0854fbc053e10e, type: 3}
     - target: {fileID: 8071386051573201505, guid: c66e3da376daa444eafbd6355d95266d, type: 3}
       propertyPath: Player
       value: 
@@ -3642,6 +3658,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flash: 0.1
+--- !u!82 &8473278143982990363 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3184620837611269536, guid: c66e3da376daa444eafbd6355d95266d, type: 3}
+  m_PrefabInstance: {fileID: 8473278143982990360}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
