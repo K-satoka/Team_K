@@ -1862,7 +1862,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 110
+  orthographic size: 60
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2878,7 +2878,7 @@ PrefabInstance:
       objectReference: {fileID: 460490199}
     - target: {fileID: 27465250077614231, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: Player_MAX_Hp
-      value: 3000
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 27465250077614231, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: PlayerDamageSE
@@ -2890,7 +2890,7 @@ PrefabInstance:
       objectReference: {fileID: 1547654814}
     - target: {fileID: 27465250077614231, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: Player_Current_Hp
-      value: 3000
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 294595988857754427, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: m_Name
@@ -3258,8 +3258,29 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2597043730068615726, guid: c66e3da376daa444eafbd6355d95266d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2061398555}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6060408201711295117, guid: c66e3da376daa444eafbd6355d95266d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8473278143982990362}
   m_SourcePrefab: {fileID: 100100000, guid: c66e3da376daa444eafbd6355d95266d, type: 3}
+--- !u!1 &8473278143982990361 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6060408201711295117, guid: c66e3da376daa444eafbd6355d95266d, type: 3}
+  m_PrefabInstance: {fileID: 8473278143982990360}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8473278143982990362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8473278143982990361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f04ef12153499ac4b832fb917a77652e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flash: 0.1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

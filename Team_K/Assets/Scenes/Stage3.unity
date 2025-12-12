@@ -808,6 +808,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 294595988857754427, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1706158464}
+    - targetCorrespondingSourceObject: {fileID: 294595988857754427, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1706158465}
   m_SourcePrefab: {fileID: 100100000, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
 --- !u!1 &402641660
 GameObject:
@@ -1161,6 +1164,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   st3_damage: 5
+--- !u!114 &586718452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586718435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f04ef12153499ac4b832fb917a77652e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flash: 0.1
 --- !u!1001 &604677955
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2273,6 +2289,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 482719550821115787, guid: cf653d441a8191d4c8994b8128df995f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 586718451}
+    - targetCorrespondingSourceObject: {fileID: 482719550821115787, guid: cf653d441a8191d4c8994b8128df995f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 586718452}
   m_SourcePrefab: {fileID: 100100000, guid: cf653d441a8191d4c8994b8128df995f, type: 3}
 --- !u!1 &1031274420
 GameObject:
@@ -4122,6 +4141,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1706158465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761740971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f04ef12153499ac4b832fb917a77652e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flash: 0.1
 --- !u!1 &1733561824
 GameObject:
   m_ObjectHideFlags: 0

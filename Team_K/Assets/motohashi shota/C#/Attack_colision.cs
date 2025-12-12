@@ -8,7 +8,7 @@ public class AttackCollision : MonoBehaviour
 
     [SerializeField] 
     private int baseAttack = 10;//基礎攻撃力
-    private int currentAttack;//現在値(カードで強化される)
+    public int currentAttack;//現在値(カードで強化される)
 
     
     private void Awake()

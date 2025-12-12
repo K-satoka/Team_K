@@ -84,6 +84,7 @@ public class PlayerHP : MonoBehaviour
             if (collision.gameObject.CompareTag("Enemy"))
             {
                 Player_Current_Hp -= dmg;
+                GetComponent<DamageFlash>().Flash();
             }
         }
         
@@ -94,6 +95,7 @@ public class PlayerHP : MonoBehaviour
             if (collision.gameObject.CompareTag("BossATK"))
             {
                 Player_Current_Hp -= dmg2;
+                GetComponent<DamageFlash>().Flash();
             }
         }
         //ステージ3ダメージ
@@ -103,6 +105,7 @@ public class PlayerHP : MonoBehaviour
             if (collision.gameObject.CompareTag("Enemy"))
             {
                 Player_Current_Hp -= st3_dmg;
+                GetComponent<DamageFlash>().Flash();
             }
         }
         //st4
@@ -112,6 +115,7 @@ public class PlayerHP : MonoBehaviour
             if (collision.gameObject.CompareTag("BossATK"))
             {
                 Player_Current_Hp -= st4_dmg;
+                GetComponent<DamageFlash>().Flash();
             }
         }
         //st5fire
@@ -121,6 +125,7 @@ public class PlayerHP : MonoBehaviour
             if (collision.gameObject.CompareTag("BossATK"))
             {
                 Player_Current_Hp -= st5_dmg;
+                GetComponent<DamageFlash>().Flash();
             }
         }
         //st5ice
@@ -130,6 +135,7 @@ public class PlayerHP : MonoBehaviour
             if (collision.gameObject.CompareTag("BossATK"))
             {
                 Player_Current_Hp -= st5_icedmg;
+                GetComponent<DamageFlash>().Flash();
             }
         }
         //SE----------------------------------------------------------------------------------------

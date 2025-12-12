@@ -32,6 +32,9 @@ public class EnemyHp : MonoBehaviour
     public void TakeDamage(int damage)
     {
        Enemy_Current_Hp -= damage;
+
+        GetComponent<DamageFlash>().Flash();
+
         if (Enemy_Current_Hp < 0) 
             Enemy_Current_Hp = 0;//HPがマイナスにならないように
         Debug.Log("敵が" + damage +"のダメージを受けた。残り:" +  Enemy_Current_Hp+ "/" + Enemy_MAX_Hp);
