@@ -26,6 +26,7 @@ public class maou : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip MAouAttackSE;
     public AudioClip TereportSE;
+    public AudioClip IceSE;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -115,6 +116,8 @@ public class maou : MonoBehaviour
     //}
     void icicleShot()
     {
+        if (audioSource != null && IceSE != null)
+            audioSource.PlayOneShot(IceSE);
         Instantiate(icicle_bulletPrefab,iciclePoint.position, iciclePoint.rotation);
     }
 
