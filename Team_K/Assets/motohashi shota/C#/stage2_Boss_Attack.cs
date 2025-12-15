@@ -33,6 +33,7 @@ public class stage2_Boss_Attack : MonoBehaviour
     //SE
     public AudioSource audioSource;
     public AudioClip sundArm;
+    public AudioClip sundArm2;
 
 
     void Start()
@@ -82,6 +83,7 @@ public class stage2_Boss_Attack : MonoBehaviour
         if (audioSource != null&&sundArm!=null)
         {
             audioSource.PlayOneShot(sundArm);
+            audioSource.PlayOneShot(sundArm2);
         }
 
         // ‚±‚±‚ÅŒ‚Ì‘å‚«‚³‚ğ•ÏX‚µ‚Ä‚İ‚é

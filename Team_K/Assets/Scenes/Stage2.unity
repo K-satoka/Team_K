@@ -1404,6 +1404,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: bd971665d01820a42ba9af8c57492886, type: 3}
     - target: {fileID: 4321274137955457332, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
+      propertyPath: sundArm2
+      value: 
+      objectReference: {fileID: 8300000, guid: 5024240455874e042a923c6a5dbcf8c2, type: 3}
+    - target: {fileID: 4321274137955457332, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
       propertyPath: fistPrefab
       value: 
       objectReference: {fileID: 1865903226}
@@ -2054,7 +2058,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 9985aa7aa2e8f2649b49b8a93a1c3880, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0

@@ -46,7 +46,7 @@ public class Card : MonoBehaviour
 
         //ステージCLEAR数に応じて最大値を増やす
 
-        maxValue += 3 * (stageUnlock - 1);
+        maxValue += 5 * (stageUnlock - 1);
 
         //ボタンがあればクリック登録
         Button btn=GetComponentInChildren<Button>();
