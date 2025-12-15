@@ -31,7 +31,7 @@ public class icicle : MonoBehaviour
             if (audioSouece != null && IceBreakSE != null)
                 audioSouece.PlayOneShot(IceBreakSE);
             anim.Play("break");
-            Destroy(gameObject);
+            Destroy(gameObject,0.1f);
         }
         else if (collision.gameObject.tag == "Ground")
         {
@@ -39,7 +39,7 @@ public class icicle : MonoBehaviour
                 audioSouece.PlayOneShot(IceBreakSE);
 
             anim.Play("break");
-            Destroy(gameObject);
+            Destroy(gameObject,0.1f);
         }
         else if(collision.gameObject.tag =="Enemy")
         {
@@ -47,7 +47,7 @@ public class icicle : MonoBehaviour
                 audioSouece.PlayOneShot(IceBreakSE);
 
             anim.Play("break");
-            Destroy(gameObject);
+            Destroy(gameObject, 0.1f);
         }
         else if(collision.gameObject.tag=="BossATK")
         {
@@ -55,7 +55,7 @@ public class icicle : MonoBehaviour
                 audioSouece.PlayOneShot(IceBreakSE);
 
             anim.Play("break");
-            Destroy(gameObject);
+            Destroy(gameObject, 0.1f);
         }
 
     }
