@@ -76,8 +76,9 @@ public class stage3_BossMove : MonoBehaviour
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             anim.SetBool("isMoving", false);
 
-            // ★停止した瞬間に突進開始
-            StartDash();
+            dashDirection = Mathf.Sign(player.position.x - transform.position.x);//突進方向固定化
+            //突進開始
+            StartCoroutine(StartDash());
 
             if (audioSource != null && Boss3SE != null)
                 audioSource.PlayOneShot(Boss3SE);
@@ -93,33 +94,31 @@ public class stage3_BossMove : MonoBehaviour
     // -----------------------------
     // ★ 突進開始
     // -----------------------------
-    void StartDash()
-    {
-        if (isDashing) return;
-
-        isDashing = true;
-        dashTimer = 0f;
-
-        dashDirection = Mathf.Sign(player.position.x - transform.position.x); // ← 突進方向固定
-        anim.SetBool("isDashing", true);
-        anim.SetBool("isMoving", false);  // Idle に戻る条件を先に消す
-    }
+    //void StartDash()
+    //{
+    //    if (isDashing) return;
+    //
+    //    isDashing = true;
+    //    dashTimer = 0f;
+    //
+    //    anim.SetBool("isDashing", true);
+    //    anim.SetBool("isMoving", false);  // Idle に戻る条件を先に消す
+    //}
 
 
     //遯・ｲ蜑肴凾髢捺政霈臥畑
 
     //突進前時間搭載用コード
-    //IEnumerator StartDash()
-    //{
-    //    yield return new WaitForSeconds(1f);
+    IEnumerator StartDash()
+    {
+        yield return new WaitForSeconds(0.5f);
 
-    //    isDashing = true;
-    //    dashTimer = 0f;
+        isDashing = true;
+        dashTimer = 0f;
 
-    //    dashDirection = Mathf.Sign(player.position.x - transform.position.x); // 竊・遯・ｲ譁ｹ蜷大崋螳・
-    //    anim.SetBool("isDashing", true);
-    //    anim.SetBool("isMoving", false);  // Idle 縺ｫ謌ｻ繧区擅莉ｶ繧貞・縺ｫ豸医☆
-    //}
+        anim.SetBool("isDashing", true);
+        anim.SetBool("isMoving", false);
+    }
     // -----------------------------
     // ★ 突進終了
     // -----------------------------
