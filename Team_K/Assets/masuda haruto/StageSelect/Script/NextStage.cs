@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 
 public class NextStage : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class NextStage : MonoBehaviour
 
     public AudioSource audioSource;
     public AudioClip selectSE;
+
+    private bool isLoading = false;
     
 
     void Start()
@@ -39,6 +42,15 @@ public class NextStage : MonoBehaviour
 
     public void StageSelect(int StageNumber)
     {
+        if (isLoading) return;
+
+        isLoading = true;
+
+        //‘S•”‚Ìƒ{ƒ^ƒ“‚ð–³Œø‰»
+        foreach (Button btn in _stageButton)
+        {
+            btn.interactable = false;
+        }
         if (audioSource != null && selectSE != null)
         {
             audioSource.PlayOneShot(selectSE);
