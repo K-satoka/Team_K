@@ -31,6 +31,7 @@ public class Card : MonoBehaviour
 
     private void Start()
     {
+
         //canvasgroupの初期化
         canvasGroup = GetComponent<CanvasGroup>();
         if (canvasGroup == null )
@@ -42,11 +43,23 @@ public class Card : MonoBehaviour
         playerHP = FindObjectOfType<PlayerHP>();
         attackCollision = FindObjectOfType<AttackCollision>();
 
-        int stageUnlock = PlayerPrefs.GetInt("StageUnlock", 1);
+        //現在のステージ番号を取得
+        EnemyHp enemy = FindObjectOfType<EnemyHp>();
+      
+        int currentStage = 1;
+        if(enemy!=null)
+        {
+            currentStage = enemy.currentStageNumber;
+        }
+
+        Debug.Log("CurrentStage(from EnemyHp)=" + currentStage);
+
+
+        // int stageUnlock = PlayerPrefs.GetInt("StageUnlock", 1);
 
         //ステージCLEAR数に応じて最大値を増やす
 
-        maxValue += 5 * (stageUnlock - 1);
+        maxValue += currentStage*2;
 
         //ボタンがあればクリック登録
         Button btn=GetComponentInChildren<Button>();
