@@ -99,9 +99,12 @@ public class boss : MonoBehaviour
         //プレイヤーのほうに向かす
         Vector2 direction=new Vector2(Player.position.x-transform.position.x,0).normalized;
 
-       
-        //その方向に常に移動
-        rbody.linearVelocity = new Vector2(direction.x * Enemy_speed, rbody.linearVelocity.y);
+       if(onGround)
+        {
+            //その方向に常に移動
+            rbody.linearVelocity = new Vector2(direction.x * Enemy_speed, rbody.linearVelocity.y);
+        }
+        
 
         //向きを反転
         if (Player.position.x>transform.position.x)
@@ -118,7 +121,21 @@ public class boss : MonoBehaviour
         }
         wasOnGround = onGround;
     }
-   
 
+    /*
+         private void OnCollisionStay2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag=="Ground")
+        {
+            //プレイヤーのほうに向かす
+            Vector2 direction=new Vector2(Player.position.x-transform.position.x,0).normalized;
+
+            //その方向に常に移動
+            rbody.linearVelocity = new Vector2((Player.position.x - transform.position.x) * Enemy_speed, rbody.linearVelocity.y);
+        }
+    } 
+      
+     
+     */
 
 }
