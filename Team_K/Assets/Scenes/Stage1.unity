@@ -484,6 +484,7 @@ MonoBehaviour:
   EnemydamageSE: {fileID: 8300000, guid: bd890d471690ef940ab0266a9c3b75b7, type: 3}
   Enemydamage2SE: {fileID: 0}
   EnemyDieSE: {fileID: 8300000, guid: fec76fad6f7e3c94a9b44a8bc294ef56, type: 3}
+  XP: 454644
 --- !u!82 &257977283
 AudioSource:
   m_ObjectHideFlags: 0

@@ -17,6 +17,8 @@ public class EnemyHp : MonoBehaviour
     public AudioClip EnemydamageSE;
     public AudioClip Enemydamage2SE;
     public AudioClip EnemyDieSE;
+
+    public int XP = 1;
     void Start()
     {
        Enemy_Current_Hp = Enemy_MAX_Hp;   //‰Šú’l‚ğÅ‘å’l‚Éİ’è

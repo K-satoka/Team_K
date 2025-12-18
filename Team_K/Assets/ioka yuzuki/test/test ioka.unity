@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f1df16ff2cade34d9d88a3ecaa0fa71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sp: 20
+  sp: 40
 --- !u!50 &523952946
 Rigidbody2D:
   serializedVersion: 5
@@ -336,21 +336,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c36520acb69376744abdac975f3cc0cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rbody: {fileID: 0}
-  Enemy_speed: 40
-  Enemy_jump: 5000
-  jumpTriggerDistance: 5
-  GravityScale: 3
-  GroundLayer:
-    m_Bits: 64
-  detecDistance: 5
-  Player: {fileID: 0}
-  onGround: 0
-  anim: {fileID: 0}
-  audioSource: {fileID: 0}
-  SlimejumpSE: {fileID: 0}
-  damage: 5
-  wasOnGround: 0
 --- !u!1001 &1108126232
 PrefabInstance:
   m_ObjectHideFlags: 0
