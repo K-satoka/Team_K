@@ -17,6 +17,15 @@ public class stage3_BossMove : MonoBehaviour
     private bool isDashing = false;
     private float dashTimer = 0f;
     private float dashDirection = 0f; //突進方向固定用
+    private bool isPreparingDash = false; // 突進待機中フラグ
+
+    [Header("EndDash 反動")]
+    public float endDashBackSpeed = 12f;
+    public float endDashBackTime = 0.6f;
+    private bool isBusy = false;
+    private bool isEndDashBack = false;
+    private float endDashBackTimer = 0f;
+
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -39,6 +48,22 @@ public class stage3_BossMove : MonoBehaviour
     {
         if (player == null) return;
 
+        if (isEndDashBack)
+        {
+            endDashBackTimer += Time.fixedDeltaTime;
+            rb.velocity = new Vector2(-dashDirection * endDashBackSpeed, rb.velocity.y);
+
+            if (endDashBackTimer >= endDashBackTime)
+            {
+                isEndDashBack = false;
+                isBusy = false;
+                rb.velocity = new Vector2(0, rb.velocity.y);
+            }
+            return;
+        }
+
+        if (isBusy) return;
+
         // -----------------------------
         // ★ 突進中の処理（移動AIは無効）
         // -----------------------------
@@ -49,7 +74,7 @@ public class stage3_BossMove : MonoBehaviour
 
             //float dirX = Mathf.Sign(player.position.x - transform.position.x);
             //rb.velocity = new Vector2(dirX * dashSpeed, rb.velocity.y);
-            rb.linearVelocity = new Vector2(dashDirection * dashSpeed, rb.linearVelocity.y);
+            rb.velocity = new Vector2(dashDirection * dashSpeed, rb.velocity.y);
 
             if (dashTimer >= dashTime)
             {
@@ -70,10 +95,10 @@ public class stage3_BossMove : MonoBehaviour
             sr.flipX = facingRight;
            FlipCollider(facingRight);
         }
-        if (distance < stopDistance && !isDashing)
+        if (distance < stopDistance && !isDashing && !isBusy && !isPreparingDash)
         {
             //近づきすぎたら止まる
-            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            rb.velocity = new Vector2(0, rb.velocity.y);
             anim.SetBool("isMoving", false);
 
             dashDirection = Mathf.Sign(player.position.x - transform.position.x);//突進方向固定化
@@ -86,7 +111,7 @@ public class stage3_BossMove : MonoBehaviour
         else
         {
             float dir = Mathf.Sign(player.position.x - transform.position.x);
-            rb.linearVelocity = new Vector2(dir * moveSpeed, rb.linearVelocity.y);
+            rb.velocity = new Vector2(dir * moveSpeed, rb.velocity.y);
             anim.SetBool("isMoving", true);
         }
     }
@@ -111,6 +136,9 @@ public class stage3_BossMove : MonoBehaviour
     //突進前時間搭載用コード
     IEnumerator StartDash()
     {
+        isPreparingDash = true;   // ここから待機状態
+        isBusy = true;
+
         yield return new WaitForSeconds(0.5f);
 
         isDashing = true;
@@ -118,6 +146,9 @@ public class stage3_BossMove : MonoBehaviour
 
         anim.SetBool("isDashing", true);
         anim.SetBool("isMoving", false);
+
+        isPreparingDash = false;  // 突進開始で待機解除
+        isBusy = false;
     }
     // -----------------------------
     // ★ 突進終了
@@ -125,8 +156,13 @@ public class stage3_BossMove : MonoBehaviour
     void EndDash()
     {
         isDashing = false;
-        rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-        anim.SetBool("isDashing", false); 
+
+        // ★ 反動ダッシュ開始
+        isEndDashBack = true;
+        endDashBackTimer = 0f;
+        isBusy = true;
+
+        anim.SetBool("isDashing", false);
     }
 
     void FlipCollider(bool facingRight)
@@ -138,4 +174,29 @@ public class stage3_BossMove : MonoBehaviour
             boxCollider.offset = offset;
         }
     }
+
+    //void OnCollisionStay2D(Collision2D collision)
+    //{
+    //    if (!collision.gameObject.CompareTag("Player")) return;
+    //    if (!isDashing) return;
+
+    //    // 突進停止
+    //    isDashing = false;
+    //    anim.SetBool("isDashing", false);
+
+    //    // ヒットバック開始
+    //    isHitBack = true;
+    //    hitBackTimer = 0f;
+
+    //    // 速度リセット
+    //    rb.velocity = Vector2.zero;
+
+    //    // 突進方向の逆へノックバック
+    //    Vector2 knockbackForce = new Vector2(
+    //        -dashDirection * hitBackPowerX,
+    //        hitBackPowerY
+    //    );
+
+    //    rb.AddForce(knockbackForce, ForceMode2D.Impulse);
+    //}
 }
