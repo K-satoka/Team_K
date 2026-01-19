@@ -1054,6 +1054,7 @@ MonoBehaviour:
   EnemydamageSE: {fileID: 8300000, guid: 569e9011335033e4283528f66f23b3c5, type: 3}
   Enemydamage2SE: {fileID: 0}
   EnemyDieSE: {fileID: 8300000, guid: 802c20785c4fc10429c6f0d71f04b0d0, type: 3}
+  XP: 1
 --- !u!82 &586718450
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1248,7 +1249,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6638973544391035702, guid: 843ac6d9263dc1d46abec4de55d4a6dc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1452783679}
   m_SourcePrefab: {fileID: 100100000, guid: 843ac6d9263dc1d46abec4de55d4a6dc, type: 3}
 --- !u!1 &605104088
 GameObject:
@@ -3534,6 +3538,38 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4a68cd0e316e044693f9edb6d109dd0, type: 3}
+--- !u!1 &1452783676 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6638973544391035702, guid: 843ac6d9263dc1d46abec4de55d4a6dc, type: 3}
+  m_PrefabInstance: {fileID: 604677955}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &1452783679
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452783676}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1000
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1 &1492168704
 GameObject:
   m_ObjectHideFlags: 0
