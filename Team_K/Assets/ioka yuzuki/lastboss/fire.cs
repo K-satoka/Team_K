@@ -18,7 +18,7 @@ public class firebullet : MonoBehaviour
         if(transform.position.x>0)
         {
             rb.linearVelocity = -transform.right * speed;
-            Debug.Log("right");
+            
         }
         else
         {
