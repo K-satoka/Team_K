@@ -166,12 +166,4 @@ void Die()
 
     }
 
-    //HPŠ„‡ŒvZ
-    public float HPrate()
-    {
-        return (float)Enemy_Current_Hp / Enemy_MAX_Hp;
-    }
-
-
-
 }
