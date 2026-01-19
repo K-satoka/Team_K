@@ -656,9 +656,6 @@ namespace Unity.VisualScripting.Generated.Aot
 	// back_clooud.op_Implicit
 	// back_clooud.op_Equality
 	// back_clooud.op_Inequality
-	// sandstrom.op_Implicit
-	// sandstrom.op_Equality
-	// sandstrom.op_Inequality
 	// Ending.op_Implicit
 	// Ending.op_Equality
 	// Ending.op_Inequality
@@ -668,9 +665,9 @@ namespace Unity.VisualScripting.Generated.Aot
 	// Card.op_Implicit
 	// Card.op_Equality
 	// Card.op_Inequality
-	// skip_2.op_Implicit
-	// skip_2.op_Equality
-	// skip_2.op_Inequality
+	// SKIP.op_Implicit
+	// SKIP.op_Equality
+	// SKIP.op_Inequality
 	// CardClickTest.op_Implicit
 	// CardClickTest.op_Equality
 	// CardClickTest.op_Inequality
@@ -1067,6 +1064,8 @@ namespace Unity.VisualScripting.Generated.Aot
 	// UnityEngine.EventSystems.UIBehaviour.op_Inequality
 	// --------------- Plugin Stubs
 	// --------------- Asset Stubs
+	// --------------- Scene Stubs
+	// --------------- Scene Stubs
 	// --------------- Scene Stubs
 	// --------------- Scene Stubs
 	// --------------- Scene Stubs
@@ -8577,41 +8576,6 @@ namespace Unity.VisualScripting.Generated.Aot
 			optimized.Invoke(default(object[]));
 		}
 		
-		// sandstrom.op_Implicit
-		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void sandstrom_op_Implicit()
-		{
-			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
-			bool conversion = ((bool)(arg0));
-			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
-			optimized.Invoke(null, arg0);
-			optimized.Invoke(default(object[]));
-		}
-		
-		// sandstrom.op_Equality
-		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void sandstrom_op_Equality()
-		{
-			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
-			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
-			bool @operator = (arg0 == arg1);
-			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
-			optimized.Invoke(null, arg0, arg1);
-			optimized.Invoke(default(object[]));
-		}
-		
-		// sandstrom.op_Inequality
-		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void sandstrom_op_Inequality()
-		{
-			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
-			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
-			bool @operator = (arg0 != arg1);
-			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
-			optimized.Invoke(null, arg0, arg1);
-			optimized.Invoke(default(object[]));
-		}
-		
 		// Ending.op_Implicit
 		[global::UnityEngine.Scripting.PreserveAttribute()]
 		public static void Ending_op_Implicit()
@@ -8717,9 +8681,9 @@ namespace Unity.VisualScripting.Generated.Aot
 			optimized.Invoke(default(object[]));
 		}
 		
-		// skip_2.op_Implicit
+		// SKIP.op_Implicit
 		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void skip_2_op_Implicit()
+		public static void SKIP_op_Implicit()
 		{
 			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
 			bool conversion = ((bool)(arg0));
@@ -8728,9 +8692,9 @@ namespace Unity.VisualScripting.Generated.Aot
 			optimized.Invoke(default(object[]));
 		}
 		
-		// skip_2.op_Equality
+		// SKIP.op_Equality
 		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void skip_2_op_Equality()
+		public static void SKIP_op_Equality()
 		{
 			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
 			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
@@ -8740,9 +8704,9 @@ namespace Unity.VisualScripting.Generated.Aot
 			optimized.Invoke(default(object[]));
 		}
 		
-		// skip_2.op_Inequality
+		// SKIP.op_Inequality
 		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void skip_2_op_Inequality()
+		public static void SKIP_op_Inequality()
 		{
 			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
 			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
