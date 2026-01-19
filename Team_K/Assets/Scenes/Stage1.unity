@@ -1575,6 +1575,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1003558861032053462, guid: 801a20b51f6e41d4b812ad7c6c59be90, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1003558861032053462, guid: 801a20b51f6e41d4b812ad7c6c59be90, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1003558861032053462, guid: 801a20b51f6e41d4b812ad7c6c59be90, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1003558861032053462, guid: 801a20b51f6e41d4b812ad7c6c59be90, type: 3}
       propertyPath: m_SortingOrder
       value: 4
       objectReference: {fileID: 0}
@@ -2565,6 +2577,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2121830697}
   - component: {fileID: 2121830696}
+  - component: {fileID: 2121830698}
   m_Layer: 0
   m_Name: Image (2)_0
   m_TagString: Untagged
@@ -2642,6 +2655,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2121830698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121830695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f83f5bd8a34f21a4cb04bf4ae3342476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1450965836315772436
 PrefabInstance:
   m_ObjectHideFlags: 0
