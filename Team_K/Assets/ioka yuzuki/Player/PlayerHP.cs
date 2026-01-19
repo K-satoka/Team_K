@@ -76,6 +76,7 @@ public class PlayerHP : MonoBehaviour
         SnowAttack snowAttackScript=collision.gameObject.GetComponent<SnowAttack>();
         firebullet firebulletScript=collision.gameObject.GetComponent<firebullet>();
         icicle icicleScript=collision.gameObject.GetComponent<icicle>();
+        black_firebullet black_firebulletScript=collision.gameObject.GetComponent<black_firebullet>();
        
         //stage1ボスダメージ
         if (bossScript != null)
@@ -135,6 +136,16 @@ public class PlayerHP : MonoBehaviour
             if (collision.gameObject.CompareTag("BossATK"))
             {
                 Player_Current_Hp -= st5_icedmg;
+                GetComponent<DamageFlash>().Flash();
+            }
+        }
+        //st5fire
+        if (black_firebulletScript != null)
+        {
+            int st5_blackfire_dmg = black_firebulletScript.black_fire_damage;
+            if (collision.gameObject.CompareTag("BossATK"))
+            {
+                Player_Current_Hp -= st5_blackfire_dmg;
                 GetComponent<DamageFlash>().Flash();
             }
         }
