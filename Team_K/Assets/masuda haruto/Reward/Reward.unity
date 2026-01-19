@@ -813,7 +813,7 @@ GameObject:
   - component: {fileID: 1086297164}
   - component: {fileID: 1086297168}
   m_Layer: 5
-  m_Name: Button
+  m_Name: hp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1300,7 +1300,7 @@ GameObject:
   - component: {fileID: 1706468224}
   - component: {fileID: 1706468228}
   m_Layer: 5
-  m_Name: Button
+  m_Name: attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

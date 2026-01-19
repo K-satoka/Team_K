@@ -45,21 +45,20 @@ public class Card : MonoBehaviour
 
         //現在のステージ番号を取得
         EnemyHp enemy = FindObjectOfType<EnemyHp>();
-      
-        int currentStage = 1;
-        if(enemy!=null)
-        {
-            currentStage = enemy.currentStageNumber;
-        }
+        Debug.Log("読み込み LastClearedStage = " +
+    PlayerPrefs.GetInt("LastClearedStage", -1));
 
-        Debug.Log("CurrentStage(from EnemyHp)=" + currentStage);
+        int lastStage = PlayerPrefs.GetInt("LastClearedStage", 1) - 1;
 
+        if(lastStage < 1 )lastStage = 1;
 
-        // int stageUnlock = PlayerPrefs.GetInt("StageUnlock", 1);
+        Debug.Log("CurrentStage(from EnemyHp)=" + lastStage);
 
         //ステージCLEAR数に応じて最大値を増やす
 
-        maxValue += currentStage*2;
+        maxValue = maxValue * (int)Mathf.Pow(2, lastStage - 1);
+
+        Debug.Log($"ステージ{lastStage}に応じてカードの値を設定: minValue={minValue}, maxValue={maxValue}");
 
         //ボタンがあればクリック登録
         Button btn=GetComponentInChildren<Button>();
