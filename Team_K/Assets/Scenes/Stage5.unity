@@ -1071,11 +1071,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1349383595104807666, guid: 88bd02737f2c978408294bd09fae051e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.2154
+      value: 0.58
       objectReference: {fileID: 0}
     - target: {fileID: 1349383595104807666, guid: 88bd02737f2c978408294bd09fae051e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.4084
+      value: -1.6
       objectReference: {fileID: 0}
     - target: {fileID: 1349383595104807666, guid: 88bd02737f2c978408294bd09fae051e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2590,7 +2590,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4402818967661143745, guid: 44e5c9f7dfea3d44b986bfb3841894dd, type: 3}
       propertyPath: speed
-      value: 130
+      value: 115
       objectReference: {fileID: 0}
     - target: {fileID: 4402818967661143745, guid: 44e5c9f7dfea3d44b986bfb3841894dd, type: 3}
       propertyPath: lifetime
@@ -3610,7 +3610,7 @@ PrefabInstance:
       objectReference: {fileID: 1547654814}
     - target: {fileID: 27465250077614231, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: Player_Current_Hp
-      value: 3000
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 294595988857754427, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: m_Name
@@ -3618,11 +3618,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 411198190303890849, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -71.5
+      value: -71.32
       objectReference: {fileID: 0}
     - target: {fileID: 411198190303890849, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -30.9
+      value: -35.03
       objectReference: {fileID: 0}
     - target: {fileID: 411198190303890849, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3665,12 +3665,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 460490199}
     - target: {fileID: 692748623483423171, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
+      propertyPath: nextAttackTime
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 692748623483423171, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: attackCollision
       value: 
       objectReference: {fileID: 460490191}
     - target: {fileID: 3666933059497573972, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4381607851315199076, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5925709560299151482, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
+      propertyPath: Max_JumpCount
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6466415305838119048, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: m_LocalPosition.x
