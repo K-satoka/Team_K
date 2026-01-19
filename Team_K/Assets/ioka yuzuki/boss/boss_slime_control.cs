@@ -11,6 +11,7 @@ using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 [RequireComponent (typeof (Rigidbody2D))]
 public class boss : MonoBehaviour
 {
+    EnemyHp hp;
     Rigidbody2D rbody;
     public float Enemy_speed = 2f;     // スピード
     public float Enemy_jump = 6f;      // ジャンプ力
@@ -31,7 +32,8 @@ public class boss : MonoBehaviour
     private bool wasOnGround = false;//前フレームの設置状態
     void Start()
     {
-        anim=GetComponent<Animator>();
+        hp = GetComponent<EnemyHp>();
+        anim =GetComponent<Animator>();
         // Rigidbody2Dをとってくる
         rbody = GetComponent<Rigidbody2D>();//Rigidbody2Dからとってくる
         //Playerタグが付いたオブジェクトを探す
@@ -55,33 +57,95 @@ public class boss : MonoBehaviour
         if (Player == null) return;
         //float distanceToPlayer = Vector2.Distance(transform.position, Player.position);
 
+        float hprate = hp.HPrate();
 
+        if (hprate>0.7f)
+        {
+            pattern1();
+        }
+        else if(hprate>0.3f)
+        {
+            pattern2();
+        }
+        else
+        {
+            pattern3();
+        }
+        
+
+    }
+
+    void pattern1()
+    {
+        float Playerdistance = Vector2.Distance(transform.position, Player.position);
         if (onGround)
         {
             //Debug.Log("ddddddddddddddddddddddd");
             if (Playerdistance <= detecDistance)
             {
-               
+
                 Jump();
             }
-            else if(Playerdistance > detecDistance) 
+            else if (Playerdistance > detecDistance)
             {
                 anim.Play("slime_waiting");
             }
-               
-        }
 
+        }
+    }
+    void pattern2()
+    {
+        float Playerdistance = Vector2.Distance(transform.position, Player.position);
+        if (onGround)
+        {
+            //Debug.Log("ddddddddddddddddddddddd");
+            if (Playerdistance <= detecDistance)
+            {
+
+                Jump2();
+            }
+            else if (Playerdistance > detecDistance)
+            {
+                anim.Play("slime_waiting");
+            }
+
+        }
+    }
+    void pattern3()
+    {
+        float Playerdistance = Vector2.Distance(transform.position, Player.position);
+        if (onGround)
+        {
+            if (Playerdistance <= detecDistance)
+            {
+
+                Jump3();
+            }
+            else if (Playerdistance > detecDistance)
+            {
+                anim.Play("slime_waiting");
+            }
+
+        }
     }
 
-  void Jump()
-    {
-        
 
+    void Jump()
+    {
         rbody.AddForce(Vector2.up * Enemy_jump, ForceMode2D.Impulse);
         onGround = false;
-      
+    }
+    void Jump2()
+    {
+        rbody.AddForce(Vector2.up * Enemy_jump*1.5f, ForceMode2D.Impulse);
+        onGround = false;
     }
 
+    void Jump3()
+    {
+        rbody.AddForce(Vector2.up * Enemy_jump*2f, ForceMode2D.Impulse);
+        onGround = false;
+    }
     void FixedUpdate()
     {
        
