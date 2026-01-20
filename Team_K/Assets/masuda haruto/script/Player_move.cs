@@ -1,40 +1,40 @@
-ï»¿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player_move : MonoBehaviour
 {
-    Rigidbody2D rbody;//rigid2då‹ã®å¤‰æ•°
-    float axisH = 0.0f;//å…¥åŠ›
+    Rigidbody2D rb;//rigid2dŒ^‚Ì•Ï”
+    float axisH = 0.0f;//“ü—Í
     public float speed = 1.0f;
 
-    public float jump = 90.0f;//è·³ã¶åŠ›
-    public LayerMask groundLayer;//ç€åœ°ã§ãã‚‹ãƒ¬ã‚¤ãƒ¤ãƒ¼
+    public float jump = 90.0f;//’µ‚Ô—Í
+    public LayerMask groundLayer;//’…’n‚Å‚«‚éƒŒƒCƒ„[
     bool goJump = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //rigidbody2dã‚’ã¨ã£ã¦ï½‹ã‚‹
-        rbody =this.GetComponent<Rigidbody2D>();
+        //rigidbody2d‚ğ‚Æ‚Á‚Ä‚‹‚é
+        rb =this.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //æ°´å¹³æ–¹å‘ã®å…¥åŠ›ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
+        //…•½•ûŒü‚Ì“ü—Í‚ğƒ`ƒFƒbƒN‚·‚é
         axisH = Input.GetAxisRaw("Horizontal");
-        if (axisH > 0.0f)//å‘ãã®èª¿æ•´
+        if (axisH > 0.0f)//Œü‚«‚Ì’²®
         {
-            transform.localScale = new Vector2(-1,1);//å³ç§»å‹•
+            transform.localScale = new Vector2(-1,1);//‰EˆÚ“®
         }
         else if(axisH < 0.0f)
         {
-            transform.localScale = new Vector2(1, 1);//å·¦å³åè»¢
+            transform.localScale = new Vector2(1, 1);//¶‰E”½“]
         }
 
-        //ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚’ã‚¸ãƒ£ãƒ³ãƒ—ã•ã›ã‚‹
+        //ƒLƒƒƒ‰ƒNƒ^[‚ğƒWƒƒƒ“ƒv‚³‚¹‚é
         if(Input.GetButtonDown("Jump"))
         {
             Jump();
@@ -42,7 +42,7 @@ public class Player_move : MonoBehaviour
     }
     void FixedUpdate()
     {
-        //åœ°ä¸Šåˆ¤å®š
+        //’nã”»’è
         bool onGround = Physics2D.CircleCast(transform.position,
             0.2f,
             Vector2.down,
@@ -50,25 +50,25 @@ public class Player_move : MonoBehaviour
             groundLayer);
         if (onGround || axisH != 0)
         {
-            //åœ°é¢ã®ä¸Šã¾ãŸã¯é€Ÿåº¦ãŒã‚¼ãƒ­ã§ã¯ãªã„
-            //é€Ÿåº¦ã‚’æ›´æ–°ã™ã‚‹
-            rbody.linearVelocity = new Vector2(axisH * speed, rbody.linearVelocity.y);
+            //’n–Ê‚Ìã‚Ü‚½‚Í‘¬“x‚ªƒ[ƒ‚Å‚Í‚È‚¢
+            //‘¬“x‚ğXV‚·‚é
+            rb.linearVelocity = new Vector2(axisH * speed, rb.linearVelocity.y);
 
         }
         if (onGround &&goJump)
         {
-            //åœ°é¢ã®ä¸Šã§ã‚¸ãƒ£ãƒ³ãƒ—ã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸ
-            //ã‚¸ãƒ£ãƒ³ãƒ—ã•ã›ã‚‹
-            Vector2 jumpPw = new Vector2(0, jump);//ã‚¸ãƒ£ãƒ³ãƒ—ã•ã›ã‚‹ãƒ™ã‚¯ãƒˆãƒ«ã‚’ä½œã‚‹
-            rbody.AddForce(jumpPw, ForceMode2D.Impulse);//ç¬é–“çš„ãªåŠ›ã‚’åŠ ãˆã‚‹
-            goJump = false;//ã‚¸ãƒ£ãƒ³ãƒ—ãƒ•ãƒ©ã‚°ã‚’ãŠã‚ã™
+            //’n–Ê‚Ìã‚ÅƒWƒƒƒ“ƒvƒL[‚ª‰Ÿ‚³‚ê‚½
+            //ƒWƒƒƒ“ƒv‚³‚¹‚é
+            Vector2 jumpPw = new Vector2(0, jump);//ƒWƒƒƒ“ƒv‚³‚¹‚éƒxƒNƒgƒ‹‚ğì‚é
+            rb.AddForce(jumpPw, ForceMode2D.Impulse);//uŠÔ“I‚È—Í‚ğ‰Á‚¦‚é
+            goJump = false;//ƒWƒƒƒ“ƒvƒtƒ‰ƒO‚ğ‚¨‚ë‚·
 
         }
 
     }
-    //ã‚¸ãƒ£ãƒ³ãƒ—
+    //ƒWƒƒƒ“ƒv
     public void Jump()
     {
-        goJump = true;//ã‚¸ãƒ£ãƒ³ãƒ—ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
+        goJump = true;//ƒWƒƒƒ“ƒvƒtƒ‰ƒO‚ğ—§‚Ä‚é
     }
 }

@@ -112,7 +112,6 @@ void Die()
             // ’Êí‚Í Reward ‚Ö
             FadeManager.Instance.LoadScene("Reward", 1.0f);
         }
-
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -127,17 +126,6 @@ void Die()
             }
         }
     }
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Player"))
-    //    {
-    //        Debug.Log("aaaaa");
-
-    //        TakeDamage(damageOnContact);
-    //    }
-    //}
-
     //ƒeƒXƒg“G‚ÌƒvƒŒ[‚â€–S‚Ì‚Ì’â~x
     public void StopMoment()
     {
@@ -169,7 +157,7 @@ void Die()
     
 
     }
-    //HP?????v?Z
+    //HPŠ„‡
     public float HPrate()
     {
         return (float)Enemy_Current_Hp / Enemy_MAX_Hp;

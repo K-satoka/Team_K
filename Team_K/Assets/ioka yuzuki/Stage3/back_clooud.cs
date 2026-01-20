@@ -1,5 +1,5 @@
 using UnityEngine;
-
+//”wŒi‚Ì‰_‚â–¶‚ð“®‚©‚·—p
 public class back_clooud : MonoBehaviour
 {
     public float speed=1f;

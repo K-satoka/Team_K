@@ -15,12 +15,12 @@ public class boss_jump: MonoBehaviour
     private bool onGround;
 
 
-    Rigidbody2D rbody;  // Rigidbody2D型の変数
+    Rigidbody2D rb;  // Rigidbody2D型の変数
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        rbody = this.GetComponent<Rigidbody2D>();//Rigidbody2Dからとってくる
+        rb = this.GetComponent<Rigidbody2D>();//Rigidbody2Dからとってくる
 
     }
 
@@ -47,7 +47,7 @@ public class boss_jump: MonoBehaviour
     {
 
         Vector2 jumpPw = new Vector2(0, Enemy_jump);//ジャンプさせりベクトルを作る
-        rbody.AddForce(jumpPw, ForceMode2D.Impulse);
+        rb.AddForce(jumpPw, ForceMode2D.Impulse);
         Debug.Log("ddddddddddddddddddddddd");
     }
     // 再ジャンプを許可するための簡易クールタイム
