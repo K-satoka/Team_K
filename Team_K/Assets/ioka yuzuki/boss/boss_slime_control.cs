@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
-//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
-
-//ENEMY
 
 [RequireComponent (typeof (Rigidbody2D))]
 public class boss : MonoBehaviour
@@ -20,14 +17,14 @@ public class boss : MonoBehaviour
     public LayerMask GroundLayer;      // 地面レイヤー
 
     public float detecDistance = 5f;//反応する距離
-    private Transform Player;
+    private Transform Player;//プレイヤーの位置確認
     private bool onGround = false;
     Animator anim;
-    //SE
+    //SE------------------------------------------------
     public AudioSource audioSource;
     public AudioClip SlimejumpSE;
 
-    public int damage=10;
+    public int damage=10;  //攻撃力
 
     private bool wasOnGround = false;//前フレームの設置状態
     void Start()
@@ -55,10 +52,8 @@ public class boss : MonoBehaviour
         float Playerdistance = Vector2.Distance(transform.position, Player.position);
         //------------------------------------------
         if (Player == null) return;
-        //float distanceToPlayer = Vector2.Distance(transform.position, Player.position);
 
-        float hprate = hp.HPrate();
-
+        float hprate = hp.HPrate();//HP割合
         if (hprate>0.7f)
         {
             pattern1();
@@ -71,8 +66,6 @@ public class boss : MonoBehaviour
         {
             pattern3();
         }
-        
-
     }
 
     void pattern1()
@@ -80,17 +73,14 @@ public class boss : MonoBehaviour
         float Playerdistance = Vector2.Distance(transform.position, Player.position);
         if (onGround)
         {
-            //Debug.Log("ddddddddddddddddddddddd");
             if (Playerdistance <= detecDistance)
             {
-
                 Jump();
             }
             else if (Playerdistance > detecDistance)
             {
                 anim.Play("slime_waiting");
             }
-
         }
     }
     void pattern2()
@@ -98,7 +88,6 @@ public class boss : MonoBehaviour
         float Playerdistance = Vector2.Distance(transform.position, Player.position);
         if (onGround)
         {
-            //Debug.Log("ddddddddddddddddddddddd");
             if (Playerdistance <= detecDistance)
             {
 
@@ -108,7 +97,6 @@ public class boss : MonoBehaviour
             {
                 anim.Play("slime_waiting");
             }
-
         }
     }
     void pattern3()
@@ -125,11 +113,8 @@ public class boss : MonoBehaviour
             {
                 anim.Play("slime_waiting");
             }
-
         }
     }
-
-
     void Jump()
     {
         rbody.AddForce(Vector2.up * Enemy_jump, ForceMode2D.Impulse);
@@ -168,8 +153,7 @@ public class boss : MonoBehaviour
             //その方向に常に移動
             rbody.linearVelocity = new Vector2(direction.x * Enemy_speed, rbody.linearVelocity.y);
         }
-        
-
+       
         //向きを反転
         if (Player.position.x>transform.position.x)
         {
@@ -185,21 +169,5 @@ public class boss : MonoBehaviour
         }
         wasOnGround = onGround;
     }
-
-    /*
-         private void OnCollisionStay2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag=="Ground")
-        {
-            //プレイヤーのほうに向かす
-            Vector2 direction=new Vector2(Player.position.x-transform.position.x,0).normalized;
-
-            //その方向に常に移動
-            rbody.linearVelocity = new Vector2((Player.position.x - transform.position.x) * Enemy_speed, rbody.linearVelocity.y);
-        }
-    } 
-      
-     
-     */
 
 }
