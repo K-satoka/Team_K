@@ -77,7 +77,7 @@ public class NextStage : MonoBehaviour
             }
         }
     }
-
+    //キーボード選択用
     void MoveSelect(int direction)
     {
         int nextIndex = currentIndex;
@@ -111,7 +111,7 @@ public class NextStage : MonoBehaviour
 
         _stageButton[index].Select();
     }
-
+    //選択されたステージの大きさをちょっと大きくする
     IEnumerator ResizeButton(RectTransform target, Vector2 targetSize)
     {
         float time = 0f;
@@ -129,6 +129,7 @@ public class NextStage : MonoBehaviour
 
         target.sizeDelta = end;
     }
+    //ステージセレクト
     public void StageSelect(int StageNumber)
     {
         if (isLoading) return;

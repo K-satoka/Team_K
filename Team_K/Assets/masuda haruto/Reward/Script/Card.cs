@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public enum CardType { HP,Attack }
@@ -129,6 +130,8 @@ public class Card : MonoBehaviour
 
     public void Onselect()
     {
+
+        EventSystem.current.SetSelectedGameObject(null);
         //フェード中(=ロック中)は虫
         if(inputLocked) return;
         //フェード開始と同時にロック
