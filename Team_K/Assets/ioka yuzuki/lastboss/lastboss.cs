@@ -1,15 +1,17 @@
-Ôªøusing Unity.VisualScripting;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class maou : MonoBehaviour
 {
     Rigidbody2D rb;
-    //fire-------------------------------
     EnemyHp hp;
+    Animator anim;
+    //prefab-----------------------------
     public GameObject fire_bulletPrefab;
     public GameObject thunder_bulletPrefab;
     public GameObject icicle_bulletPrefab;
     public GameObject black_firePrefab;
+    //Point------------------------------
     public Transform firePoint;
     public Transform thunderPoint;
     public Transform iciclePoint;
@@ -20,26 +22,20 @@ public class maou : MonoBehaviour
     public Transform bulletPoint5;
     public Transform bulletPoint6;
     public Transform bulletPoint7;
-    public float shootInterval = 2f;
-    //------------------------------------
-    //telep
-
-    public float detecDistance = 5f;//ÂèçÂøú„Åô„ÇãË∑ùÈõ¢
-    public float detecTime = 2f;    //‚Üë„Å´„ÅÑ„Åü„ÇâÂèçÂøú„Åô„Çã„Åæ„Åß„ÅÆÊôÇÈñì
-    private int firecount;
-    Animator anim;
-
-    private float timer;
-    private float attacktimer;
-    private float timeout=0.2f;
     public Transform Player;
-
+    //------------------------------------
+    public float shootInterval = 2f;//çUåÇÇÃî≠éÀä‘äu
+    public float detecDistance = 5f;//îΩâûÇ∑ÇÈãóó£
+    public float detecTime = 2f;    //Å™Ç…Ç¢ÇΩÇÁîΩâûÇ∑ÇÈÇ‹Ç≈ÇÃéûä‘
+    private float timer;
+    private float timeout=0.2f;
+    
+    //ÉIÅ[ÉfÉBÉI--------------------------
     public AudioSource audioSource;
     public AudioClip MAouAttackSE;
     public AudioClip TereportSE;
     public AudioClip IceSE;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         hp = GetComponent<EnemyHp>();
@@ -50,10 +46,10 @@ public class maou : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Â∏∏„Å´‰∏≠Â§Æ„Å∏------------------
+        //èÌÇ…íÜâõÇ÷------------------
         Vector3 center = Camera.main.ScreenToWorldPoint(
           new Vector3(Screen.width / 2, Screen.height / 2, 0)
-      );
+         );
 
         transform.localScale = new Vector3(
             center.x > transform.position.x ? -4 : 4,
@@ -62,12 +58,11 @@ public class maou : MonoBehaviour
         );
         //---------------------------------
 
-        // „Éó„É¨„Ç§„É§„Éº„Åæ„Åß„ÅÆË∑ùÈõ¢„ÇíË®àÁÆó
+        // ÉvÉåÉCÉÑÅ[Ç‹Ç≈ÇÃãóó£ÇåvéZ
         float distance = Vector2.Distance(transform.position, Player.position);
-        //------------------------------------------
-        //HPÔøΩÃäÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩƒÇÔøΩÔøΩÔøΩ
+        //HPäÑçá---------------------------
         float hprate = hp.HPrate();
-
+        //HPäÑçáÇ…âûÇ∂ÇƒçsìÆÇïœâª---------
         if (hprate >= 0.7f)
         {
             pattern1();
@@ -91,19 +86,16 @@ public class maou : MonoBehaviour
         float distance = Vector2.Distance(transform.position, Player.position);
         if (distance <= detecDistance)
         {
-
-            //timestart
             timer += Time.deltaTime;
             if (timer > detecTime)
-            {
-               
+            {  
                 teleport();
                 anim.Play("maouteleport");
                 timer = 0f;
             }
         }
         else if (distance >= detecDistance)
-        {//„Éó„É¨„Ç§„É§„Éº„ÅåÈõ¢„Çå„Åü„Çâ„É™„Çª„ÉÉ„Éà
+        {//ÉvÉåÉCÉÑÅ[Ç™ó£ÇÍÇΩÇÁÉäÉZÉbÉg
             timer += Time.deltaTime;
             if (timer >= shootInterval)
             {
@@ -152,19 +144,16 @@ public class maou : MonoBehaviour
         float distance = Vector2.Distance(transform.position, Player.position);
         if (distance <= detecDistance)
         {
-
-            //timestart
             timer += Time.deltaTime;
             if (timer > detecTime)
             {
-
                 teleport();
                 anim.Play("maouteleport");
                 timer = 0f;
             }
         }
         else if (distance >= detecDistance)
-        {//„Éó„É¨„Ç§„É§„Éº„ÅåÈõ¢„Çå„Åü„Çâ„É™„Çª„ÉÉ„Éà
+        {//ÉvÉåÉCÉÑÅ[Ç™ó£ÇÍÇΩÇÁÉäÉZÉbÉg
             timer += Time.deltaTime;
             if (timer >= shootInterval)
             {
@@ -194,19 +183,16 @@ public class maou : MonoBehaviour
         float distance = Vector2.Distance(transform.position, Player.position);
         if (distance <= detecDistance)
         {
-
-            //timestart
             timer += Time.deltaTime;
             if (timer > detecTime)
             {
-
                 teleport();
                 anim.Play("maouteleport");
                 timer = 0f;
             }
         }
         else if (distance >= detecDistance)
-        {//„Éó„É¨„Ç§„É§„Éº„ÅåÈõ¢„Çå„Åü„Çâ„É™„Çª„ÉÉ„Éà
+        {//ÉvÉåÉCÉÑÅ[Ç™ó£ÇÍÇΩÇÁÉäÉZÉbÉg
             timer += Time.deltaTime;
             if (timer >= shootInterval-0.2f)
             {
@@ -237,22 +223,17 @@ public class maou : MonoBehaviour
     }
     void FireShoot()
     {
-            Instantiate(fire_bulletPrefab, firePoint.position, firePoint.rotation);
-            
+        Instantiate(fire_bulletPrefab, firePoint.position, firePoint.rotation);
+            //SE
         if (audioSource != null && MAouAttackSE != null)
             audioSource.PlayOneShot(MAouAttackSE);
-
     }
-
-    //void ThunderShot()
-    //{
-    //    Instantiate(thunder_bulletPrefab, thunderPoint.position, thunderPoint.rotation);
-    //}
     void icicleShot()
     {
+        Instantiate(icicle_bulletPrefab, iciclePoint.position, iciclePoint.rotation);
+        //SE
         if (audioSource != null && IceSE != null)
             audioSource.PlayOneShot(IceSE);
-        Instantiate(icicle_bulletPrefab,iciclePoint.position, iciclePoint.rotation);
     }
 
     void Black_fire()
@@ -264,6 +245,9 @@ public class maou : MonoBehaviour
         Instantiate(black_firePrefab, bulletPoint5.position, bulletPoint5.rotation);
         Instantiate(black_firePrefab, bulletPoint6.position, bulletPoint6.rotation);
         Instantiate(black_firePrefab, bulletPoint7.position, bulletPoint7.rotation);
+        //SE
+        if (audioSource != null && MAouAttackSE != null)
+            audioSource.PlayOneShot(MAouAttackSE);
     }
     void teleport()
     {
