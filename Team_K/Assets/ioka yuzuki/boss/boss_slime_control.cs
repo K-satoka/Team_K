@@ -9,7 +9,7 @@ using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 public class boss : MonoBehaviour
 {
     EnemyHp hp;
-    Rigidbody2D rbody;
+    Rigidbody2D rb;
     public float Enemy_speed = 2f;     // スピード
     public float Enemy_jump = 6f;      // ジャンプ力
     public float jumpTriggerDistance = 5f; // 検知距離
@@ -32,7 +32,7 @@ public class boss : MonoBehaviour
         hp = GetComponent<EnemyHp>();
         anim =GetComponent<Animator>();
         // Rigidbody2Dをとってくる
-        rbody = GetComponent<Rigidbody2D>();//Rigidbody2Dからとってくる
+        rb = GetComponent<Rigidbody2D>();//Rigidbody2Dからとってくる
         //Playerタグが付いたオブジェクトを探す
         GameObject PlayerObj = GameObject.FindGameObjectWithTag("Player");
         if(PlayerObj != null )
@@ -40,10 +40,10 @@ public class boss : MonoBehaviour
             Player = PlayerObj.transform;
         }
         //回転を固定
-        rbody.freezeRotation = true;
+        rb.freezeRotation = true;
         if (onGround = false)
         {
-            rbody.gravityScale *= GravityScale;
+            rb.gravityScale *= GravityScale;
         }
     }
     void Update()
@@ -117,18 +117,18 @@ public class boss : MonoBehaviour
     }
     void Jump()
     {
-        rbody.AddForce(Vector2.up * Enemy_jump, ForceMode2D.Impulse);
+        rb.AddForce(Vector2.up * Enemy_jump, ForceMode2D.Impulse);
         onGround = false;
     }
     void Jump2()
     {
-        rbody.AddForce(Vector2.up * Enemy_jump*1.5f, ForceMode2D.Impulse);
+        rb.AddForce(Vector2.up * Enemy_jump*1.5f, ForceMode2D.Impulse);
         onGround = false;
     }
 
     void Jump3()
     {
-        rbody.AddForce(Vector2.up * Enemy_jump*2f, ForceMode2D.Impulse);
+        rb.AddForce(Vector2.up * Enemy_jump*2f, ForceMode2D.Impulse);
         onGround = false;
     }
     void FixedUpdate()
@@ -151,7 +151,7 @@ public class boss : MonoBehaviour
        if(onGround)
         {
             //その方向に常に移動
-            rbody.linearVelocity = new Vector2(direction.x * Enemy_speed, rbody.linearVelocity.y);
+            rb.linearVelocity = new Vector2(direction.x * Enemy_speed, rb.linearVelocity.y);
         }
        
         //向きを反転
