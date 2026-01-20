@@ -441,7 +441,6 @@ GameObject:
   - component: {fileID: 711660938}
   - component: {fileID: 711660942}
   - component: {fileID: 711660937}
-  - component: {fileID: 711660941}
   m_Layer: 5
   m_Name: skip
   m_TagString: Untagged
@@ -525,8 +524,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 711660941}
-        m_TargetAssemblyTypeName: skip_2, Assembly-CSharp
+      - m_Target: {fileID: 711660937}
+        m_TargetAssemblyTypeName: SKIP, Assembly-CSharp
         m_MethodName: ChangeScene
         m_Mode: 1
         m_Arguments:
@@ -575,18 +574,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 711660935}
   m_CullTransparentMesh: 1
---- !u!114 &711660941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 711660935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ead6db403cc3bf43a9c5143368c4094, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &711660942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1375,7 +1362,7 @@ MonoBehaviour:
   cardText: {fileID: 2066855377}
   value: 0
   minValue: 1
-  maxValue: 2
+  maxValue: 234567890
   AudioSource: {fileID: 1706468228}
   CardSelectSE: {fileID: 8300000, guid: 9df1eb14d0444714f9d5d88627682845, type: 3}
   button: {fileID: 1706468225}
