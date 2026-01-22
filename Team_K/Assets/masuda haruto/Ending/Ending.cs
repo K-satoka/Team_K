@@ -15,6 +15,7 @@ public class Ending : MonoBehaviour
 
     public AudioSource audioSource;
     public AudioClip EndingSE;
+    public AudioClip ResetSE;
     // ボタンを押したときに呼ぶ
     private void Start()
     {
@@ -23,6 +24,10 @@ public class Ending : MonoBehaviour
 
     public void OnClickButton()
     {
+        if (audioSource != null && ResetSE != null)
+            audioSource.PlayOneShot(ResetSE);
+       
+
         confirmPanel.SetActive(true);   // 確認パネルを表示
       
 
@@ -42,31 +47,12 @@ public class Ending : MonoBehaviour
     public void OnClickOK()
     {
         //CloseConfirm();
+        if (audioSource != null && EndingSE != null)
+            audioSource.PlayOneShot(EndingSE);
         FadeManager.Instance.LoadScene("Title", 1.0f);
     }
 
     // キャンセルボタン
-    public void OnClickCancel()
-    {
-        CloseConfirm();
-    }
-
-    void CloseConfirm()
-    {
-        confirmPanel.SetActive(false);
-
-        //裏側の復活
-        mainCanvasGroup.interactable = true;
-        mainCanvasGroup.blocksRaycasts = true;
-
-        confirmCanvasGroup.interactable = false;
-        confirmCanvasGroup.blocksRaycasts = false;
-
-        if (audioSource != null && EndingSE != null)
-            audioSource.PlayOneShot(EndingSE);
-
-        EventSystem.current.SetSelectedGameObject(firstButton.gameObject);
-    }
     
     private IEnumerator SelectOKNextFrame()
     {
