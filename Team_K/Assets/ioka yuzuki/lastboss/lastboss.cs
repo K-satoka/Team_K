@@ -196,7 +196,7 @@ public class maou : MonoBehaviour
             timer += Time.deltaTime;
             if (timer >= shootInterval-0.2f)
             {
-                float rand = Random.Range(1, 11);
+                float rand = Random.Range(1, 13);
                 if (rand <= 3)
                 {
                     anim.Play("maoufireshot");
