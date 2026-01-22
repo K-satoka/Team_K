@@ -32,7 +32,7 @@ public class PlayerHP : MonoBehaviour
 
     void Start()
     {
-        Player_Current_Hp =Player_MAX_Hp + PlayerData.Instance.maxHP_Up;
+        Player_Current_Hp +=PlayerData.Instance.maxHP_Up;
 
         if (PlayerhpSlider != null)
         {
