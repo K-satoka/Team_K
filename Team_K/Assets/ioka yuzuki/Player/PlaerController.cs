@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isAttacking && Input.GetKeyDown(KeyCode.Z))
+        if (!isAttacking && Input.GetKeyDown(KeyCode.Z)||Input.GetKeyDown(KeyCode.K))
         {
             isAttacking = true;
             animator.Play(PlayerAttack);
