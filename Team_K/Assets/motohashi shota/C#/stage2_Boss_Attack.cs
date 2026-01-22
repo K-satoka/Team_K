@@ -6,7 +6,7 @@ public class stage2_Boss_Attack : MonoBehaviour
     [Header("攻撃プレハブ")]
     //攻撃のプレハブ（遠距離系のみ）
     public GameObject fistPrefab;
-    public GameObject laserPrefab;
+    public GameObject tornadoPrefab;
 
     [Header("攻撃間隔")]
     //落ちてくる間隔（０だととんでもない量降ってくる）
@@ -15,20 +15,22 @@ public class stage2_Boss_Attack : MonoBehaviour
     [Header("こぶしパラメータ")]
     //落下速度
     public float fistFallSpeed = 6.0f;
-    
-    //レーザーの調整
-    /*[Header("レーザーパラメータ")]
-    public float laserSpeed = 12.0f;
-    public float laserDuration = 2.0f;
-    public float laserAimTime = 1.0f; // ← 撃つ前に照準を合わせる時間*/
 
     //ターゲット設定（基本的にプレイヤー）
     [Header("ターゲット設定")]
     public Transform player; // プレイヤーをInspectorで指定
 
+    [Header("竜巻用変数")]
+    public float tornadoDelay = 0.7f;
+    public float tornadoLifeTime = 3f;
+
+    [Header("竜巻サイズ")]
+    public Vector3 tornadoScale = new Vector3(3f, 3f, 3f);
+
     private float attackTimer;
     private int lastAttack = -1;
     private Camera cam;
+    private Animator animator;
 
     //SE
     public AudioSource audioSource;
@@ -39,6 +41,7 @@ public class stage2_Boss_Attack : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
+        animator = GetComponent<Animator>();
         //初撃までのインターバル（初期は2.5秒から０秒までからのランダム）
         attackTimer = Random.Range(0f, attackInterval);
     }
@@ -61,15 +64,12 @@ public class stage2_Boss_Attack : MonoBehaviour
 
     void DoRandomAttack()
     {
-       // int attackType;
-       // do { attackType = Random.Range(0, 2); } while (attackType == lastAttack);
-       //  lastAttack = attackType;
+        int attackType = Random.Range(0, 2);
 
-       // if (attackType == 0)
-       //こぶし攻撃用の関数
+        if (attackType == 0)
             SpawnFistAtPlayer();
-       // else
-       //   StartCoroutine(FireLaserWithAim());
+        else
+            StartTornadoAttack();
     }
 
     // ===== こぶし攻撃 =====
@@ -105,38 +105,36 @@ public class stage2_Boss_Attack : MonoBehaviour
         if (fist != null) Destroy(fist.gameObject);
     }
 
-    // ===== レーザー攻撃（照準→固定発射） =====
-    /*IEnumerator FireLaserWithAim()
+    void StartTornadoAttack()
     {
-        // --- ① 照準フェーズ ---
-        float aimTimer = 0f;
-        Vector3 dir = Vector3.right; // 初期方向
-        GameObject laser = Instantiate(laserPrefab, transform.position, Quaternion.identity);
+        animator.SetTrigger("TornadoWarn");
+    }
 
-        while (aimTimer < laserAimTime)
-        {
-            if (player != null)
-                dir = (player.position - transform.position).normalized;
+    // Animation Eventから呼ばれる
+    public void OnTornadoWarnEnd()
+    {
+        StartCoroutine(SpawnTornadoDelayed(tornadoDelay));
+    }
 
-            // レーザーの向きをプレイヤー方向に更新
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            laser.transform.rotation = Quaternion.Euler(0, 0, angle);
+    void SpawnTornado()
+    {
+        Collider2D col = player.GetComponent<Collider2D>();
+        float bottomY = col.bounds.min.y;
 
-            aimTimer += Time.deltaTime;
-            yield return null;
-        }
+        Vector2 spawnPos = new Vector2(player.position.x, bottomY - 0.2f);
+    
+        GameObject t = Instantiate(tornadoPrefab, spawnPos, Quaternion.identity);
 
-        // --- ② 発射フェーズ（照準固定） ---
-        Vector3 fireDir = dir; // この時点の方向を固定
-        float moveTimer = 0f;
+        t.transform.localScale = tornadoScale;
 
-        while (moveTimer < laserDuration)
-        {
-            laser.transform.position += fireDir * laserSpeed * Time.deltaTime;
-            moveTimer += Time.deltaTime;
-            yield return null;
-        }
+        Tornado tornado = t.GetComponent<Tornado>();
+        if (tornado != null)
+            tornado.Init(player);
+    }
 
-        Destroy(laser);
-    }*/
+    IEnumerator SpawnTornadoDelayed(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SpawnTornado();
+    }
 }
