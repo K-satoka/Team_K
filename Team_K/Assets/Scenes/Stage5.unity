@@ -4041,6 +4041,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 263535854}
     - target: {fileID: 8071386051573201505, guid: c66e3da376daa444eafbd6355d95266d, type: 3}
+      propertyPath: Pattern2
+      value: 
+      objectReference: {fileID: 8300000, guid: 92db6c5ce1ea41b4192c696a9e8509bb, type: 3}
+    - target: {fileID: 8071386051573201505, guid: c66e3da376daa444eafbd6355d95266d, type: 3}
+      propertyPath: SmallFireSE
+      value: 
+      objectReference: {fileID: 8300000, guid: 3acd67cb4cfbc9f44963bc76de4b7ed9, type: 3}
+    - target: {fileID: 8071386051573201505, guid: c66e3da376daa444eafbd6355d95266d, type: 3}
       propertyPath: iciclePoint
       value: 
       objectReference: {fileID: 2061398555}

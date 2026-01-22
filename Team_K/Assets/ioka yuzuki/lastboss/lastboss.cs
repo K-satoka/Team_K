@@ -35,6 +35,8 @@ public class maou : MonoBehaviour
     public AudioClip MAouAttackSE;
     public AudioClip TereportSE;
     public AudioClip IceSE;
+    public AudioClip SmallFireSE;
+    public AudioClip Pattern2;
 
     void Start()
     {
@@ -69,6 +71,8 @@ public class maou : MonoBehaviour
         }
         else if(hprate>=0.5f&&hprate<=0.6f)
         {
+            if (audioSource != null && Pattern2 != null)
+                audioSource.PlayOneShot(Pattern2);
             pattern2();
         }
         else if(hprate >= 0.3f)
@@ -246,8 +250,8 @@ public class maou : MonoBehaviour
         Instantiate(black_firePrefab, bulletPoint6.position, bulletPoint6.rotation);
         Instantiate(black_firePrefab, bulletPoint7.position, bulletPoint7.rotation);
         //SE
-        if (audioSource != null && MAouAttackSE != null)
-            audioSource.PlayOneShot(MAouAttackSE);
+        if (audioSource != null && SmallFireSE != null)
+            audioSource.PlayOneShot(SmallFireSE);
     }
     void teleport()
     {
