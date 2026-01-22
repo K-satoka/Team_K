@@ -457,6 +457,11 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 15, y: 3.5561109}
   m_EdgeRadius: 0
+--- !u!1 &90133079 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8446195535441956188, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
+  m_PrefabInstance: {fileID: 820847459}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &100709264
 GameObject:
   m_ObjectHideFlags: 0
@@ -1229,6 +1234,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flash: 0.1
+--- !u!95 &795918671
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 795918659}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a5567be77075cfb49aa7160c11624a4b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &814432660
 GameObject:
   m_ObjectHideFlags: 0
@@ -1396,6 +1423,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3712954211512302539, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4321274137955457332, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
       propertyPath: player
       value: 
@@ -1421,6 +1452,10 @@ PrefabInstance:
       value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4321274137955457332, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
+      propertyPath: tornadoPrefab
+      value: 
+      objectReference: {fileID: 90133079}
+    - target: {fileID: 4321274137955457332, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
       propertyPath: attackInterval
       value: 1.5
       objectReference: {fileID: 0}
@@ -1432,15 +1467,35 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 977759c86a0ae1b419fbe49c813c9d64, type: 2}
+    - target: {fileID: 5200104881750902109, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6385455947997034277, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
       propertyPath: damage2
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6669445020173231697, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
+      propertyPath: followDuration
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 7131909362606615127, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
       propertyPath: m_TagString
       value: BossATK
       objectReference: {fileID: 0}
     - target: {fileID: 8141420715039680581, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8446195535441956188, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8528227884860633558, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8528227884860633558, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
       propertyPath: m_SortingOrder
       value: 3
       objectReference: {fileID: 0}
@@ -1457,9 +1512,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 619018241332223271, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
       insertIndex: -1
       addedObject: {fileID: 795918666}
+<<<<<<< HEAD
     - targetCorrespondingSourceObject: {fileID: 7131909362606615127, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1865903227}
+=======
+    - targetCorrespondingSourceObject: {fileID: 619018241332223271, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 795918671}
+>>>>>>> e7283d8a5425d778e9da19bab3492a6b57e26cb0
   m_SourcePrefab: {fileID: 100100000, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
 --- !u!1001 &856620393
 PrefabInstance:

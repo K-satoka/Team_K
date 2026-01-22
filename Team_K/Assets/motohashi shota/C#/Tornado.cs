@@ -1,0 +1,84 @@
+using UnityEngine;
+using UnityEngine.UIElements;
+
+public class Tornado : MonoBehaviour
+{
+    public Transform player;
+
+    [Header("追尾")]
+    public float followDuration = 0.5f;
+    public float followSpeed = 4f;
+
+    [Header("ダメージ")]
+    public float damage = 10f;
+
+    private bool canFollow = false;
+    private float timer;
+    private bool isEnding = false;
+    private Animator animator;
+    private Collider2D col;
+
+    public void Init(Transform target)
+    {
+        player = target;
+    }
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+        col = GetComponent<Collider2D>();
+    }
+
+    void Update()
+    {
+        if (isEnding) return;
+
+        timer += Time.deltaTime;
+
+        if (canFollow && timer <= followDuration && player != null)
+        {
+            
+            //Vector2 pos = transform.position;
+            //pos.x = Mathf.Lerp(pos.x, player.position.x, Time.deltaTime * followSpeed);
+            //transform.position = pos;
+        }
+        else if (timer > followDuration)
+        {
+            StartEnd();
+        }
+    }
+
+    void StartEnd()
+    {
+        if (isEnding) return;
+        isEnding = true;
+
+        // 当たり判定を止める
+        if (col != null)
+            col.enabled = false;
+
+        // 消滅アニメ再生
+        if (animator != null)
+            animator.SetTrigger("End");
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (isEnding) return;
+
+        if (col.CompareTag("Player"))
+        {
+            StartEnd();
+        }
+    }
+
+    public void OnEndAnimationFinish()
+    {
+        Destroy(gameObject);
+    }
+
+    public void OnSpawnAnimationEnd()
+    {
+        canFollow = true;
+    }
+}
