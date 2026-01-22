@@ -3,14 +3,14 @@ using UnityEngine.Audio;
 
 public class icicle : MonoBehaviour
 {
-    public int ice_damage;
-
     Animator anim;
+
+    public int ice_damage;//Ç¬ÇÁÇÁÉ_ÉÅÅ[ÉW
     private Rigidbody2D rb;
     public float landing_speed;
     public float lifetime = 15f;
 
-    //se
+    //se----------------------------
     public AudioSource audioSouece;
     public AudioClip IceBreakSE;
 
@@ -28,37 +28,28 @@ public class icicle : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            if (audioSouece != null && IceBreakSE != null)
-                audioSouece.PlayOneShot(IceBreakSE);
-            anim.Play("break");
-            Destroy(gameObject,0.1f);
+            icebreak();
         }
         else if (collision.gameObject.tag == "Ground")
         {
-            if (audioSouece != null && IceBreakSE != null)
-                audioSouece.PlayOneShot(IceBreakSE);
-
-            anim.Play("break");
-            Destroy(gameObject,0.1f);
+            icebreak();
         }
         else if(collision.gameObject.tag =="Enemy")
         {
-            if (audioSouece != null && IceBreakSE != null)
-                audioSouece.PlayOneShot(IceBreakSE);
-
-            anim.Play("break");
-            Destroy(gameObject, 0.1f);
+            icebreak();
         }
         else if(collision.gameObject.tag=="BossATK")
         {
-            if (audioSouece != null && IceBreakSE != null)
-                audioSouece.PlayOneShot(IceBreakSE);
-
-            anim.Play("break");
-            Destroy(gameObject, 0.1f);
+            icebreak();
         }
 
     }
+    void icebreak()
+    {
+        if (audioSouece != null && IceBreakSE != null)
+            audioSouece.PlayOneShot(IceBreakSE);
+        anim.Play("break");
+        Destroy(gameObject, 0.1f);
+    }
 
-    
 }

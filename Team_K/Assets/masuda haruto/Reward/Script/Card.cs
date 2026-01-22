@@ -2,9 +2,11 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public enum CardType { HP,Attack }
+
 public class Card : MonoBehaviour
 {
     public CardType cardType;
@@ -13,7 +15,7 @@ public class Card : MonoBehaviour
 
     [Header("ランダムの範囲")]
     public int minValue = 1;
-    public int maxValue = 3;
+    public int maxValue = 2;
 
     private PlayerHP playerHP;
     private AttackCollision attackCollision;
@@ -28,9 +30,18 @@ public class Card : MonoBehaviour
     private bool inputLocked = false;
     private CanvasGroup canvasGroup;
 
+    //
+    [SerializeField] private int BaseMinValue = 1;
+    [SerializeField] private int BaseMaxValue = 3;
 
     private void Start()
     {
+        int currentStage = PlayerPrefs.GetInt("CurrentStage", 1);
+        if(currentStage < 1)currentStage = 1;
+
+
+        int multiplier = 1 << (currentStage - 1);
+
 
         //canvasgroupの初期化
         canvasGroup = GetComponent<CanvasGroup>();
@@ -45,21 +56,18 @@ public class Card : MonoBehaviour
 
         //現在のステージ番号を取得
         EnemyHp enemy = FindObjectOfType<EnemyHp>();
-      
-        int currentStage = 1;
-        if(enemy!=null)
-        {
-            currentStage = enemy.currentStageNumber;
-        }
+        Debug.Log("読み込み LastClearedStage = " +
+    PlayerPrefs.GetInt("LastClearedStage", -1));
 
-        Debug.Log("CurrentStage(from EnemyHp)=" + currentStage);
+        //int lastStage = PlayerPrefs.GetInt("LastClearedStage", 1) - 1;
+        //Debug.Log("CurrentStage(from EnemyHp)=" + lastStage);
 
-
-        // int stageUnlock = PlayerPrefs.GetInt("StageUnlock", 1);
 
         //ステージCLEAR数に応じて最大値を増やす
+        minValue = BaseMinValue * multiplier;
+        maxValue = BaseMaxValue * multiplier * 2;
 
-        maxValue += currentStage*2;
+        Debug.Log($"現在ステージ:{currentStage} 倍率:{multiplier}");
 
         //ボタンがあればクリック登録
         Button btn=GetComponentInChildren<Button>();
@@ -130,6 +138,8 @@ public class Card : MonoBehaviour
 
     public void Onselect()
     {
+
+        EventSystem.current.SetSelectedGameObject(null);
         //フェード中(=ロック中)は虫
         if(inputLocked) return;
         //フェード開始と同時にロック

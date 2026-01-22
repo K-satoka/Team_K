@@ -14,15 +14,9 @@ public class nowATK : MonoBehaviour
         atkText= GetComponent<TextMeshProUGUI>();
 
         playerAttack = GameObject.Find("Image_player").GetComponent<AttackCollision>();
-
-
-        atkText.text = "ATK : " + playerAttack.currentAttack;
-
     }
-
-    // Update is called once per frame
-    //void Update()
-    //{
-    //     atkText.text = "ATK:" + playerAttack.attackDamage;
-    //}
+    void Update()
+    {
+        atkText.text = "ATK : " + playerAttack.currentAttack;
+    }
 }

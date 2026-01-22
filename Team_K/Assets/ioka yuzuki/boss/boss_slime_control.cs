@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
-//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
-
-//ENEMY
+//using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 [RequireComponent (typeof (Rigidbody2D))]
 public class boss : MonoBehaviour
 {
     EnemyHp hp;
-    Rigidbody2D rbody;
+    Rigidbody2D rb;
     public float Enemy_speed = 2f;     // スピード
     public float Enemy_jump = 6f;      // ジャンプ力
     public float jumpTriggerDistance = 5f; // 検知距離
@@ -20,14 +17,14 @@ public class boss : MonoBehaviour
     public LayerMask GroundLayer;      // 地面レイヤー
 
     public float detecDistance = 5f;//反応する距離
-    private Transform Player;
+    private Transform Player;//プレイヤーの位置確認
     private bool onGround = false;
     Animator anim;
-    //SE
+    //SE------------------------------------------------
     public AudioSource audioSource;
     public AudioClip SlimejumpSE;
 
-    public int damage=10;
+    public int damage=10;  //攻撃力
 
     private bool wasOnGround = false;//前フレームの設置状態
     void Start()
@@ -35,7 +32,7 @@ public class boss : MonoBehaviour
         hp = GetComponent<EnemyHp>();
         anim =GetComponent<Animator>();
         // Rigidbody2Dをとってくる
-        rbody = GetComponent<Rigidbody2D>();//Rigidbody2Dからとってくる
+        rb = GetComponent<Rigidbody2D>();//Rigidbody2Dからとってくる
         //Playerタグが付いたオブジェクトを探す
         GameObject PlayerObj = GameObject.FindGameObjectWithTag("Player");
         if(PlayerObj != null )
@@ -43,10 +40,10 @@ public class boss : MonoBehaviour
             Player = PlayerObj.transform;
         }
         //回転を固定
-        rbody.freezeRotation = true;
+        rb.freezeRotation = true;
         if (onGround = false)
         {
-            rbody.gravityScale *= GravityScale;
+            rb.gravityScale *= GravityScale;
         }
     }
     void Update()
@@ -55,10 +52,8 @@ public class boss : MonoBehaviour
         float Playerdistance = Vector2.Distance(transform.position, Player.position);
         //------------------------------------------
         if (Player == null) return;
-        //float distanceToPlayer = Vector2.Distance(transform.position, Player.position);
 
-        float hprate = hp.HPrate();
-
+        float hprate = hp.HPrate();//HP割合
         if (hprate>0.7f)
         {
             pattern1();
@@ -71,8 +66,6 @@ public class boss : MonoBehaviour
         {
             pattern3();
         }
-        
-
     }
 
     void pattern1()
@@ -80,17 +73,14 @@ public class boss : MonoBehaviour
         float Playerdistance = Vector2.Distance(transform.position, Player.position);
         if (onGround)
         {
-            //Debug.Log("ddddddddddddddddddddddd");
             if (Playerdistance <= detecDistance)
             {
-
                 Jump();
             }
             else if (Playerdistance > detecDistance)
             {
                 anim.Play("slime_waiting");
             }
-
         }
     }
     void pattern2()
@@ -98,7 +88,6 @@ public class boss : MonoBehaviour
         float Playerdistance = Vector2.Distance(transform.position, Player.position);
         if (onGround)
         {
-            //Debug.Log("ddddddddddddddddddddddd");
             if (Playerdistance <= detecDistance)
             {
 
@@ -108,7 +97,6 @@ public class boss : MonoBehaviour
             {
                 anim.Play("slime_waiting");
             }
-
         }
     }
     void pattern3()
@@ -125,25 +113,22 @@ public class boss : MonoBehaviour
             {
                 anim.Play("slime_waiting");
             }
-
         }
     }
-
-
     void Jump()
     {
-        rbody.AddForce(Vector2.up * Enemy_jump, ForceMode2D.Impulse);
+        rb.AddForce(Vector2.up * Enemy_jump, ForceMode2D.Impulse);
         onGround = false;
     }
     void Jump2()
     {
-        rbody.AddForce(Vector2.up * Enemy_jump*1.5f, ForceMode2D.Impulse);
+        rb.AddForce(Vector2.up * Enemy_jump*1.5f, ForceMode2D.Impulse);
         onGround = false;
     }
 
     void Jump3()
     {
-        rbody.AddForce(Vector2.up * Enemy_jump*2f, ForceMode2D.Impulse);
+        rb.AddForce(Vector2.up * Enemy_jump*2f, ForceMode2D.Impulse);
         onGround = false;
     }
     void FixedUpdate()
@@ -166,10 +151,9 @@ public class boss : MonoBehaviour
        if(onGround)
         {
             //その方向に常に移動
-            rbody.linearVelocity = new Vector2(direction.x * Enemy_speed, rbody.linearVelocity.y);
+            rb.linearVelocity = new Vector2(direction.x * Enemy_speed, rb.linearVelocity.y);
         }
-        
-
+       
         //向きを反転
         if (Player.position.x>transform.position.x)
         {
@@ -185,21 +169,5 @@ public class boss : MonoBehaviour
         }
         wasOnGround = onGround;
     }
-
-    /*
-         private void OnCollisionStay2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag=="Ground")
-        {
-            //プレイヤーのほうに向かす
-            Vector2 direction=new Vector2(Player.position.x-transform.position.x,0).normalized;
-
-            //その方向に常に移動
-            rbody.linearVelocity = new Vector2((Player.position.x - transform.position.x) * Enemy_speed, rbody.linearVelocity.y);
-        }
-    } 
-      
-     
-     */
 
 }

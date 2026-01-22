@@ -1,11 +1,11 @@
-ï»¿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class EnemyHp : MonoBehaviour
 {
-    public int Enemy_MAX_Hp = 10;//æœ€å¤§hp
-    public int Enemy_Current_Hp;//ç¾åœ¨ã®hp
+    public int Enemy_MAX_Hp = 10;//Å‘åhp
+    public int Enemy_Current_Hp;//Œ»İ‚Ìhp
 
     public int damageOnContact = 10;
 
@@ -21,12 +21,12 @@ public class EnemyHp : MonoBehaviour
     public int XP = 1;
     void Start()
     {
-       Enemy_Current_Hp = Enemy_MAX_Hp;   //åˆæœŸå€¤ã‚’æœ€å¤§å€¤ã«è¨­å®š
+       Enemy_Current_Hp = Enemy_MAX_Hp;   //‰Šú’l‚ğÅ‘å’l‚Éİ’è
 
         if (hpSlider != null)
         {
-            hpSlider.maxValue = Enemy_MAX_Hp;//ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã®æœ€å¤§å€¤
-            hpSlider.value = Enemy_Current_Hp;//åˆæœŸå€¤
+            hpSlider.maxValue = Enemy_MAX_Hp;//ƒXƒ‰ƒCƒ_[‚ÌÅ‘å’l
+            hpSlider.value = Enemy_Current_Hp;//‰Šú’l
         }
     
     }
@@ -38,11 +38,11 @@ public class EnemyHp : MonoBehaviour
         GetComponent<DamageFlash>().Flash();
 
         if (Enemy_Current_Hp < 0) 
-            Enemy_Current_Hp = 0;//HPãŒãƒã‚¤ãƒŠã‚¹ã«ãªã‚‰ãªã„ã‚ˆã†ã«
-        Debug.Log("æ•µãŒ" + damage +"ã®ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’å—ã‘ãŸã€‚æ®‹ã‚Š:" +  Enemy_Current_Hp+ "/" + Enemy_MAX_Hp);
+            Enemy_Current_Hp = 0;//HP‚ªƒ}ƒCƒiƒX‚É‚È‚ç‚È‚¢‚æ‚¤‚É
+        Debug.Log("“G‚ª" + damage +"‚Ìƒ_ƒ[ƒW‚ğó‚¯‚½Bc‚è:" +  Enemy_Current_Hp+ "/" + Enemy_MAX_Hp);
         if (hpSlider != null)
         {
-            hpSlider.value = Enemy_Current_Hp;//HPãƒãƒ¼æ›´æ–°
+            hpSlider.value = Enemy_Current_Hp;//HPƒo[XV
         }
         //SE
         if (audioSource != null && EnemydamageSE != null)
@@ -57,15 +57,15 @@ public class EnemyHp : MonoBehaviour
 
 void Die()
     {
-        Debug.Log("æ­»ã‚“ã ãœ!");
+        Debug.Log("€‚ñ‚¾‚º!");
+        Debug.Log("•Û‘¶ LastClearedStage = " + currentStageNumber);
+        //Ÿ‚ÌƒXƒe[ƒW‚Ì‰ğ•úˆ—
 
-        //æ¬¡ã®ã‚¹ãƒ†ãƒ¼ã‚¸ã®è§£æ”¾å‡¦ç†
-        
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
-        //ç¾åœ¨ã®ã‚¹ãƒ†ãƒ¼ã‚¸ãŒæœ€æ–°ã ã£ãŸã‚‰æ¬¡ã‚’è§£æ”¾
+        //Œ»İ‚ÌƒXƒe[ƒW‚ªÅV‚¾‚Á‚½‚çŸ‚ğ‰ğ•ú
        
-        //å‹•ãã‚’æ­¢ã‚ã‚‹ãƒ†ã‚¹ãƒˆ
+        //“®‚«‚ğ~‚ß‚éƒeƒXƒg
         Rigidbody2D rb=GetComponent<Rigidbody2D>();
         if (rb != null)
         {
@@ -83,21 +83,28 @@ void Die()
         {
             col.enabled=(false);
         }
+
+        PlayerPrefs.SetInt("LastClearedStage", currentStageNumber);
+        
+        PlayerPrefs.SetInt("CurrentStage", currentStageNumber);
+        PlayerPrefs.Save();
+        
         int stageUnlock = PlayerPrefs.GetInt("StageUnlock", 1);
         if (currentStageNumber==stageUnlock)
         {
             
 
             PlayerPrefs.SetInt("StageUnlock", stageUnlock + 1);
+          
             PlayerPrefs.Save();
-            Debug.Log("æ¬¡ã«é€²ã‚ã‚‹ãœã€ç›¸æ£’");
+            Debug.Log("Ÿ‚Éi‚ß‚é‚ºA‘Š–_");
         }
-        //SEå†ç”Ÿ
+        //SEÄ¶
 
         if (audioSource != null && EnemyDieSE != null)
             audioSource.PlayOneShot(EnemyDieSE);
 
-        Destroy(gameObject,2.0f);//ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‰Šé™¤
+        Destroy(gameObject,2.0f);//ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚ğíœ
 
         if (currentStageNumber == 5)
         {
@@ -105,10 +112,9 @@ void Die()
         }
         else
         {
-            // é€šå¸¸ã¯ Reward ã¸
+            // ’Êí‚Í Reward ‚Ö
             FadeManager.Instance.LoadScene("Reward", 1.0f);
         }
-
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -123,18 +129,7 @@ void Die()
             }
         }
     }
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Player"))
-    //    {
-    //        Debug.Log("aaaaa");
-
-    //        TakeDamage(damageOnContact);
-    //    }
-    //}
-
-    //ãƒ†ã‚¹ãƒˆæ•µã®ãƒ—ãƒ¬ãƒ¼ã‚„æ­»äº¡ã®æ™‚ã®åœæ­¢æ”¯æŒ
+    //ƒeƒXƒg“G‚ÌƒvƒŒ[‚â€–S‚Ì‚Ì’â~x
     public void StopMoment()
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
@@ -149,23 +144,23 @@ void Die()
             }
             catch (System.Exception e)
             {
-                Debug.LogWarning("StopMomentã§ä¾‹å¤–ç™ºç”Ÿ: " + e.Message);
+                Debug.LogWarning("StopMoment‚Å—áŠO”­¶: " + e.Message);
             }
         }
         else
         {
-            Debug.LogWarning("StopMoment: Rigidbody2DãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“");
+            Debug.LogWarning("StopMoment: Rigidbody2D‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ");
         }
 
         Animator anim = GetComponent<Animator>();
         if (anim != null)
         {
-            anim.enabled = false; // ã‚¢ãƒ‹ãƒ¡ã‚‚æ­¢ã‚ã‚‹
+            anim.enabled = false; // ƒAƒjƒ‚à~‚ß‚é
         }
     
 
     }
-    //HPï¿½ï¿½ï¿½ï¿½ï¿½vï¿½Z
+    //HPŠ„‡
     public float HPrate()
     {
         return (float)Enemy_Current_Hp / Enemy_MAX_Hp;

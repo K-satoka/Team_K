@@ -1,12 +1,13 @@
-ï»¿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 
+
 public class LockTextFade : MonoBehaviour
 {
     public TextMeshProUGUI lockText;
-    public float fadeDuration = 0.5f; // ãƒ•ã‚§ãƒ¼ãƒ‰ã«ã‹ã‘ã‚‹æ™‚é–“
+    public float fadeDuration = 0.5f; // ƒtƒF[ƒh‚É‚©‚¯‚éŠÔ
 
     private Button button;
 
@@ -15,7 +16,7 @@ public class LockTextFade : MonoBehaviour
         button = GetComponent<Button>();
         button.onClick.AddListener(OnButtonClicked);
 
-        // åˆæœŸã¯é€æ˜
+        // ‰Šú‚Í“§–¾
         SetTextAlpha(0f);
     }
 
@@ -34,7 +35,7 @@ public class LockTextFade : MonoBehaviour
             SetTextAlpha(alpha);
             yield return null;
         }
-        SetTextAlpha(1f); // å®Œå…¨è¡¨ç¤º
+        SetTextAlpha(1f); // Š®‘S•\¦
     }
 
     void SetTextAlpha(float alpha)
