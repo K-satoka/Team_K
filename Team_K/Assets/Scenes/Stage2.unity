@@ -1118,6 +1118,7 @@ MonoBehaviour:
   EnemydamageSE: {fileID: 8300000, guid: bd890d471690ef940ab0266a9c3b75b7, type: 3}
   Enemydamage2SE: {fileID: 0}
   EnemyDieSE: {fileID: 8300000, guid: fec76fad6f7e3c94a9b44a8bc294ef56, type: 3}
+  XP: 1
 --- !u!82 &795918665
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1456,6 +1457,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 619018241332223271, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
       insertIndex: -1
       addedObject: {fileID: 795918666}
+    - targetCorrespondingSourceObject: {fileID: 7131909362606615127, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1865903227}
   m_SourcePrefab: {fileID: 100100000, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
 --- !u!1001 &856620393
 PrefabInstance:
@@ -2826,6 +2830,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7131909362606615127, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
   m_PrefabInstance: {fileID: 820847459}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1865903227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865903226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46797a40bf578614fbaa43ea025bfcd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1869514462
 GameObject:
   m_ObjectHideFlags: 0
