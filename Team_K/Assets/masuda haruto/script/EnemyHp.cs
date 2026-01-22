@@ -85,7 +85,10 @@ void Die()
         }
 
         PlayerPrefs.SetInt("LastClearedStage", currentStageNumber);
-
+        
+        PlayerPrefs.SetInt("CurrentStage", currentStageNumber);
+        PlayerPrefs.Save();
+        
         int stageUnlock = PlayerPrefs.GetInt("StageUnlock", 1);
         if (currentStageNumber==stageUnlock)
         {

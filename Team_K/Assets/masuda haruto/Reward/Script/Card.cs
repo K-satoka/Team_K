@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public enum CardType { HP,Attack }
+
 public class Card : MonoBehaviour
 {
     public CardType cardType;
@@ -14,7 +15,7 @@ public class Card : MonoBehaviour
 
     [Header("ランダムの範囲")]
     public int minValue = 1;
-    public int maxValue = 3;
+    public int maxValue = 2;
 
     private PlayerHP playerHP;
     private AttackCollision attackCollision;
@@ -29,9 +30,18 @@ public class Card : MonoBehaviour
     private bool inputLocked = false;
     private CanvasGroup canvasGroup;
 
+    //
+    [SerializeField] private int BaseMinValue = 1;
+    [SerializeField] private int BaseMaxValue = 3;
 
     private void Start()
     {
+        int currentStage = PlayerPrefs.GetInt("CurrentStage", 1);
+        if(currentStage < 1)currentStage = 1;
+
+
+        int multiplier = 1 << (currentStage - 1);
+
 
         //canvasgroupの初期化
         canvasGroup = GetComponent<CanvasGroup>();
@@ -49,17 +59,15 @@ public class Card : MonoBehaviour
         Debug.Log("読み込み LastClearedStage = " +
     PlayerPrefs.GetInt("LastClearedStage", -1));
 
-        int lastStage = PlayerPrefs.GetInt("LastClearedStage", 1) - 1;
+        //int lastStage = PlayerPrefs.GetInt("LastClearedStage", 1) - 1;
+        //Debug.Log("CurrentStage(from EnemyHp)=" + lastStage);
 
-        if(lastStage < 1 )lastStage = 1;
-
-        Debug.Log("CurrentStage(from EnemyHp)=" + lastStage);
 
         //ステージCLEAR数に応じて最大値を増やす
+        minValue = BaseMinValue * multiplier;
+        maxValue = BaseMaxValue * multiplier * 2;
 
-        maxValue = maxValue * (int)Mathf.Pow(2, lastStage - 1);
-
-        Debug.Log($"ステージ{lastStage}に応じてカードの値を設定: minValue={minValue}, maxValue={maxValue}");
+        Debug.Log($"現在ステージ:{currentStage} 倍率:{multiplier}");
 
         //ボタンがあればクリック登録
         Button btn=GetComponentInChildren<Button>();
