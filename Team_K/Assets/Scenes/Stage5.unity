@@ -4029,6 +4029,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7926690094284445510, guid: c66e3da376daa444eafbd6355d95266d, type: 3}
+      propertyPath: Enemy_Current_Hp
+      value: 6400
+      objectReference: {fileID: 0}
+    - target: {fileID: 7926690094284445510, guid: c66e3da376daa444eafbd6355d95266d, type: 3}
       propertyPath: currentStageNumber
       value: 5
       objectReference: {fileID: 0}
@@ -4043,11 +4047,15 @@ PrefabInstance:
     - target: {fileID: 8071386051573201505, guid: c66e3da376daa444eafbd6355d95266d, type: 3}
       propertyPath: Pattern2
       value: 
-      objectReference: {fileID: 8300000, guid: 92db6c5ce1ea41b4192c696a9e8509bb, type: 3}
+      objectReference: {fileID: 8300000, guid: 4bbe732ebc83c954db23ca6dfd0205db, type: 3}
+    - target: {fileID: 8071386051573201505, guid: c66e3da376daa444eafbd6355d95266d, type: 3}
+      propertyPath: Pattern3
+      value: 
+      objectReference: {fileID: 8300000, guid: 3acd67cb4cfbc9f44963bc76de4b7ed9, type: 3}
     - target: {fileID: 8071386051573201505, guid: c66e3da376daa444eafbd6355d95266d, type: 3}
       propertyPath: SmallFireSE
       value: 
-      objectReference: {fileID: 8300000, guid: 3acd67cb4cfbc9f44963bc76de4b7ed9, type: 3}
+      objectReference: {fileID: 8300000, guid: 92db6c5ce1ea41b4192c696a9e8509bb, type: 3}
     - target: {fileID: 8071386051573201505, guid: c66e3da376daa444eafbd6355d95266d, type: 3}
       propertyPath: iciclePoint
       value: 
