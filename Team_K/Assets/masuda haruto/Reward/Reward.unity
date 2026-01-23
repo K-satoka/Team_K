@@ -439,8 +439,7 @@ GameObject:
   - component: {fileID: 711660940}
   - component: {fileID: 711660939}
   - component: {fileID: 711660938}
-  - component: {fileID: 711660942}
-  - component: {fileID: 711660937}
+  - component: {fileID: 711660941}
   m_Layer: 5
   m_Name: skip
   m_TagString: Untagged
@@ -468,18 +467,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -170}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &711660937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 711660935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 881755aa2721a5841bd61197c8409588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &711660938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -524,8 +511,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 711660937}
-        m_TargetAssemblyTypeName: SKIP, Assembly-CSharp
+      - m_Target: {fileID: 711660941}
+        m_TargetAssemblyTypeName: skip_2, Assembly-CSharp
         m_MethodName: ChangeScene
         m_Mode: 1
         m_Arguments:
@@ -574,7 +561,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 711660935}
   m_CullTransparentMesh: 1
---- !u!114 &711660942
+--- !u!114 &711660941
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -583,12 +570,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 711660935}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 612c87f6f59cc8546adf299f355ae9db, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ead6db403cc3bf43a9c5143368c4094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedScale: 1.1
-  normalScale: 1
-  speed: 10
 --- !u!1 &976146325
 GameObject:
   m_ObjectHideFlags: 0
@@ -1068,9 +1052,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 612c87f6f59cc8546adf299f355ae9db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedScale: 1.1
-  normalScale: 1
-  speed: 10
 --- !u!1 &1183603826
 GameObject:
   m_ObjectHideFlags: 0
@@ -1573,9 +1554,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 612c87f6f59cc8546adf299f355ae9db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedScale: 1.1
-  normalScale: 1
-  speed: 10
 --- !u!1 &1835590445
 GameObject:
   m_ObjectHideFlags: 0
