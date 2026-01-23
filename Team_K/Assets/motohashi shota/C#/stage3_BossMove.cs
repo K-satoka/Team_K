@@ -4,22 +4,22 @@ using UnityEngine.Audio;
 
 public class stage3_BossMove : MonoBehaviour
 {
-    [Header("ƒ^[ƒQƒbƒg")]
+    [Header("ï¿½^ï¿½[ï¿½Qï¿½bï¿½g")]
     public Transform player;
 
-    [Header("ˆÚ“®ƒpƒ‰ƒ[ƒ^")]
+    [Header("ï¿½Ú“ï¿½ï¿½pï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½^")]
     public float moveSpeed = 3f;
     public float stopDistance = 2f;
 
-    [Header("“Ëiİ’è")]
+    [Header("ï¿½Ëiï¿½İ’ï¿½")]
     public float dashSpeed = 12f;
     public float dashTime = 0.3f;
     private bool isDashing = false;
     private float dashTimer = 0f;
-    private float dashDirection = 0f; //“Ëi•ûŒüŒÅ’è—p
-    private bool isPreparingDash = false; // “Ëi‘Ò‹@’†ƒtƒ‰ƒO
+    private float dashDirection = 0f; //ï¿½Ëiï¿½ï¿½ï¿½ï¿½ï¿½Å’ï¿½p
+    private bool isPreparingDash = false; // ï¿½Ëiï¿½Ò‹@ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½O
 
-    [Header("EndDash ”½“®")]
+    [Header("EndDash ï¿½ï¿½ï¿½ï¿½")]
     public float endDashBackSpeed = 12f;
     public float endDashBackTime = 0.6f;
     private bool isBusy = false;
@@ -30,7 +30,7 @@ public class stage3_BossMove : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer sr;
-    private BoxCollider2D boxCollider;//ƒRƒ‰ƒCƒ_[”½“]—p
+    private BoxCollider2D boxCollider;//ï¿½Rï¿½ï¿½ï¿½Cï¿½_ï¿½[ï¿½ï¿½ï¿½]ï¿½p
 
     //SE
     public AudioSource audioSource;
@@ -51,13 +51,13 @@ public class stage3_BossMove : MonoBehaviour
         if (isEndDashBack)
         {
             endDashBackTimer += Time.fixedDeltaTime;
-            rb.velocity = new Vector2(-dashDirection * endDashBackSpeed, rb.velocity.y);
+            rb.linearVelocity = new Vector2(-dashDirection * endDashBackSpeed, rb.linearVelocity.y);
 
             if (endDashBackTimer >= endDashBackTime)
             {
                 isEndDashBack = false;
                 isBusy = false;
-                rb.velocity = new Vector2(0, rb.velocity.y);
+                rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             }
             return;
         }
@@ -65,7 +65,7 @@ public class stage3_BossMove : MonoBehaviour
         if (isBusy) return;
 
         // -----------------------------
-        // š “Ëi’†‚Ìˆ—iˆÚ“®AI‚Í–³Œøj
+        // ï¿½ï¿½ ï¿½Ëiï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½iï¿½Ú“ï¿½AIï¿½Í–ï¿½ï¿½ï¿½ï¿½j
         // -----------------------------
         if (isDashing)
         {
@@ -74,17 +74,17 @@ public class stage3_BossMove : MonoBehaviour
 
             //float dirX = Mathf.Sign(player.position.x - transform.position.x);
             //rb.velocity = new Vector2(dirX * dashSpeed, rb.velocity.y);
-            rb.velocity = new Vector2(dashDirection * dashSpeed, rb.velocity.y);
+            rb.linearVelocity = new Vector2(dashDirection * dashSpeed, rb.linearVelocity.y);
 
             if (dashTimer >= dashTime)
             {
                 EndDash();
             }
-            return; // © ˆÚ“®AI‚ğ~‚ß‚é
+            return; // ï¿½ï¿½ ï¿½Ú“ï¿½AIï¿½ï¿½ï¿½~ï¿½ß‚ï¿½
         }
 
         // -----------------------------
-        // š Œ³‚ÌˆÚ“®ƒR[ƒhi‚±‚±‚Í‚Ù‚Ú‚»‚Ì‚Ü‚Üj
+        // ï¿½ï¿½ ï¿½ï¿½ï¿½ÌˆÚ“ï¿½ï¿½Rï¿½[ï¿½hï¿½iï¿½ï¿½ï¿½ï¿½ï¿½Í‚Ù‚Ú‚ï¿½ï¿½Ì‚Ü‚Üj
         // -----------------------------
         float distance = Vector2.Distance(transform.position, player.position);
         float dirX = player.position.x - transform.position.x;
@@ -97,12 +97,12 @@ public class stage3_BossMove : MonoBehaviour
         }
         if (distance < stopDistance && !isDashing && !isBusy && !isPreparingDash)
         {
-            //‹ß‚Ã‚«‚·‚¬‚½‚ç~‚Ü‚é
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            //ï¿½ß‚Ã‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½~ï¿½Ü‚ï¿½
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             anim.SetBool("isMoving", false);
 
-            dashDirection = Mathf.Sign(player.position.x - transform.position.x);//“Ëi•ûŒüŒÅ’è‰»
-            //“ËiŠJn
+            dashDirection = Mathf.Sign(player.position.x - transform.position.x);//ï¿½Ëiï¿½ï¿½ï¿½ï¿½ï¿½Å’è‰»
+            //ï¿½Ëiï¿½Jï¿½n
             StartCoroutine(StartDash());
 
             if (audioSource != null && Boss3SE != null)
@@ -111,13 +111,13 @@ public class stage3_BossMove : MonoBehaviour
         else
         {
             float dir = Mathf.Sign(player.position.x - transform.position.x);
-            rb.velocity = new Vector2(dir * moveSpeed, rb.velocity.y);
+            rb.linearVelocity = new Vector2(dir * moveSpeed, rb.linearVelocity.y);
             anim.SetBool("isMoving", true);
         }
     }
 
     // -----------------------------
-    // š “ËiŠJn
+    // ï¿½ï¿½ ï¿½Ëiï¿½Jï¿½n
     // -----------------------------
     //void StartDash()
     //{
@@ -127,16 +127,16 @@ public class stage3_BossMove : MonoBehaviour
     //    dashTimer = 0f;
     //
     //    anim.SetBool("isDashing", true);
-    //    anim.SetBool("isMoving", false);  // Idle ‚É–ß‚éğŒ‚ğæ‚ÉÁ‚·
+    //    anim.SetBool("isMoving", false);  // Idle ï¿½É–ß‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éï¿½ï¿½ï¿½
     //}
 
 
-    //çªE€²å‰æ™‚é–“æ­è¼‰ç”¨
+    //çªEï¿½ï¿½å‰æ™‚é–“æ­è¼‰ç”¨
 
-    //“Ëi‘OŠÔ“‹Ú—pƒR[ƒh
+    //ï¿½Ëiï¿½Oï¿½ï¿½ï¿½Ô“ï¿½ï¿½Ú—pï¿½Rï¿½[ï¿½h
     IEnumerator StartDash()
     {
-        isPreparingDash = true;   // ‚±‚±‚©‚ç‘Ò‹@ó‘Ô
+        isPreparingDash = true;   // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò‹@ï¿½ï¿½ï¿½
         isBusy = true;
 
         yield return new WaitForSeconds(0.5f);
@@ -147,17 +147,17 @@ public class stage3_BossMove : MonoBehaviour
         anim.SetBool("isDashing", true);
         anim.SetBool("isMoving", false);
 
-        isPreparingDash = false;  // “ËiŠJn‚Å‘Ò‹@‰ğœ
+        isPreparingDash = false;  // ï¿½Ëiï¿½Jï¿½nï¿½Å‘Ò‹@ï¿½ï¿½ï¿½ï¿½
         isBusy = false;
     }
     // -----------------------------
-    // š “ËiI—¹
+    // ï¿½ï¿½ ï¿½Ëiï¿½Iï¿½ï¿½
     // -----------------------------
     void EndDash()
     {
         isDashing = false;
 
-        // š ”½“®ƒ_ƒbƒVƒ…ŠJn
+        // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½bï¿½Vï¿½ï¿½ï¿½Jï¿½n
         isEndDashBack = true;
         endDashBackTimer = 0f;
         isBusy = true;
@@ -180,18 +180,18 @@ public class stage3_BossMove : MonoBehaviour
     //    if (!collision.gameObject.CompareTag("Player")) return;
     //    if (!isDashing) return;
 
-    //    // “Ëi’â~
+    //    // ï¿½Ëiï¿½ï¿½~
     //    isDashing = false;
     //    anim.SetBool("isDashing", false);
 
-    //    // ƒqƒbƒgƒoƒbƒNŠJn
+    //    // ï¿½qï¿½bï¿½gï¿½oï¿½bï¿½Nï¿½Jï¿½n
     //    isHitBack = true;
     //    hitBackTimer = 0f;
 
-    //    // ‘¬“xƒŠƒZƒbƒg
+    //    // ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½Zï¿½bï¿½g
     //    rb.velocity = Vector2.zero;
 
-    //    // “Ëi•ûŒü‚Ì‹t‚ÖƒmƒbƒNƒoƒbƒN
+    //    // ï¿½Ëiï¿½ï¿½ï¿½ï¿½ï¿½Ì‹tï¿½Öƒmï¿½bï¿½Nï¿½oï¿½bï¿½N
     //    Vector2 knockbackForce = new Vector2(
     //        -dashDirection * hitBackPowerX,
     //        hitBackPowerY

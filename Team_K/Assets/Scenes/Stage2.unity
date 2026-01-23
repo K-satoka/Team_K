@@ -457,11 +457,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 15, y: 3.5561109}
   m_EdgeRadius: 0
---- !u!1 &90133079 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8446195535441956188, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
-  m_PrefabInstance: {fileID: 820847459}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &100709264
 GameObject:
   m_ObjectHideFlags: 0
@@ -1454,7 +1449,7 @@ PrefabInstance:
     - target: {fileID: 4321274137955457332, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
       propertyPath: tornadoPrefab
       value: 
-      objectReference: {fileID: 90133079}
+      objectReference: {fileID: 7831642830093604673, guid: 164b0bfb12b10dc4dbaa66f0b4e71675, type: 3}
     - target: {fileID: 4321274137955457332, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
       propertyPath: attackInterval
       value: 1.5
@@ -1500,7 +1495,8 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8446195535441956188, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 619018241332223271, guid: 9115aaab617e15146b33cc3f6ecbc393, type: 3}
