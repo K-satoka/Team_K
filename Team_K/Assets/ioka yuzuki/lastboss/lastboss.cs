@@ -69,10 +69,9 @@ public class maou : MonoBehaviour
         {
             pattern1();
         }
+
         else if(hprate>=0.5f&&hprate<=0.6f)
         {
-            if (audioSource != null && Pattern2 != null)
-                audioSource.PlayOneShot(Pattern2);
             pattern2();
         }
         else if(hprate >= 0.3f)
@@ -126,6 +125,7 @@ public class maou : MonoBehaviour
 
     void pattern2()
     {
+        
         timer += Time.deltaTime;
         if (timer >= shootInterval)
         {
