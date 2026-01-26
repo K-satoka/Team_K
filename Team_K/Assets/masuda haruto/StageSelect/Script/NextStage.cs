@@ -136,11 +136,12 @@ public class NextStage : MonoBehaviour
 
         isLoading = true;
 
-        //全部のボタンを無効化
+        //一度押されたら全部のボタンを無効化
         foreach (Button btn in _stageButton)
         {
             btn.interactable = false;
         }
+        //効果音を鳴らす
         if (audioSource != null && selectSE != null)
         {
             audioSource.PlayOneShot(selectSE);

@@ -11,6 +11,7 @@ public class AttackCollision : MonoBehaviour
     public int currentAttack;//現在値(カードで強化される)
 
     
+
     private void Awake()
     {
         // 親自身の Collider2D を取得
@@ -43,6 +44,8 @@ public class AttackCollision : MonoBehaviour
     /// </summary>
     public void EnableAttack(float duration=0.5f)
     {
+      
+
         foreach (var col in childColliders)
         {
             if (col != selfCollider)
