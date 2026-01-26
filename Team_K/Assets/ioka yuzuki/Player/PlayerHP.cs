@@ -62,6 +62,7 @@ public class PlayerHP : MonoBehaviour
         SnowAttack snowAttackScript=collision.gameObject.GetComponent<SnowAttack>();
         firebullet firebulletScript = collision.gameObject.GetComponent<firebullet>();
         icicle icicleScript=collision.gameObject.GetComponent<icicle>();
+        Tornado tornadoScript = collision.gameObject.GetComponent<Tornado>;
        
         //stage1ボスダメージ
         if (bossScript != null)
@@ -84,6 +85,17 @@ public class PlayerHP : MonoBehaviour
                 GetComponent<DamageFlash>().Flash();
             }
         }
+        //Stage2　竜巻
+        if(tornadoScript!= null)
+        {
+            int tor_dmg = tornadoScript.tornado_damage;
+            if(collision.gameObject.CompareTag("Enemy"))
+            {
+                Player_Current_Hp -= tor_dmg;
+                GetComponent<DamageFlash>().Flash();
+            }
+        }
+
         //ステージ3ダメージ
         if (s3AtkScript != null)
         {
