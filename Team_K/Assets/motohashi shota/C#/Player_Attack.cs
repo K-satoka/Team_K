@@ -32,17 +32,10 @@ public class Player_Attack : MonoBehaviour
 
     void Update()
     {
-        timer += Time.deltaTime;
-        if (timer > nextAttackTime)
-        {
             if (Keyboard.current.zKey.wasPressedThisFrame && timer >= nextAttackTime)
             {
                 DoAttack();
             }
-
-        }
-            timer = 0f;
-        
     }
 
     void DoAttack()
