@@ -1638,6 +1638,14 @@ PrefabInstance:
       propertyPath: GroundLayer.m_Bits
       value: 64
       objectReference: {fileID: 0}
+    - target: {fileID: 6392051823775768180, guid: 801a20b51f6e41d4b812ad7c6c59be90, type: 3}
+      propertyPath: m_Offset.x
+      value: -1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6392051823775768180, guid: 801a20b51f6e41d4b812ad7c6c59be90, type: 3}
+      propertyPath: m_Offset.y
+      value: 2.6
+      objectReference: {fileID: 0}
     - target: {fileID: 6668328777631949848, guid: 801a20b51f6e41d4b812ad7c6c59be90, type: 3}
       propertyPath: m_LocalPosition.x
       value: 81.63
