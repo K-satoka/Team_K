@@ -1598,6 +1598,26 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2791722051913882113, guid: 801a20b51f6e41d4b812ad7c6c59be90, type: 3}
+      propertyPath: m_Size.x
+      value: 8.675437
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791722051913882113, guid: 801a20b51f6e41d4b812ad7c6c59be90, type: 3}
+      propertyPath: m_Size.y
+      value: 8.675437
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791722051913882113, guid: 801a20b51f6e41d4b812ad7c6c59be90, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791722051913882113, guid: 801a20b51f6e41d4b812ad7c6c59be90, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.54246855
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791722051913882113, guid: 801a20b51f6e41d4b812ad7c6c59be90, type: 3}
+      propertyPath: m_Offset.y
+      value: 3.6205559
+      objectReference: {fileID: 0}
     - target: {fileID: 3123337689382938097, guid: 801a20b51f6e41d4b812ad7c6c59be90, type: 3}
       propertyPath: m_Name
       value: boswaiting_0
@@ -1637,6 +1657,22 @@ PrefabInstance:
     - target: {fileID: 3558001758588385280, guid: 801a20b51f6e41d4b812ad7c6c59be90, type: 3}
       propertyPath: GroundLayer.m_Bits
       value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 6392051823775768180, guid: 801a20b51f6e41d4b812ad7c6c59be90, type: 3}
+      propertyPath: m_Radius
+      value: 2.6727686
+      objectReference: {fileID: 0}
+    - target: {fileID: 6392051823775768180, guid: 801a20b51f6e41d4b812ad7c6c59be90, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6392051823775768180, guid: 801a20b51f6e41d4b812ad7c6c59be90, type: 3}
+      propertyPath: m_Offset.x
+      value: -1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6392051823775768180, guid: 801a20b51f6e41d4b812ad7c6c59be90, type: 3}
+      propertyPath: m_Offset.y
+      value: 2.835558
       objectReference: {fileID: 0}
     - target: {fileID: 6668328777631949848, guid: 801a20b51f6e41d4b812ad7c6c59be90, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2526,6 +2562,14 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 7613410471225609798, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
+      propertyPath: AttackSE
+      value: 
+      objectReference: {fileID: 8300000, guid: 867a39bc2c873934ba31885627e0606d, type: 3}
+    - target: {fileID: 7613410471225609798, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
+      propertyPath: AudioSource
+      value: 
+      objectReference: {fileID: 1825373605}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

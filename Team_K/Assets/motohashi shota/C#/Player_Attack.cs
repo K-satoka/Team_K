@@ -10,13 +10,15 @@ public class Player_Attack : MonoBehaviour
     public LayerMask enemyLayers;
     public Transform attackPoint;
 
+    public AudioSource AudioSource;
+    public AudioClip AttackSE;
+
     public float nextAttackTime = 1.5f;
     private float timer = 0f;
 
     Animator anim;
 
-    public AudioSource AudioSource;
-    public AudioClip AttackSE;
+
     public AttackCollision attackCollision;
 
     private Coroutine atttackCorotine;
@@ -30,26 +32,17 @@ public class Player_Attack : MonoBehaviour
 
     void Update()
     {
-        timer += Time.deltaTime;
-        if (timer > nextAttackTime)
-        {
-            if (Keyboard.current.zKey.wasPressedThisFrame)
+            if (Keyboard.current.zKey.wasPressedThisFrame && timer >= nextAttackTime)
             {
                 DoAttack();
-                
             }
-            timer = 0f;
-        }
     }
 
     void DoAttack()
     {
        // nextAttackTime = Time.time + 1f / attackRate;  ←お前なんでこんなとこにあるねん上のif内で処理しろや
 
-        if (AudioSource != null && AttackSE != null)
-        {
-            AudioSource.PlayOneShot(AttackSE);
-        }
+        
 
         // AttackCollision のコライダーをON
         //if (attackCollision != null)
@@ -62,9 +55,12 @@ public class Player_Attack : MonoBehaviour
         // 攻撃判定ON
         if (attackCollision != null)
         {
+           
+
             attackCollision.EnableAttack();
             //StartCoroutine(DisableAttackAfterTime(0.5f)); // 攻撃アニメーションに合わせて判定時間を調整
-        
+
+            
 
             //前のコルーチンが動いてたら止める
             if (atttackCorotine != null)

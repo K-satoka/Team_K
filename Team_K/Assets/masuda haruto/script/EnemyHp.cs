@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class EnemyHp : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class EnemyHp : MonoBehaviour
     public int Enemy_Current_Hp;//åªç›ÇÃhp
 
     public int damageOnContact = 10;
+
+    public float invincibleTime = 0.2f; // ñ≥ìGéûä‘
+    private bool isInvincible = false;
 
     public Slider hpSlider;
 
@@ -117,15 +121,17 @@ void Die()
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
+        if (isInvincible) return;
+
         if (other.CompareTag("Enemy"))
         {
             EnemyHp enemy = other.GetComponent<EnemyHp>();
             if (enemy != null)
             {
                 enemy.TakeDamage(10);
-
+                StartCoroutine(InvincibleCoroutine());
             }
         }
     }
@@ -164,5 +170,11 @@ void Die()
     public float HPrate()
     {
         return (float)Enemy_Current_Hp / Enemy_MAX_Hp;
+    }
+    IEnumerator InvincibleCoroutine()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(invincibleTime);
+        isInvincible = false;
     }
 }

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -16,10 +15,6 @@ public class PlayerHP : MonoBehaviour
     public float knock_back=10f;
 
     public static string previousSceneName;
-
-    public float invincibleTime = 1.0f; // 無敵時間
-    private bool isInvincible = false;
-
     Rigidbody2D rb;
 
     public Slider PlayerhpSlider;
@@ -59,14 +54,13 @@ public class PlayerHP : MonoBehaviour
         }
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (isInvincible) return;
-
         boss bossScript = collision.gameObject.GetComponent<boss>();
         fistDamage fistDamageScript = collision.gameObject.GetComponent<fistDamage>();
         S3Atk s3AtkScript=collision.gameObject.GetComponent<S3Atk>();
         SnowAttack snowAttackScript=collision.gameObject.GetComponent<SnowAttack>();
+        firebullet firebulletScript = collision.gameObject.GetComponent<firebullet>();
         icicle icicleScript=collision.gameObject.GetComponent<icicle>();
        
         //stage1ボスダメージ
@@ -77,7 +71,6 @@ public class PlayerHP : MonoBehaviour
             {
                 Player_Current_Hp -= dmg;
                 GetComponent<DamageFlash>().Flash();
-                StartCoroutine(InvincibleCoroutine());
             }
         }
         
@@ -89,7 +82,6 @@ public class PlayerHP : MonoBehaviour
             {
                 Player_Current_Hp -= dmg2;
                 GetComponent<DamageFlash>().Flash();
-                StartCoroutine(InvincibleCoroutine());
             }
         }
         //ステージ3ダメージ
@@ -100,7 +92,6 @@ public class PlayerHP : MonoBehaviour
             {
                 Player_Current_Hp -= st3_dmg;
                 GetComponent<DamageFlash>().Flash();
-                StartCoroutine(InvincibleCoroutine());
             }
         }
         //st4
@@ -111,40 +102,8 @@ public class PlayerHP : MonoBehaviour
             {
                 Player_Current_Hp -= st4_dmg;
                 GetComponent<DamageFlash>().Flash();
-                StartCoroutine(InvincibleCoroutine());
             }
         }
-        //st5ice
-        if (icicleScript != null)
-        {
-            int st5_icedmg = icicleScript.ice_damage;
-            if (collision.gameObject.CompareTag("BossATK"))
-            {
-                Player_Current_Hp -= st5_icedmg;
-                GetComponent<DamageFlash>().Flash();
-                StartCoroutine(InvincibleCoroutine());
-            }
-        }
-        //SE----------------------------------------------------------------------------------------
-        if (collision.gameObject.CompareTag("Enemy")||collision.gameObject.CompareTag("BossATK"))
-        {
-            if (audioSource != null && PlayerDamageSE != null)
-                audioSource.PlayOneShot(PlayerDamageSE);
-            StartCoroutine(InvincibleCoroutine());
-            Debug.Log(Player_Current_Hp);
-        }
-        //死亡------------------------------------------
-        if (Player_Current_Hp <= 0 && !isDead)
-        {
-            isDead = true;
-            Destroy(gameObject, 1.5f);
-            death();
-        }
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        firebullet firebulletScript = collision.gameObject.GetComponent<firebullet>();
-
         //st5fire
         if (firebulletScript != null)
         {
@@ -155,16 +114,32 @@ public class PlayerHP : MonoBehaviour
                 GetComponent<DamageFlash>().Flash();
             }
         }
-
+            //st5ice
+            if (icicleScript != null)
+        {
+            int st5_icedmg = icicleScript.ice_damage;
+            if (collision.gameObject.CompareTag("BossATK"))
+            {
+                Player_Current_Hp -= st5_icedmg;
+                GetComponent<DamageFlash>().Flash();
+            }
+        }
         //SE----------------------------------------------------------------------------------------
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("BossATK"))
+        if (collision.gameObject.CompareTag("Enemy")||collision.gameObject.CompareTag("BossATK"))
         {
             if (audioSource != null && PlayerDamageSE != null)
                 audioSource.PlayOneShot(PlayerDamageSE);
-            StartCoroutine(InvincibleCoroutine());
             Debug.Log(Player_Current_Hp);
         }
+        //死亡------------------------------------------
+        if (Player_Current_Hp <= 0 && !isDead)
+        {
+            isDead = true;
+            Destroy(gameObject, 1.5f);
+            death();
+        }
     }
+   
         void death()
     {
         if (audioSource != null && PlayerDieSE != null)
@@ -187,13 +162,4 @@ public class PlayerHP : MonoBehaviour
 
         FadeManager.Instance.LoadScene("GameOver", 1.0f);
     }
-
-    IEnumerator InvincibleCoroutine()
-    {
-        isInvincible = true;
-        yield return new WaitForSeconds(invincibleTime);
-        isInvincible = false;
-    }
-
-
 }
