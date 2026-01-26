@@ -68,6 +68,13 @@ public class Tornado : MonoBehaviour
 
         if (col.CompareTag("Player"))
         {
+            //Rigidbody2D rb = col.GetComponent<Rigidbody2D>();
+            //if (rb != null)
+            //{
+            //    rb.velocity = Vector2.zero;
+            //    rb.AddForce(new Vector2(-1f, 1f) * 500f);
+            //}
+
             StartEnd();
         }
     }
