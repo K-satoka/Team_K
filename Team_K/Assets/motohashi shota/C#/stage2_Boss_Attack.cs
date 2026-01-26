@@ -27,6 +27,9 @@ public class stage2_Boss_Attack : MonoBehaviour
     [Header("竜巻サイズ")]
     public Vector3 tornadoScale = new Vector3(3f, 3f, 3f);
 
+    [Header("地面のY座標")]
+    public float groundY = -3.5f;   // ここは地面の高さに合わせて調整
+
     private float attackTimer;
     private int lastAttack = -1;
     private Camera cam;
@@ -118,10 +121,7 @@ public class stage2_Boss_Attack : MonoBehaviour
 
     void SpawnTornado()
     {
-        Collider2D col = player.GetComponent<Collider2D>();
-        float bottomY = col.bounds.min.y;
-
-        Vector2 spawnPos = new Vector2(player.position.x, bottomY - 0.2f);
+        Vector2 spawnPos = new Vector2(player.position.x, groundY + 0.2f);
     
         GameObject t = Instantiate(tornadoPrefab, spawnPos, Quaternion.identity);
 

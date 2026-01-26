@@ -85,36 +85,31 @@ public class stage4_BossAttack1 : MonoBehaviour
     // ======================================================
     IEnumerator SnowAttackRoutine()
     {
-        // ★★追加：雪玉があるなら壊す、無いなら作る
         if (currentSnowball != null)
         {
             Destroy(currentSnowball);
             currentSnowball = null;
-            yield break;   // 今回は生成せず終了（壊すだけ）
+            yield break;
         }
-
 
         isAttacking = true;
 
-        // アニメーション開始
         animator.Play("ThrowSnow");
-        // 1フレーム待ってから長さを取得する
         yield return null;
 
-        // ThrowSnow の長さを取得
         float animLength = animator.GetCurrentAnimatorStateInfo(0).length;
 
-        // 発射処理とアニメーション再生を同時に進行
+        // ★ エイム開始（生成はしない）
         StartCoroutine(FireSnow());
 
         if (audioSource != null && Boss4SE != null)
             audioSource.PlayOneShot(Boss4SE);
 
-        // アニメーションが終わるまで待つ
         yield return new WaitForSeconds(animLength);
 
         isAttacking = false;
     }
+
     //近距離バージョン
     IEnumerator MeleeAttackRoutine()
     {
@@ -167,56 +162,52 @@ public class stage4_BossAttack1 : MonoBehaviour
             // 次のフレームまで待つ（コルーチンの重要ポイント）
             yield return null;
         }
+    }
+    // ======================================================
+    //     Animation Event から呼ばれる雪玉生成
+    // ======================================================
+    public void SpawnSnowFromAnim()
+    {
+        // 二重生成防止
+        if (currentSnowball != null) return;
 
-        // -------------------------------
-        // 雪玉プレハブをボスの位置に生成
-        // Instantiate はゲームオブジェクトを複製する関数
-        // -------------------------------
+        // 念のため方向保険
+        if (attackDirection == Vector2.zero && player != null)
+            attackDirection = (player.position - SnowPoint.position).normalized;
+
         currentSnowball = Instantiate(SnowPrefab, SnowPoint.position, Quaternion.identity);
         currentSnowball.transform.localScale = new Vector3(3f, 3f, 3f);
 
-
-        // -------------------------------
-        // 雪玉の向きを攻撃方向に合わせる（見た目用）
-        // Atan2 で角度を求め、Rad2Deg でラジアン → 度に変換
-        // -------------------------------
+        // 見た目向き
         SpriteRenderer snowSR = currentSnowball.GetComponent<SpriteRenderer>();
-
         if (snowSR != null)
-        {
-            // attackDirection.x が負なら左向き、正なら右向き
             snowSR.flipX = attackDirection.x > 0;
 
-            // attackDirection.y が負なら上下反転させたい場合
-            // snowSR.flipY = attackDirection.y < 0;
+        // 移動開始
+        StartCoroutine(MoveSnow());
+    }
+    // ======================================================
+    //   雪玉移動（元コードほぼそのまま）
+    // ======================================================
+    IEnumerator MoveSnow()
+    {
+        float life = 0f;
 
-            // -------------------------------
-            // 雪玉が生存している時間を管理するタイマー
-            // life が 3秒になるまで移動し続ける
-            // -------------------------------
-            float life = 0f;
+        while (life < 100f)
+        {
+            if (currentSnowball == null) yield break;
 
-            while (life < 100f)  // 雪玉寿命（3秒）
-            {
-                // 途中で雪玉が消えたらループを抜ける
-                if (currentSnowball == null) break;
+            currentSnowball.transform.position +=
+                (Vector3)attackDirection * (spead * 2f) * Time.deltaTime;
 
-                // 雪玉を一定速度で進める
-                // spead * Time.deltaTime で「1秒あたり spead の速度で動く」
-                currentSnowball.transform.position += (Vector3)attackDirection * (spead * 2f) * Time.deltaTime;
+            life += Time.deltaTime;
+            yield return null;
+        }
 
-                life += Time.deltaTime;
-
-                // 次のフレームへ
-                yield return null;
-            }
-
-            // 寿命が来たら雪玉を削除
-            if (currentSnowball != null)
-            {
-                Destroy(currentSnowball);
-                currentSnowball = null;
-            }
+        if (currentSnowball != null)
+        {
+            Destroy(currentSnowball);
+            currentSnowball = null;
         }
     }
 }
