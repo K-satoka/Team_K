@@ -1450,7 +1450,7 @@ MonoBehaviour:
   CardSelectSE: {fileID: 8300000, guid: 9df1eb14d0444714f9d5d88627682845, type: 3}
   button: {fileID: 1706468225}
   BaseMinValue: 1
-  BaseMaxValue: 4
+  BaseMaxValue: 500
 --- !u!114 &1706468225
 MonoBehaviour:
   m_ObjectHideFlags: 0

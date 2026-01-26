@@ -36,8 +36,11 @@ public class NextStage : MonoBehaviour
         //ステージのCLEAR数を取得
         stageUnlock = PlayerPrefs.GetInt("StageUnlock", 1);
 
+        currentIndex = PlayerPrefs.GetInt("SelectedStageIndex", 0);
+        Debug.Log("復元したIndex: " + currentIndex);
+
         //ステージボタンの表示・非表示
-        for(int i=0;i < _stageButton.Length;i++)
+        for (int i=0;i < _stageButton.Length;i++)
         {
             bool unlocked = (i+1) <= stageUnlock;
 
@@ -50,6 +53,7 @@ public class NextStage : MonoBehaviour
             RectTransform rt=_stageButton[i].GetComponent<RectTransform>();
             rt.sizeDelta = nomalScale;
         }
+
         SetSelectButton(currentIndex);
     }
     void Update()
@@ -133,8 +137,12 @@ public class NextStage : MonoBehaviour
     public void StageSelect(int StageNumber)
     {
         if (isLoading) return;
-
+        Debug.Log("StageSelect 呼ばれた / index = " + currentIndex);
         isLoading = true;
+        //選択されたステージの情報保存
+        PlayerPrefs.SetInt("SelectedStageIndex", currentIndex);
+        PlayerPrefs.Save();
+       
 
         //一度押されたら全部のボタンを無効化
         foreach (Button btn in _stageButton)

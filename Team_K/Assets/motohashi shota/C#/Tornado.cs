@@ -10,7 +10,7 @@ public class Tornado : MonoBehaviour
     public float followSpeed = 4f;
 
     [Header("ƒ_ƒ[ƒW")]
-    public float damage = 10f;
+    public int tormabo_damage = 10;
 
     private bool canFollow = false;
     private float timer;
