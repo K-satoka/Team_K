@@ -224,6 +224,7 @@ MonoBehaviour:
   Player_MAX_Hp: 2147483647
   Player_Current_Hp: 30
   knock_back: 20
+  invincibleTime: 0.5
   PlayerhpSlider: {fileID: 0}
   gameOverSceneName: GameOver
   audioSource: {fileID: 0}

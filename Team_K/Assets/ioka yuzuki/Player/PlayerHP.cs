@@ -16,6 +16,10 @@ public class PlayerHP : MonoBehaviour
     public float knock_back=10f;
 
     public static string previousSceneName;
+
+    public float invincibleTime = 1.0f; // 無敵時間
+    private bool isInvincible = false;
+
     Rigidbody2D rb;
 
     public Slider PlayerhpSlider;
@@ -55,8 +59,10 @@ public class PlayerHP : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
+        if (isInvincible) return;
+
         boss bossScript = collision.gameObject.GetComponent<boss>();
         fistDamage fistDamageScript = collision.gameObject.GetComponent<fistDamage>();
         S3Atk s3AtkScript=collision.gameObject.GetComponent<S3Atk>();
@@ -72,6 +78,7 @@ public class PlayerHP : MonoBehaviour
             {
                 Player_Current_Hp -= dmg;
                 GetComponent<DamageFlash>().Flash();
+                StartCoroutine(InvincibleCoroutine());
             }
         }
         
@@ -83,6 +90,7 @@ public class PlayerHP : MonoBehaviour
             {
                 Player_Current_Hp -= dmg2;
                 GetComponent<DamageFlash>().Flash();
+                StartCoroutine(InvincibleCoroutine());
             }
         }
         //ステージ3ダメージ
@@ -93,6 +101,7 @@ public class PlayerHP : MonoBehaviour
             {
                 Player_Current_Hp -= st3_dmg;
                 GetComponent<DamageFlash>().Flash();
+                StartCoroutine(InvincibleCoroutine());
             }
         }
         //st4
@@ -103,6 +112,7 @@ public class PlayerHP : MonoBehaviour
             {
                 Player_Current_Hp -= st4_dmg;
                 GetComponent<DamageFlash>().Flash();
+                StartCoroutine(InvincibleCoroutine());
             }
         }
         //st5fire
@@ -113,6 +123,7 @@ public class PlayerHP : MonoBehaviour
             {
                 Player_Current_Hp -= st5_dmg;
                 GetComponent<DamageFlash>().Flash();
+                StartCoroutine(InvincibleCoroutine());
             }
         }
         //st5ice
@@ -123,6 +134,7 @@ public class PlayerHP : MonoBehaviour
             {
                 Player_Current_Hp -= st5_icedmg;
                 GetComponent<DamageFlash>().Flash();
+                StartCoroutine(InvincibleCoroutine());
             }
         }
         //SE----------------------------------------------------------------------------------------
@@ -163,4 +175,13 @@ public class PlayerHP : MonoBehaviour
 
         FadeManager.Instance.LoadScene("GameOver", 1.0f);
     }
+
+    IEnumerator InvincibleCoroutine()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(invincibleTime);
+        isInvincible = false;
+    }
+
+
 }
