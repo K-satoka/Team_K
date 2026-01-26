@@ -67,7 +67,6 @@ public class PlayerHP : MonoBehaviour
         fistDamage fistDamageScript = collision.gameObject.GetComponent<fistDamage>();
         S3Atk s3AtkScript=collision.gameObject.GetComponent<S3Atk>();
         SnowAttack snowAttackScript=collision.gameObject.GetComponent<SnowAttack>();
-        firebullet firebulletScript=collision.gameObject.GetComponent<firebullet>();
         icicle icicleScript=collision.gameObject.GetComponent<icicle>();
        
         //stage1ボスダメージ
@@ -115,17 +114,6 @@ public class PlayerHP : MonoBehaviour
                 StartCoroutine(InvincibleCoroutine());
             }
         }
-        //st5fire
-        if (firebulletScript != null)
-        {
-            int st5_dmg = firebulletScript.fire_damage;
-            if (collision.gameObject.CompareTag("BossATK"))
-            {
-                Player_Current_Hp -= st5_dmg;
-                GetComponent<DamageFlash>().Flash();
-                StartCoroutine(InvincibleCoroutine());
-            }
-        }
         //st5ice
         if (icicleScript != null)
         {
@@ -153,7 +141,31 @@ public class PlayerHP : MonoBehaviour
             death();
         }
     }
-    void death()
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        firebullet firebulletScript = collision.gameObject.GetComponent<firebullet>();
+
+        //st5fire
+        if (firebulletScript != null)
+        {
+            int st5_dmg = firebulletScript.fire_damage;
+            if (collision.gameObject.CompareTag("BossATK"))
+            {
+                Player_Current_Hp -= st5_dmg;
+                GetComponent<DamageFlash>().Flash();
+            }
+        }
+
+        //SE----------------------------------------------------------------------------------------
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("BossATK"))
+        {
+            if (audioSource != null && PlayerDamageSE != null)
+                audioSource.PlayOneShot(PlayerDamageSE);
+            StartCoroutine(InvincibleCoroutine());
+            Debug.Log(Player_Current_Hp);
+        }
+    }
+        void death()
     {
         if (audioSource != null && PlayerDieSE != null)
             audioSource.PlayOneShot(PlayerDieSE);
