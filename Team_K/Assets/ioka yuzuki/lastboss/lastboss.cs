@@ -29,14 +29,18 @@ public class maou : MonoBehaviour
     public float detecTime = 2f;    //↑にいたら反応するまでの時間
     private float timer;
     private float timeout=0.2f;
-    
+
     //オーディオ--------------------------
+    bool pattern2SE = false;//一回だけ鳴らす用
+    bool pattern3SE = false;//一回だけ鳴らす用
+
     public AudioSource audioSource;
     public AudioClip MAouAttackSE;
     public AudioClip TereportSE;
     public AudioClip IceSE;
     public AudioClip SmallFireSE;
     public AudioClip Pattern2;
+    public AudioClip Pattern3;
 
     void Start()
     {
@@ -69,10 +73,9 @@ public class maou : MonoBehaviour
         {
             pattern1();
         }
+
         else if(hprate>=0.5f&&hprate<=0.6f)
         {
-            if (audioSource != null && Pattern2 != null)
-                audioSource.PlayOneShot(Pattern2);
             pattern2();
         }
         else if(hprate >= 0.3f)
@@ -126,6 +129,15 @@ public class maou : MonoBehaviour
 
     void pattern2()
     {
+        if(!pattern2SE)
+        {
+            //teleport();
+            if (audioSource != null && Pattern2 != null)
+                audioSource.PlayOneShot(Pattern2);
+
+            pattern2SE = true;
+        }
+
         timer += Time.deltaTime;
         if (timer >= shootInterval)
         {
@@ -145,6 +157,14 @@ public class maou : MonoBehaviour
     }
     void pattern3()
     {
+        if (!pattern3SE)
+        {
+            //teleport();
+            if (audioSource != null && Pattern3 != null)
+                audioSource.PlayOneShot(Pattern3);
+
+            pattern3SE = true;
+        }
         float distance = Vector2.Distance(transform.position, Player.position);
         if (distance <= detecDistance)
         {

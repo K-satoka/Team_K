@@ -14,8 +14,8 @@ public class Card : MonoBehaviour
     public int value;//ã¸’l
 
     [Header("ƒ‰ƒ“ƒ_ƒ€‚Ì”ÍˆÍ")]
-    public int minValue = 1;
-    public int maxValue = 2;
+    public int minValue=1 ;
+    public int maxValue=1000 ;
 
     private PlayerHP playerHP;
     private AttackCollision attackCollision;
