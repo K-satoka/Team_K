@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_Sprite: {fileID: 5930323463585540616, guid: cb7c6475dda28254f8b7fc13178f7a45, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -127,7 +127,7 @@ MonoBehaviour:
   player: {fileID: 0}
   followDuration: 1.5
   followSpeed: 4
-  damage: 10
+  tornado_damage: 3
 --- !u!61 &3034985866961347030
 BoxCollider2D:
   m_ObjectHideFlags: 0
