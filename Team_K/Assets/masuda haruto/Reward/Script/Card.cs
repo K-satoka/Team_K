@@ -182,6 +182,10 @@ public class Card : MonoBehaviour
 
             Debug.Log($"{cardType}カードを選択。効果は:{value}");
 
+        int currentStage = PlayerPrefs.GetInt("CurrentStage", 1);
+        PlayerPrefs.SetInt("SelectedStageIndex", currentStage - 1); // 0-indexに合わせる
+        PlayerPrefs.Save();
+
         //ステージセレクトに飛ぶ
         FadeManager.Instance.LoadScene("StageSelect",1.0f);
     }
