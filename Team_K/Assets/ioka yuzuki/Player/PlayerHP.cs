@@ -142,7 +142,7 @@ public class PlayerHP : MonoBehaviour
         {
             if (audioSource != null && PlayerDamageSE != null)
                 audioSource.PlayOneShot(PlayerDamageSE);
-
+            StartCoroutine(InvincibleCoroutine());
             Debug.Log(Player_Current_Hp);
         }
         //死亡------------------------------------------
