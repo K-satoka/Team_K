@@ -25,7 +25,7 @@ public class stage3_BossMove : MonoBehaviour
     private bool isBusy = false;
     private bool isEndDashBack = false;
     private float endDashBackTimer = 0f;
-
+    private float endDashBackDirection;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -48,44 +48,34 @@ public class stage3_BossMove : MonoBehaviour
     {
         if (player == null) return;
 
+        // ★後退優先
         if (isEndDashBack)
         {
             endDashBackTimer += Time.fixedDeltaTime;
-            rb.linearVelocity = new Vector2(-dashDirection * endDashBackSpeed, rb.linearVelocity.y);
+            rb.velocity = new Vector2(endDashBackDirection * endDashBackSpeed, rb.velocity.y);
 
             if (endDashBackTimer >= endDashBackTime)
             {
                 isEndDashBack = false;
                 isBusy = false;
-                rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+                rb.velocity = new Vector2(0, rb.velocity.y);
             }
-            return;
+            return; // 後退中はそれ以外の処理を完全スキップ
         }
 
-        if (isBusy) return;
-
-        // -----------------------------
-        // �� �ːi���̏����i�ړ�AI�͖����j
-        // -----------------------------
+        // ★突進中
         if (isDashing)
         {
             dashTimer += Time.fixedDeltaTime;
-
-
-            //float dirX = Mathf.Sign(player.position.x - transform.position.x);
-            //rb.velocity = new Vector2(dirX * dashSpeed, rb.velocity.y);
-            rb.linearVelocity = new Vector2(dashDirection * dashSpeed, rb.linearVelocity.y);
+            rb.velocity = new Vector2(dashDirection * dashSpeed, rb.velocity.y);
 
             if (dashTimer >= dashTime)
-            {
-                EndDash();
-            }
-            return; // �� �ړ�AI���~�߂�
+                EndDash(); // 突進終了 → 後退開始
+
+            return; // 突進中はそれ以外の処理を完全スキップ
         }
 
-        // -----------------------------
-        // �� ���̈ړ��R�[�h�i�����͂قڂ��̂܂܁j
-        // -----------------------------
+        // ★通常移動
         float distance = Vector2.Distance(transform.position, player.position);
         float dirX = player.position.x - transform.position.x;
 
@@ -93,16 +83,15 @@ public class stage3_BossMove : MonoBehaviour
         {
             bool facingRight = dirX > 0;
             sr.flipX = facingRight;
-           FlipCollider(facingRight);
+            FlipCollider(facingRight);
         }
+
         if (distance < stopDistance && !isDashing && !isBusy && !isPreparingDash)
         {
-            //�߂Â���������~�܂�
-            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            rb.velocity = new Vector2(0, rb.velocity.y);
             anim.SetBool("isMoving", false);
 
-            dashDirection = Mathf.Sign(player.position.x - transform.position.x);//�ːi�����Œ艻
-            //�ːi�J�n
+            dashDirection = player.position.x > transform.position.x ? 1f : -1f;
             StartCoroutine(StartDash());
 
             if (audioSource != null && Boss3SE != null)
@@ -111,10 +100,96 @@ public class stage3_BossMove : MonoBehaviour
         else
         {
             float dir = Mathf.Sign(player.position.x - transform.position.x);
-            rb.linearVelocity = new Vector2(dir * moveSpeed, rb.linearVelocity.y);
+            rb.velocity = new Vector2(dir * moveSpeed, rb.velocity.y);
             anim.SetBool("isMoving", true);
         }
     }
+
+    //void FixedUpdate()
+    //{
+    //    if (player == null) return;
+
+    //    if (isEndDashBack)
+    //    {
+    //        endDashBackTimer += Time.fixedDeltaTime;
+
+    //        rb.velocity = new Vector2(
+    //            endDashBackDirection * endDashBackSpeed,
+    //            rb.velocity.y
+    //        );
+
+    //        if (endDashBackTimer >= endDashBackTime)
+    //        {
+    //            isEndDashBack = false;
+    //            isBusy = false;
+    //            rb.velocity = new Vector2(0, rb.velocity.y);
+    //        }
+    //        return;
+    //    }
+
+
+    //    if (isBusy) return;
+
+    //    // -----------------------------
+    //    // �� �ːi���̏����i�ړ�AI�͖����j
+    //    // -----------------------------
+    //    if (isDashing)
+    //    {
+    //        dashTimer += Time.fixedDeltaTime;
+
+
+    //        //float dirX = Mathf.Sign(player.position.x - transform.position.x);
+    //        //rb.velocity = new Vector2(dirX * dashSpeed, rb.velocity.y);
+    //        rb.velocity = new Vector2(dashDirection * dashSpeed, rb.velocity.y);
+
+    //        if (dashTimer >= dashTime)
+    //        {
+    //            EndDash();
+    //        }
+    //        return; // �� �ړ�AI���~�߂�
+    //    }
+
+    //    // -----------------------------
+    //    // �� ���̈ړ��R�[�h�i�����͂قڂ��̂܂܁j
+    //    // -----------------------------
+    //    float distance = Vector2.Distance(transform.position, player.position);
+    //    float dirX = player.position.x - transform.position.x;
+
+    //    //if (dirX != 0)
+    //    //{
+    //    //   bool facingRight = dirX > 0;
+    //    //   sr.flipX = facingRight;
+    //    //   FlipCollider(facingRight);
+    //    //}
+    //    if (distance < stopDistance && !isDashing && !isBusy && !isPreparingDash)
+    //    {
+    //        //�߂Â���������~�܂�
+    //        rb.velocity = new Vector2(0, rb.velocity.y);
+    //        anim.SetBool("isMoving", false);
+
+    //        bool facingRight = player.position.x > transform.position.x;
+    //        sr.flipX = facingRight;
+    //        FlipCollider(facingRight);
+
+    //        dashDirection = Mathf.Sign(player.position.x - transform.position.x);//�ːi�����Œ艻
+
+    //        if (dashDirection == 0)
+    //        {
+    //            dashDirection = facingRight ? 1f : -1f;
+    //        }
+
+    //        StartCoroutine(StartDash());
+
+    //        if (audioSource != null && Boss3SE != null)
+    //            audioSource.PlayOneShot(Boss3SE);
+    //    }
+    //    else
+    //    {
+    //        float dir = Mathf.Sign(player.position.x - transform.position.x);
+    //        rb.velocity = new Vector2(dir * moveSpeed, rb.velocity.y);
+    //        anim.SetBool("isMoving", true);
+    //    }
+    //}
 
     // -----------------------------
     // �� �ːi�J�n
@@ -157,7 +232,9 @@ public class stage3_BossMove : MonoBehaviour
     {
         isDashing = false;
 
-        // �� �����_�b�V���J�n
+        // 突進と逆方向
+        endDashBackDirection = -dashDirection;
+
         isEndDashBack = true;
         endDashBackTimer = 0f;
         isBusy = true;
@@ -174,29 +251,14 @@ public class stage3_BossMove : MonoBehaviour
             boxCollider.offset = offset;
         }
     }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!isDashing) return; // 突進中じゃないなら無視
 
-    //void OnCollisionStay2D(Collision2D collision)
-    //{
-    //    if (!collision.gameObject.CompareTag("Player")) return;
-    //    if (!isDashing) return;
-
-    //    // �ːi��~
-    //    isDashing = false;
-    //    anim.SetBool("isDashing", false);
-
-    //    // �q�b�g�o�b�N�J�n
-    //    isHitBack = true;
-    //    hitBackTimer = 0f;
-
-    //    // ���x���Z�b�g
-    //    rb.velocity = Vector2.zero;
-
-    //    // �ːi�����̋t�փm�b�N�o�b�N
-    //    Vector2 knockbackForce = new Vector2(
-    //        -dashDirection * hitBackPowerX,
-    //        hitBackPowerY
-    //    );
-
-    //    rb.AddForce(knockbackForce, ForceMode2D.Impulse);
-    //}
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            // 突進停止 → 後退に切り替え
+            EndDash();
+        }
+    }
 }
