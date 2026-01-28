@@ -52,13 +52,13 @@ public class stage3_BossMove : MonoBehaviour
         if (isEndDashBack)
         {
             endDashBackTimer += Time.fixedDeltaTime;
-            rb.velocity = new Vector2(endDashBackDirection * endDashBackSpeed, rb.velocity.y);
+            rb.linearVelocity = new Vector2(endDashBackDirection * endDashBackSpeed, rb.linearVelocity.y);
 
             if (endDashBackTimer >= endDashBackTime)
             {
                 isEndDashBack = false;
                 isBusy = false;
-                rb.velocity = new Vector2(0, rb.velocity.y);
+                rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             }
             return; // 後退中はそれ以外の処理を完全スキップ
         }
@@ -67,7 +67,7 @@ public class stage3_BossMove : MonoBehaviour
         if (isDashing)
         {
             dashTimer += Time.fixedDeltaTime;
-            rb.velocity = new Vector2(dashDirection * dashSpeed, rb.velocity.y);
+            rb.linearVelocity = new Vector2(dashDirection * dashSpeed, rb.linearVelocity.y);
 
             if (dashTimer >= dashTime)
                 EndDash(); // 突進終了 → 後退開始
@@ -88,7 +88,7 @@ public class stage3_BossMove : MonoBehaviour
 
         if (distance < stopDistance && !isDashing && !isBusy && !isPreparingDash)
         {
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             anim.SetBool("isMoving", false);
 
             dashDirection = player.position.x > transform.position.x ? 1f : -1f;
@@ -100,7 +100,7 @@ public class stage3_BossMove : MonoBehaviour
         else
         {
             float dir = Mathf.Sign(player.position.x - transform.position.x);
-            rb.velocity = new Vector2(dir * moveSpeed, rb.velocity.y);
+            rb.linearVelocity = new Vector2(dir * moveSpeed, rb.linearVelocity.y);
             anim.SetBool("isMoving", true);
         }
     }

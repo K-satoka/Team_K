@@ -31,7 +31,7 @@ public class Title : MonoBehaviour
         {
             audioSource.PlayOneShot(StartSE);
         }
-        FadeManager.Instance.LoadScene("StageSelect",1.0f);
+        FadeManager.Instance.LoadScene("Tutorial",1.0f);
     }
 
 }
