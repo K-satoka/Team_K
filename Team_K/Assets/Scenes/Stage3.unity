@@ -2512,7 +2512,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7794235645534527054, guid: cf653d441a8191d4c8994b8128df995f, type: 3}
       propertyPath: missBackSpeed
-      value: 75
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 7794235645534527054, guid: cf653d441a8191d4c8994b8128df995f, type: 3}
       propertyPath: endDashBackTime
