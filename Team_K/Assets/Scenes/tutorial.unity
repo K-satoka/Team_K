@@ -500,6 +500,18 @@ MonoBehaviour:
   Enemydamage2SE: {fileID: 0}
   EnemyDieSE: {fileID: 0}
   XP: 1
+--- !u!114 &288507535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288507526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85b564b76fe27a046b94a5f330653cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &469565392 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3288287519211427113, guid: e3ce5e75f05fbdc48a59ca5cd6c1b864, type: 3}
@@ -2242,6 +2254,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5310554301318623064, guid: 5255fdc9188214f42a2fc44858fe1eb2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 288507534}
+    - targetCorrespondingSourceObject: {fileID: 5310554301318623064, guid: 5255fdc9188214f42a2fc44858fe1eb2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 288507535}
   m_SourcePrefab: {fileID: 100100000, guid: 5255fdc9188214f42a2fc44858fe1eb2, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
