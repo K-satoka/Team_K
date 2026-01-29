@@ -2503,8 +2503,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 586718450}
     - target: {fileID: 7794235645534527054, guid: cf653d441a8191d4c8994b8128df995f, type: 3}
+      propertyPath: missBackTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7794235645534527054, guid: cf653d441a8191d4c8994b8128df995f, type: 3}
       propertyPath: stopDistance
       value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7794235645534527054, guid: cf653d441a8191d4c8994b8128df995f, type: 3}
+      propertyPath: missBackSpeed
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 7794235645534527054, guid: cf653d441a8191d4c8994b8128df995f, type: 3}
       propertyPath: endDashBackTime
@@ -2512,7 +2520,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7794235645534527054, guid: cf653d441a8191d4c8994b8128df995f, type: 3}
       propertyPath: endDashBackSpeed
-      value: 150
+      value: 105
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

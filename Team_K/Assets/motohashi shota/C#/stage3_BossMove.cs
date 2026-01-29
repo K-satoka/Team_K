@@ -27,6 +27,10 @@ public class stage3_BossMove : MonoBehaviour
     private float endDashBackTimer = 0f;
     private float endDashBackDirection;
 
+    [Header("空振り後退")]
+    public float missBackSpeed = 6f;
+    public float missBackTime = 0.3f;
+
     private Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer sr;
@@ -51,6 +55,7 @@ public class stage3_BossMove : MonoBehaviour
         // ★後退優先
         if (isEndDashBack)
         {
+
             endDashBackTimer += Time.fixedDeltaTime;
             rb.linearVelocity = new Vector2(endDashBackDirection * endDashBackSpeed, rb.linearVelocity.y);
 
@@ -70,7 +75,7 @@ public class stage3_BossMove : MonoBehaviour
             rb.linearVelocity = new Vector2(dashDirection * dashSpeed, rb.linearVelocity.y);
 
             if (dashTimer >= dashTime)
-                EndDash(); // 突進終了 → 後退開始
+                EndDash(DashEndType.Missed); // 突進終了 → 後退開始
 
             return; // 突進中はそれ以外の処理を完全スキップ
         }
@@ -105,91 +110,13 @@ public class stage3_BossMove : MonoBehaviour
         }
     }
 
-    //void FixedUpdate()
-    //{
-    //    if (player == null) return;
+    enum DashEndType
+    {
+        HitPlayer,   // プレイヤー命中
+        Missed       // 空振り
+    }
 
-    //    if (isEndDashBack)
-    //    {
-    //        endDashBackTimer += Time.fixedDeltaTime;
-
-    //        rb.velocity = new Vector2(
-    //            endDashBackDirection * endDashBackSpeed,
-    //            rb.velocity.y
-    //        );
-
-    //        if (endDashBackTimer >= endDashBackTime)
-    //        {
-    //            isEndDashBack = false;
-    //            isBusy = false;
-    //            rb.velocity = new Vector2(0, rb.velocity.y);
-    //        }
-    //        return;
-    //    }
-
-
-    //    if (isBusy) return;
-
-    //    // -----------------------------
-    //    // �� �ːi���̏����i�ړ�AI�͖����j
-    //    // -----------------------------
-    //    if (isDashing)
-    //    {
-    //        dashTimer += Time.fixedDeltaTime;
-
-
-    //        //float dirX = Mathf.Sign(player.position.x - transform.position.x);
-    //        //rb.velocity = new Vector2(dirX * dashSpeed, rb.velocity.y);
-    //        rb.velocity = new Vector2(dashDirection * dashSpeed, rb.velocity.y);
-
-    //        if (dashTimer >= dashTime)
-    //        {
-    //            EndDash();
-    //        }
-    //        return; // �� �ړ�AI���~�߂�
-    //    }
-
-    //    // -----------------------------
-    //    // �� ���̈ړ��R�[�h�i�����͂قڂ��̂܂܁j
-    //    // -----------------------------
-    //    float distance = Vector2.Distance(transform.position, player.position);
-    //    float dirX = player.position.x - transform.position.x;
-
-    //    //if (dirX != 0)
-    //    //{
-    //    //   bool facingRight = dirX > 0;
-    //    //   sr.flipX = facingRight;
-    //    //   FlipCollider(facingRight);
-    //    //}
-    //    if (distance < stopDistance && !isDashing && !isBusy && !isPreparingDash)
-    //    {
-    //        //�߂Â���������~�܂�
-    //        rb.velocity = new Vector2(0, rb.velocity.y);
-    //        anim.SetBool("isMoving", false);
-
-    //        bool facingRight = player.position.x > transform.position.x;
-    //        sr.flipX = facingRight;
-    //        FlipCollider(facingRight);
-
-    //        dashDirection = Mathf.Sign(player.position.x - transform.position.x);//�ːi�����Œ艻
-
-    //        if (dashDirection == 0)
-    //        {
-    //            dashDirection = facingRight ? 1f : -1f;
-    //        }
-
-    //        StartCoroutine(StartDash());
-
-    //        if (audioSource != null && Boss3SE != null)
-    //            audioSource.PlayOneShot(Boss3SE);
-    //    }
-    //    else
-    //    {
-    //        float dir = Mathf.Sign(player.position.x - transform.position.x);
-    //        rb.velocity = new Vector2(dir * moveSpeed, rb.velocity.y);
-    //        anim.SetBool("isMoving", true);
-    //    }
-    //}
+    DashEndType dashEndType;
 
     // -----------------------------
     // �� �ːi�J�n
@@ -228,16 +155,28 @@ public class stage3_BossMove : MonoBehaviour
     // -----------------------------
     // �� �ːi�I��
     // -----------------------------
-    void EndDash()
+    void EndDash(DashEndType type)
     {
         isDashing = false;
 
+        dashEndType = type;
         // 突進と逆方向
         endDashBackDirection = -dashDirection;
 
         isEndDashBack = true;
         endDashBackTimer = 0f;
         isBusy = true;
+
+        if (type == DashEndType.HitPlayer)
+        {
+            endDashBackSpeed = 75f;
+            endDashBackTime = 0.5f;
+        }
+        else
+        {
+            endDashBackSpeed = missBackSpeed;
+            endDashBackTime = missBackTime;
+        }
 
         anim.SetBool("isDashing", false);
     }
@@ -251,6 +190,19 @@ public class stage3_BossMove : MonoBehaviour
             boxCollider.offset = offset;
         }
     }
+    void CancelDash()
+    {
+        isDashing = false;
+        dashTimer = 0f;
+
+        rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+
+        anim.SetBool("isDashing", false);
+        anim.SetBool("isMoving", false);
+
+        isBusy = false;
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (!isDashing) return; // 突進中じゃないなら無視
@@ -258,7 +210,16 @@ public class stage3_BossMove : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             // 突進停止 → 後退に切り替え
-            EndDash();
+            EndDash(DashEndType.HitPlayer);
+        }
+        else if (collision.gameObject.CompareTag("Wall"))
+        {
+            // 壁命中 → 通常挙動へ戻す
+            CancelDash();
+        }
+        if (dashTimer >= dashTime)
+        {
+            EndDash(DashEndType.Missed);
         }
     }
 }
