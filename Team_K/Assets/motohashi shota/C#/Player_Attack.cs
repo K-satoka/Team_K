@@ -32,7 +32,7 @@ public class Player_Attack : MonoBehaviour
 
     void Update()
     {
-            if (Keyboard.current.zKey.wasPressedThisFrame && timer >= nextAttackTime)
+            if ((Keyboard.current.zKey.wasPressedThisFrame||Keyboard.current.kKey.wasPressedThisFrame) && timer >= nextAttackTime)
             {
                 DoAttack();
             }
