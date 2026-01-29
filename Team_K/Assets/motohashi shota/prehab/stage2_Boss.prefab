@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4374413644349626780}
   - component: {fileID: 5200104881750902109}
   - component: {fileID: 4321274137955457332}
+  - component: {fileID: 449830362621633365}
   m_Layer: 0
   m_Name: stage2_Boss
   m_TagString: Untagged
@@ -156,9 +157,24 @@ MonoBehaviour:
   player: {fileID: 0}
   tornadoDelay: 0.7
   tornadoLifeTime: 3
+  tornadoScale: {x: 3, y: 3, z: 3}
+  groundY: -3.7
+  groundX: 0
   audioSource: {fileID: 0}
   sundArm: {fileID: 0}
   sundArm2: {fileID: 0}
+--- !u!114 &449830362621633365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619018241332223271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46797a40bf578614fbaa43ea025bfcd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1844645976656370205
 PrefabInstance:
   m_ObjectHideFlags: 0

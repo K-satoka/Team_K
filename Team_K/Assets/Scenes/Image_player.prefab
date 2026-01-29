@@ -224,7 +224,6 @@ MonoBehaviour:
   Player_MAX_Hp: 2147483647
   Player_Current_Hp: 30
   knock_back: 20
-  invincibleTime: 0.1
   PlayerhpSlider: {fileID: 0}
   gameOverSceneName: GameOver
   audioSource: {fileID: 0}
@@ -249,9 +248,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   attackPoint: {fileID: 3666933059497573972}
-  nextAttackTime: 0.15
   AudioSource: {fileID: 0}
   AttackSE: {fileID: 0}
+  nextAttackTime: 5
   attackCollision: {fileID: 0}
 --- !u!114 &7613410471225609798
 MonoBehaviour:
@@ -377,7 +376,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -23.091982, y: 12.944273}
+  m_Offset: {x: -13.366592, y: 8.91518}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -387,5 +386,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 51.95718, y: 44.65846}
+  m_Size: {x: 71.40796, y: 36.600273}
   m_EdgeRadius: 0
