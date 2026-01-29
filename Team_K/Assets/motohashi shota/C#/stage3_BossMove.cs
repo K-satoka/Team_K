@@ -52,13 +52,10 @@ public class stage3_BossMove : MonoBehaviour
     {
         if (player == null) return;
 
-        // ★後退優先
         if (isEndDashBack)
         {
-
             endDashBackTimer += Time.fixedDeltaTime;
             rb.linearVelocity = new Vector2(endDashBackDirection * endDashBackSpeed, rb.linearVelocity.y);
-
             if (endDashBackTimer >= endDashBackTime)
             {
                 isEndDashBack = false;
@@ -66,11 +63,10 @@ public class stage3_BossMove : MonoBehaviour
                 rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             }
             return; // 後退中はそれ以外の処理を完全スキップ
-        }
-
+        }    
         // ★突進中
         if (isDashing)
-        {
+        { 
             dashTimer += Time.fixedDeltaTime;
             rb.linearVelocity = new Vector2(dashDirection * dashSpeed, rb.linearVelocity.y);
 
@@ -79,6 +75,8 @@ public class stage3_BossMove : MonoBehaviour
 
             return; // 突進中はそれ以外の処理を完全スキップ
         }
+
+        if (isBusy) return;
 
         // ★通常移動
         float distance = Vector2.Distance(transform.position, player.position);
@@ -167,28 +165,13 @@ public class stage3_BossMove : MonoBehaviour
         endDashBackTimer = 0f;
         isBusy = true;
 
-        if (type == DashEndType.HitPlayer)
-        {
-            endDashBackSpeed = 75f;
-            endDashBackTime = 0.5f;
-        }
-        else
+        if (type == DashEndType.Missed)
         {
             endDashBackSpeed = missBackSpeed;
             endDashBackTime = missBackTime;
         }
 
         anim.SetBool("isDashing", false);
-    }
-
-    void FlipCollider(bool facingRight)
-    {
-        if (boxCollider != null)
-        {
-            Vector2 offset = boxCollider.offset;
-            offset.x = Mathf.Abs(offset.x) * (facingRight ? 0.1f : -0.1f);
-            boxCollider.offset = offset;
-        }
     }
     void CancelDash()
     {
@@ -202,24 +185,23 @@ public class stage3_BossMove : MonoBehaviour
 
         isBusy = false;
     }
-
+    void FlipCollider(bool facingRight)
+    {
+        if (boxCollider != null)
+        {
+            Vector2 offset = boxCollider.offset;
+            offset.x = Mathf.Abs(offset.x) * (facingRight ? 0.1f : -0.1f);
+            boxCollider.offset = offset;
+        }
+    }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!isDashing) return; // 突進中じゃないなら無視
+        if (!isDashing) return;
 
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            // 突進停止 → 後退に切り替え
-            EndDash(DashEndType.HitPlayer);
-        }
-        else if (collision.gameObject.CompareTag("Wall"))
+        if (collision.gameObject.CompareTag("Wall"))
         {
             // 壁命中 → 通常挙動へ戻す
             CancelDash();
-        }
-        if (dashTimer >= dashTime)
-        {
-            EndDash(DashEndType.Missed);
         }
     }
 }
