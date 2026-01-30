@@ -40,6 +40,8 @@ public class stage2_Boss_Attack : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip sundArm;
     public AudioClip sundArm2;
+    public AudioClip mosionSE;
+    public AudioClip TornadoSE;
 
 
     void Start()
@@ -130,6 +132,10 @@ public class stage2_Boss_Attack : MonoBehaviour
 
         t.transform.localScale = tornadoScale;
 
+        if (audioSource != null && TornadoSE != null)
+        {
+            StartCoroutine(PlaySEAfterFrames(TornadoSE, 50));
+        }
         Tornado tornado = t.GetComponent<Tornado>();
         if (tornado != null)
             tornado.Init(player);
@@ -137,7 +143,22 @@ public class stage2_Boss_Attack : MonoBehaviour
 
     IEnumerator SpawnTornadoDelayed(float delay)
     {
+        if (audioSource != null && sundArm != null)
+        {
+            audioSource.PlayOneShot(mosionSE);
+        }
         yield return new WaitForSeconds(delay);
         SpawnTornado();
     }
+
+    //SEÇêîÉtÉåÅ[ÉÄíxÇÁÇπÇÈÇΩÇﬂÇæÇØÇÃÇ‚Ç¬
+    IEnumerator PlaySEAfterFrames(AudioClip Clip,int frames)
+    {
+        for (int i = 0; i < frames; i++)
+        {
+            yield return null;
+        }
+        audioSource.PlayOneShot(Clip);
+    }
+
 }

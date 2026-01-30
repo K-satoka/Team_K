@@ -87,7 +87,7 @@ public class tutorial : MonoBehaviour
             PlayerPrefs.Save();
             Debug.Log("Ÿ‚Éi‚ß‚é‚ºA‘Š–_");
         }
-        //SEÄ¶
+       
 
        
 
