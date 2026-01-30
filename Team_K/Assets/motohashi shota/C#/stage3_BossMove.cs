@@ -76,7 +76,7 @@ public class stage3_BossMove : MonoBehaviour
             return; // 突進中はそれ以外の処理を完全スキップ
         }
 
-        if (isBusy) return;
+        if (isBusy) return;//突進中や、後退中にこれより後の処理をしない
 
         // ★通常移動
         float distance = Vector2.Distance(transform.position, player.position);
@@ -139,13 +139,13 @@ public class stage3_BossMove : MonoBehaviour
         isPreparingDash = true;   // ��������ҋ@���
         isBusy = true;
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.5f);//0.5フレームだけ待つ
 
-        isDashing = true;
+        isDashing = true;//突進開始
         dashTimer = 0f;
 
-        anim.SetBool("isDashing", true);
-        anim.SetBool("isMoving", false);
+        anim.SetBool("isDashing", true);//突進アニメーション開始
+        anim.SetBool("isMoving", false);//移動アニメーション停止
 
         isPreparingDash = false;  // �ːi�J�n�őҋ@����
         isBusy = false;
@@ -155,33 +155,33 @@ public class stage3_BossMove : MonoBehaviour
     // -----------------------------
     void EndDash(DashEndType type)
     {
-        isDashing = false;
+        isDashing = false;//突進停止
 
-        dashEndType = type;
+        dashEndType = type;//何に当たったか
         // 突進と逆方向
         endDashBackDirection = -dashDirection;
 
-        isEndDashBack = true;
+        isEndDashBack = true;//後退フラグオン
         endDashBackTimer = 0f;
         isBusy = true;
 
-        if (type == DashEndType.Missed)
+        if (type == DashEndType.Missed)//何にもあたっていないなら後退する
         {
             endDashBackSpeed = missBackSpeed;
             endDashBackTime = missBackTime;
         }
 
-        anim.SetBool("isDashing", false);
+        anim.SetBool("isDashing", false);//突進アニメーション停止
     }
     void CancelDash()
     {
-        isDashing = false;
-        dashTimer = 0f;
+        isDashing = false;//突進停止
+        dashTimer = 0f;//突進時間を０に
 
         rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
 
-        anim.SetBool("isDashing", false);
-        anim.SetBool("isMoving", false);
+        anim.SetBool("isDashing", false);//突進アニメーション停止
+        anim.SetBool("isMoving", false);//移動アニメーション停止
 
         isBusy = false;
     }
@@ -196,7 +196,7 @@ public class stage3_BossMove : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!isDashing) return;
+        if (!isDashing) return;//突進中じゃないなら処理しない
 
         if (collision.gameObject.CompareTag("Wall"))
         {
