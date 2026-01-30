@@ -25,6 +25,8 @@ public class stage4_BossAttack1 : MonoBehaviour
     private float attackTimer;
     //個数カウント用
     private GameObject currentSnowball; // ★生成した雪玉を記録しておく
+    //発射位置保持
+    private Vector3 snowPointDefaultLocalPos;
     [Header("アニメーション用")]
     bool isAttacking = false;
 
@@ -44,6 +46,7 @@ public class stage4_BossAttack1 : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         attackTimer = Random.Range(0f, attackInterval);
+        snowPointDefaultLocalPos = SnowPoint.localPosition;
     }
 
     void Update()
@@ -174,6 +177,12 @@ public class stage4_BossAttack1 : MonoBehaviour
         // 念のため方向保険
         if (attackDirection == Vector2.zero && player != null)
             attackDirection = (player.position - SnowPoint.position).normalized;
+
+        // ★ SnowPoint 反転処理
+        Vector3 pos = snowPointDefaultLocalPos;
+        pos.x = Mathf.Abs(pos.x) * (attackDirection.x >= 0 ? 1 : -1);
+        SnowPoint.localPosition = pos;
+
 
         currentSnowball = Instantiate(SnowPrefab, SnowPoint.position, Quaternion.identity);
         currentSnowball.transform.localScale = new Vector3(3f, 3f, 3f);
