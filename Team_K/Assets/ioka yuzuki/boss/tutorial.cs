@@ -20,9 +20,8 @@ public class tutorial : MonoBehaviour
     public int currentStageNumber = 1;
 
     public AudioSource audioSource;
-    public AudioClip EnemydamageSE;
-    public AudioClip Enemydamage2SE;
-    public AudioClip EnemyDieSE;
+    public AudioClip TdamageSE;
+   
 
     public int XP = 1;
     void Start()
@@ -50,9 +49,9 @@ public class tutorial : MonoBehaviour
             hpSlider.value = Enemy_Current_Hp;//HPバー更新
         }
         //SE
-        if (audioSource != null && EnemydamageSE != null)
-            audioSource.PlayOneShot(EnemydamageSE);
-        audioSource.PlayOneShot(Enemydamage2SE);
+        if (audioSource != null && TdamageSE != null)
+            audioSource.PlayOneShot(TdamageSE);
+      
 
         if (Enemy_Current_Hp <= 0)
         {
@@ -90,8 +89,7 @@ public class tutorial : MonoBehaviour
         }
         //SE再生
 
-        if (audioSource != null && EnemyDieSE != null)
-            audioSource.PlayOneShot(EnemyDieSE);
+       
 
         
 
