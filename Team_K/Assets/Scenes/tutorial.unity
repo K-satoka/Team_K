@@ -487,7 +487,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 288507526}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d59baced058b5d4c98a52265bbe29ac, type: 3}
   m_Name: 
@@ -499,9 +499,7 @@ MonoBehaviour:
   hpSlider: {fileID: 0}
   currentStageNumber: 0
   audioSource: {fileID: 288507536}
-  EnemydamageSE: {fileID: 8300000, guid: bd890d471690ef940ab0266a9c3b75b7, type: 3}
-  Enemydamage2SE: {fileID: 0}
-  EnemyDieSE: {fileID: 0}
+  TdamageSE: {fileID: 8300000, guid: bd890d471690ef940ab0266a9c3b75b7, type: 3}
   XP: 1
 --- !u!114 &288507535
 MonoBehaviour:
@@ -621,7 +619,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 288507526}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e45e644e8afb5f468e1fab8d7cb5fbb, type: 3}
   m_Name: 
@@ -632,8 +630,8 @@ MonoBehaviour:
   invincibleTime: 0.2
   hpSlider: {fileID: 0}
   currentStageNumber: 1
-  audioSource: {fileID: 0}
-  EnemydamageSE: {fileID: 0}
+  audioSource: {fileID: 288507536}
+  EnemydamageSE: {fileID: 8300000, guid: bd890d471690ef940ab0266a9c3b75b7, type: 3}
   Enemydamage2SE: {fileID: 0}
   EnemyDieSE: {fileID: 0}
   XP: 1
@@ -816,8 +814,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2918761914320513955, guid: e3ce5e75f05fbdc48a59ca5cd6c1b864, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.0478
+      objectReference: {fileID: 0}
+    - target: {fileID: 2918761914320513955, guid: e3ce5e75f05fbdc48a59ca5cd6c1b864, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -57.398567
+      value: -57.8007
       objectReference: {fileID: 0}
     - target: {fileID: 2918761914320513955, guid: e3ce5e75f05fbdc48a59ca5cd6c1b864, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1115,9 +1117,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 692748623483423171, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
+      propertyPath: attackDamage
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7613410471225609798, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: baseAttack
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7613410471225609798, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: currentAttack
@@ -1569,7 +1575,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2918761914320513955, guid: e3ce5e75f05fbdc48a59ca5cd6c1b864, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 2.0778
       objectReference: {fileID: 0}
     - target: {fileID: 2918761914320513955, guid: e3ce5e75f05fbdc48a59ca5cd6c1b864, type: 3}
       propertyPath: m_LocalScale.y
@@ -1577,7 +1583,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2918761914320513955, guid: e3ce5e75f05fbdc48a59ca5cd6c1b864, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -91
+      value: -90.3466
       objectReference: {fileID: 0}
     - target: {fileID: 2918761914320513955, guid: e3ce5e75f05fbdc48a59ca5cd6c1b864, type: 3}
       propertyPath: m_LocalPosition.y
