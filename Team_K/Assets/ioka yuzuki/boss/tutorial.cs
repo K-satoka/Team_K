@@ -93,7 +93,7 @@ public class tutorial : MonoBehaviour
         if (audioSource != null && EnemyDieSE != null)
             audioSource.PlayOneShot(EnemyDieSE);
 
-        Destroy(gameObject, 2.0f);//ゲームオブジェクトを削除
+        
 
         if (currentStageNumber == 5)
         {

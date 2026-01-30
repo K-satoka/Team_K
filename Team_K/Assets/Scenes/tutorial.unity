@@ -448,25 +448,28 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 4.345, y: 0.66999996}
-      - {x: 4.345, y: 2.12}
-      - {x: 4.115, y: 2.59}
-      - {x: 4.095, y: 2.61}
-      - {x: 3.885, y: 2.83}
-      - {x: 3.865, y: 2.85}
-      - {x: 3.655, y: 3.3}
-      - {x: 3.635, y: 3.32}
-      - {x: 3.415, y: 3.76}
-      - {x: 3.395, y: 3.78}
-      - {x: 3.205, y: 4.33}
-      - {x: 2.075, y: 5.24}
-      - {x: 0.625, y: 5.65}
-      - {x: -1.0649999, y: 5.65}
-      - {x: -1.0749999, y: 5.64}
-      - {x: -1.995, y: 5.42}
-      - {x: -2.0149999, y: 5.4}
-      - {x: -2.695, y: 5.19}
-      - {x: -3.0349998, y: 5.08}
-      - {x: -3.5149999, y: 4.61}
+      - {x: 4.1108994, y: 1.8078661}
+      - {x: 4.1236706, y: 2.3385587}
+      - {x: 4.0689883, y: 2.4452627}
+      - {x: 4.023727, y: 2.465844}
+      - {x: 3.8996816, y: 2.5898883}
+      - {x: 3.8110669, y: 2.7884474}
+      - {x: 3.6436708, y: 2.9298327}
+      - {x: 3.510374, y: 3.2484474}
+      - {x: 3.2406573, y: 3.6710527}
+      - {x: 2.978027, y: 4.0031586}
+      - {x: 1.966053, y: 4.895}
+      - {x: 0.49789506, y: 5.350395}
+      - {x: -0.4755583, y: 5.441185}
+      - {x: -0.6292112, y: 5.4411845}
+      - {x: -0.7753951, y: 5.4584208}
+      - {x: -0.93860537, y: 5.3532805}
+      - {x: -1.4865799, y: 5.265658}
+      - {x: -1.7433083, y: 5.110196}
+      - {x: -1.9712176, y: 5.1305413}
+      - {x: -2.4414215, y: 4.9545345}
+      - {x: -2.7270832, y: 4.8807597}
+      - {x: -3.2614214, y: 4.3564215}
       - {x: -4.125, y: 3.3}
       - {x: -4.345, y: 2.72}
       - {x: -4.345, y: 0.79999995}
@@ -484,7 +487,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 288507526}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d59baced058b5d4c98a52265bbe29ac, type: 3}
   m_Name: 
@@ -611,6 +614,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &288507537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288507526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e45e644e8afb5f468e1fab8d7cb5fbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemy_MAX_Hp: 1000
+  Enemy_Current_Hp: 1000
+  damageOnContact: 10
+  invincibleTime: 0.2
+  hpSlider: {fileID: 0}
+  currentStageNumber: 1
+  audioSource: {fileID: 0}
+  EnemydamageSE: {fileID: 0}
+  Enemydamage2SE: {fileID: 0}
+  EnemyDieSE: {fileID: 0}
+  XP: 1
 --- !u!1 &469565392 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3288287519211427113, guid: e3ce5e75f05fbdc48a59ca5cd6c1b864, type: 3}
@@ -1091,7 +1117,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7613410471225609798, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: baseAttack
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7613410471225609798, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: currentAttack
@@ -2342,7 +2368,7 @@ PrefabInstance:
     - target: {fileID: 5956239433702985254, guid: 5255fdc9188214f42a2fc44858fe1eb2, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 6200000, guid: 977759c86a0ae1b419fbe49c813c9d64, type: 2}
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3070188973956007579, guid: 5255fdc9188214f42a2fc44858fe1eb2, type: 3}
     - {fileID: 3329046823848604521, guid: 5255fdc9188214f42a2fc44858fe1eb2, type: 3}
@@ -2350,7 +2376,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5310554301318623064, guid: 5255fdc9188214f42a2fc44858fe1eb2, type: 3}
-      insertIndex: -1
+      insertIndex: 2
       addedObject: {fileID: 288507533}
     - targetCorrespondingSourceObject: {fileID: 5310554301318623064, guid: 5255fdc9188214f42a2fc44858fe1eb2, type: 3}
       insertIndex: -1
@@ -2361,6 +2387,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5310554301318623064, guid: 5255fdc9188214f42a2fc44858fe1eb2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 288507536}
+    - targetCorrespondingSourceObject: {fileID: 5310554301318623064, guid: 5255fdc9188214f42a2fc44858fe1eb2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 288507537}
   m_SourcePrefab: {fileID: 100100000, guid: 5255fdc9188214f42a2fc44858fe1eb2, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
