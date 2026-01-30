@@ -1295,7 +1295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8727361323705688563, guid: 76763b4a71331354aa8c00f7fe7455b6, type: 3}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8764909333635112837, guid: 76763b4a71331354aa8c00f7fe7455b6, type: 3}
       propertyPath: spead
@@ -2232,7 +2232,7 @@ Transform:
   m_GameObject: {fileID: 910060487}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 46.9, y: -39.8, z: 0}
+  m_LocalPosition: {x: 46.9, y: -40.3, z: 0}
   m_LocalScale: {x: -7.0318713, y: 6.4545927, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3320,12 +3320,14 @@ MonoBehaviour:
   Enemy_MAX_Hp: 4600
   Enemy_Current_Hp: 4600
   damageOnContact: 10
+  invincibleTime: 0.2
   hpSlider: {fileID: 634710773}
   currentStageNumber: 4
   audioSource: {fileID: 1176582272}
   EnemydamageSE: {fileID: 8300000, guid: bd890d471690ef940ab0266a9c3b75b7, type: 3}
   Enemydamage2SE: {fileID: 8300000, guid: 5d7d8fae4c53ac24c8f0853fd39df208, type: 3}
   EnemyDieSE: {fileID: 8300000, guid: fec76fad6f7e3c94a9b44a8bc294ef56, type: 3}
+  XP: 1
 --- !u!82 &1176582272
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3908,7 +3910,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7031613813734444608, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8345373714454490795, guid: f8eb54e7d83d7b64ca03f8cd3f85b272, type: 3}
       propertyPath: m_Name
