@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System;
+
 
 public class EnemyHp : MonoBehaviour
 {
@@ -21,8 +23,11 @@ public class EnemyHp : MonoBehaviour
     public AudioClip EnemydamageSE;
     public AudioClip Enemydamage2SE;
     public AudioClip EnemyDieSE;
+   
 
-    public int XP = 1;
+    // 死亡イベント
+    public static event Action OnEnemyDead;
+
     void Start()
     {
        Enemy_Current_Hp = Enemy_MAX_Hp;   //初期値を最大値に設定
@@ -61,6 +66,13 @@ public class EnemyHp : MonoBehaviour
 
 void Die()
     {
+        GameManager gm = GameObject.FindObjectOfType<GameManager>();
+
+        if (gm != null)
+        {
+            gm.EnemyDefeated(); // カウントアップを依頼
+        }
+
         Debug.Log("死んだぜ!");
         Debug.Log("保存 LastClearedStage = " + currentStageNumber);
         //次のステージの解放処理
@@ -108,7 +120,7 @@ void Die()
         if (audioSource != null && EnemyDieSE != null)
             audioSource.PlayOneShot(EnemyDieSE);
 
-        Destroy(gameObject,2.0f);//ゲームオブジェクトを削除
+        Destroy(gameObject,0.5f);//ゲームオブジェクトを削除
 
         if (currentStageNumber == 5)
         {

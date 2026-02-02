@@ -8,7 +8,7 @@ public class stage1killcnt : MonoBehaviour
     public TextMeshProUGUI kill_cnt;
 
     stage1relay kill;
-    int cnt=0;
+    int cnt;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,7 +20,7 @@ public class stage1killcnt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        cnt = kill.killcnt;
-        kill_cnt.text = "cnt" + cnt;
+        
+        kill_cnt.text = "cnt " + cnt;
     }
 }

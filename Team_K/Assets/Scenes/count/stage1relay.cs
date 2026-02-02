@@ -2,19 +2,22 @@ using UnityEngine;
 
 public class stage1relay : MonoBehaviour
 {
-    EnemyHp enemyhp;
-    public int killcnt;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static int killCount = 0;
+    public int kiiiiii;
+    void OnEnable()
     {
-        enemyhp =GameObject.Find("boswaiting_0").GetComponent<EnemyHp>();
-
+        EnemyHp.OnEnemyDead += AddCount;
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnDisable()
     {
-        if (enemyhp.Enemy_Current_Hp <= 0)
-            killcnt++;
+        EnemyHp.OnEnemyDead -= AddCount;
+    }
+
+    void AddCount()
+    {
+        killCount++;
+        kiiiiii=killCount;
+        Debug.Log("ƒJƒEƒ“ƒg‘ÎÛ‚Ì“GŒ‚”j”: " + killCount);
     }
 }
