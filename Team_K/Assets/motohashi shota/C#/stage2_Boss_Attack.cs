@@ -119,6 +119,10 @@ public class stage2_Boss_Attack : MonoBehaviour
     // Animation EventÇ©ÇÁåƒÇŒÇÍÇÈ
     public void OnTornadoWarnEnd()
     {
+        if (audioSource != null && mosionSE != null)
+        {
+            audioSource.PlayOneShot(mosionSE);
+        }
         StartCoroutine(SpawnTornadoDelayed(tornadoDelay));
     }
 
@@ -134,7 +138,7 @@ public class stage2_Boss_Attack : MonoBehaviour
 
         if (audioSource != null && TornadoSE != null)
         {
-            StartCoroutine(PlaySEAfterFrames(TornadoSE, 50));
+            audioSource.PlayOneShot(TornadoSE);
         }
         Tornado tornado = t.GetComponent<Tornado>();
         if (tornado != null)
@@ -143,22 +147,10 @@ public class stage2_Boss_Attack : MonoBehaviour
 
     IEnumerator SpawnTornadoDelayed(float delay)
     {
-        if (audioSource != null && sundArm != null)
-        {
-            audioSource.PlayOneShot(mosionSE);
-        }
+       
         yield return new WaitForSeconds(delay);
         SpawnTornado();
     }
 
-    //SEÇêîÉtÉåÅ[ÉÄíxÇÁÇπÇÈÇΩÇﬂÇæÇØÇÃÇ‚Ç¬
-    IEnumerator PlaySEAfterFrames(AudioClip Clip,int frames)
-    {
-        for (int i = 0; i < frames; i++)
-        {
-            yield return null;
-        }
-        audioSource.PlayOneShot(Clip);
-    }
-
+    
 }
