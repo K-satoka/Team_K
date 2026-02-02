@@ -27,9 +27,12 @@ public class stage4_BossAttack1 : MonoBehaviour
     private GameObject currentSnowball; // ★生成した雪玉を記録しておく
     //発射位置保持
     private Vector3 snowPointDefaultLocalPos;
+    private int attackFacing = 1; // 1=右, -1=左
+    private int currentFacing = 1; // 今向いてる方向
+
     [Header("アニメーション用")]
     bool isAttacking = false;
-
+    
     [Header("近距離攻撃用")]
     public float meleeRange = 1.5f;       // 近接攻撃の距離
     public float meleeDuration = 0.5f;    // 攻撃判定が出ている時間
@@ -53,6 +56,16 @@ public class stage4_BossAttack1 : MonoBehaviour
     {
         // プレイヤーが存在しない場合は何もしない
         if (player == null) return;
+
+        // ★ 向き更新（密着時は変えない）
+        // プレイヤーの横にいる時だけボスの向きを更新
+        float dx = player.position.x - transform.position.x;
+        if (Mathf.Abs(dx) > 0.3f)
+        {
+            currentFacing = dx > 0 ? -1 : 1;  // ボス本体の向き
+            sr.flipX = currentFacing < 0;      // 見た目だけ反転
+        }
+
 
         //攻撃中に他のアニメーションに切り替わらないようにする処理
         if (isAttacking) return;
@@ -88,16 +101,28 @@ public class stage4_BossAttack1 : MonoBehaviour
     // ======================================================
     IEnumerator SnowAttackRoutine()
     {
+        isAttacking = true;
+
+        // ★ 攻撃開始時に向きを固定
+        attackFacing = (player.position.x >= transform.position.x) ? 1 : -1; ;
+
+        // SnowPoint もここで固定
+        Vector3 pos = snowPointDefaultLocalPos;
+        pos.x = Mathf.Abs(snowPointDefaultLocalPos.x) * attackFacing;
+        SnowPoint.localPosition = pos;
+
+        // 見た目も合わせる
+        sr.flipX = attackFacing < 0;
+
+        animator.Play("ThrowSnow");
+
         if (currentSnowball != null)
         {
             Destroy(currentSnowball);
             currentSnowball = null;
-            yield break;
+            //yield break;
         }
-
-        isAttacking = true;
-
-        animator.Play("ThrowSnow");
+        
         yield return null;
 
         float animLength = animator.GetCurrentAnimatorStateInfo(0).length;
@@ -171,18 +196,28 @@ public class stage4_BossAttack1 : MonoBehaviour
     // ======================================================
     public void SpawnSnowFromAnim()
     {
-        // 二重生成防止
-        if (currentSnowball != null) return;
 
-        // 念のため方向保険
-        if (attackDirection == Vector2.zero && player != null)
-            attackDirection = (player.position - SnowPoint.position).normalized;
+        // ★ここに追加する
+        if (player != null)
+        {
+            Vector2 dir = player.position - SnowPoint.position;
+            if (dir.magnitude < 0.1f) // ゼロ距離対策
+                dir = new Vector2(SnowPoint.localPosition.x >= 0 ? 1f : -1f, 0f);
+            attackDirection = dir.normalized;
+        }
+        else
+        {
+            attackDirection = Vector2.right; // プレイヤーがいない場合
+        }
 
-        // ★ SnowPoint 反転処理
-        Vector3 pos = snowPointDefaultLocalPos;
-        pos.x = Mathf.Abs(pos.x) * (attackDirection.x >= 0 ? 1 : -1);
-        SnowPoint.localPosition = pos;
-
+        //// 念のため方向保険
+        //if (attackDirection == Vector2.zero && player != null)
+        //{
+        //    Vector2 dir = player.position - SnowPoint.position;
+        //    if (dir.magnitude < 0.1f) // 密着しすぎたら
+        //        dir = new Vector2(SnowPoint.localPosition.x >= 0 ? 1f : -1f, 0f);
+        //    attackDirection = dir.normalized;
+        //}
 
         currentSnowball = Instantiate(SnowPrefab, SnowPoint.position, Quaternion.identity);
         currentSnowball.transform.localScale = new Vector3(3f, 3f, 3f);
@@ -193,30 +228,29 @@ public class stage4_BossAttack1 : MonoBehaviour
             snowSR.flipX = attackDirection.x > 0;
 
         // 移動開始
-        StartCoroutine(MoveSnow());
+        StartCoroutine(MoveSnow(currentSnowball));
     }
     // ======================================================
     //   雪玉移動（元コードほぼそのまま）
     // ======================================================
-    IEnumerator MoveSnow()
+    IEnumerator MoveSnow(GameObject snow)
     {
         float life = 0f;
 
         while (life < 100f)
         {
-            if (currentSnowball == null) yield break;
+            if (snow == null) yield break;
 
-            currentSnowball.transform.position +=
-                (Vector3)attackDirection * (spead * 2f) * Time.deltaTime;
+            snow.transform.position += (Vector3)attackDirection * (spead * 2f) * Time.deltaTime;
 
             life += Time.deltaTime;
             yield return null;
         }
 
-        if (currentSnowball != null)
+        if (snow != null)
         {
-            Destroy(currentSnowball);
-            currentSnowball = null;
+            Destroy(snow);
+            snow = null;
         }
     }
 }
