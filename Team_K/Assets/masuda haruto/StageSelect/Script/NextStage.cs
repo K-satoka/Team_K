@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 
@@ -15,6 +16,9 @@ public class NextStage : MonoBehaviour
     [SerializeField]
     private
         GameObject[] _lockImages;//南京錠アイコン配列
+
+    [SerializeField]
+    private Button MenuButton;
 
     public AudioSource audioSource;
     public AudioClip selectSE;
@@ -71,11 +75,30 @@ public class NextStage : MonoBehaviour
         {
             MoveSelect(-1);
         }
+        //上キー
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            SelectMenuButton();
+        }
+        //下キー
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            ReturnToStageButton();
+        }
 
         // 決定（Enter or Space）
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
         {
-            if (_stageButton[currentIndex].interactable)
+            GameObject current = EventSystem.current.currentSelectedGameObject;
+
+            if(current==MenuButton.gameObject)
+            {
+                OpenMenu();
+                return;
+            }
+
+            if (current == _stageButton[currentIndex].interactable
+                && _stageButton[currentIndex].interactable)
             {
                 StageSelect(currentIndex + 1);
             }
@@ -161,4 +184,46 @@ public class NextStage : MonoBehaviour
         //受け取った因数(stage)のステージをロード
         FadeManager.Instance.LoadScene(scaneName,1.0f);
     }
+
+    void SelectMenuButton()
+    {
+        StopAllCoroutines();
+
+        for (int i = 0; i < _stageButton.Length; i++)
+        {
+            RectTransform rt = _stageButton[i].GetComponent<RectTransform>();
+            StartCoroutine(ResizeButton(rt, nomalScale));
+        }
+        MenuButton.Select();
+
+    }
+
+    void ReturnToStageButton()
+    {
+        StopAllCoroutines();
+
+        for (int i = 0; i < _stageButton.Length; i++)
+        {
+            RectTransform rt=_stageButton[i].GetComponent<RectTransform>();
+            StartCoroutine(ResizeButton(rt, nomalScale));
+        }
+
+        RectTransform selectRT = _stageButton[currentIndex].GetComponent<RectTransform>();
+        StartCoroutine(ResizeButton(selectRT,selectedScale));
+
+        _stageButton[currentIndex].Select();
+    }
+    void OpenMenu()
+    {
+        Debug.Log("メニューを開く");
+
+        // 例：
+        // menuPanel.SetActive(true);
+        // SE鳴らす
+        if (audioSource != null && selectSE != null)
+        {
+            audioSource.PlayOneShot(selectSE);
+        }
+    }
+
 }
