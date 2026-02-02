@@ -7,7 +7,7 @@ public class stage1relay : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        enemyhp = GetComponent<EnemyHp>();
+        enemyhp =GameObject.Find("boswaiting_0").GetComponent<EnemyHp>();
 
     }
 

@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 692748623483423171}
   - component: {fileID: 7613410471225609798}
   - component: {fileID: 5629590497699805029}
+  - component: {fileID: -3531637183067612411}
   m_Layer: 7
   m_Name: Image_player
   m_TagString: Player
@@ -279,6 +280,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flash: 0.1
+--- !u!114 &-3531637183067612411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294595988857754427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 508918e5258a09b468a8155ab91c01f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  killcnt: 0
 --- !u!1 &774756139354270928
 GameObject:
   m_ObjectHideFlags: 0
