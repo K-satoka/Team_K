@@ -684,7 +684,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 508918e5258a09b468a8155ab91c01f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kiiiiii: 0
 --- !u!61 &257977286
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -692,7 +691,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 257977273}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -1695,7 +1694,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3558001758588385280, guid: 801a20b51f6e41d4b812ad7c6c59be90, type: 3}
       propertyPath: Enemy_speed
-      value: 30
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 3558001758588385280, guid: 801a20b51f6e41d4b812ad7c6c59be90, type: 3}
       propertyPath: SlimejumpSE
@@ -1723,7 +1722,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6392051823775768180, guid: 801a20b51f6e41d4b812ad7c6c59be90, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6392051823775768180, guid: 801a20b51f6e41d4b812ad7c6c59be90, type: 3}
       propertyPath: m_Offset.x
