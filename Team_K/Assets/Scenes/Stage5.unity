@@ -4026,7 +4026,7 @@ PrefabInstance:
       objectReference: {fileID: 343899429}
     - target: {fileID: 7926690094284445510, guid: c66e3da376daa444eafbd6355d95266d, type: 3}
       propertyPath: Enemy_MAX_Hp
-      value: 10000
+      value: 6000
       objectReference: {fileID: 0}
     - target: {fileID: 7926690094284445510, guid: c66e3da376daa444eafbd6355d95266d, type: 3}
       propertyPath: Enemydamage2SE
@@ -4034,7 +4034,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7926690094284445510, guid: c66e3da376daa444eafbd6355d95266d, type: 3}
       propertyPath: Enemy_Current_Hp
-      value: 10000
+      value: 6400
       objectReference: {fileID: 0}
     - target: {fileID: 7926690094284445510, guid: c66e3da376daa444eafbd6355d95266d, type: 3}
       propertyPath: currentStageNumber
