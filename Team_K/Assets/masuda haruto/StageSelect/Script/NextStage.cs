@@ -65,26 +65,17 @@ public class NextStage : MonoBehaviour
         if (isLoading) return;
 
         // 右キー
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow)||Input.GetKeyDown(KeyCode.A))
         {
             MoveSelect(1);
         }
 
         // 左キー
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.D))
         {
             MoveSelect(-1);
         }
-        //上キー
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            SelectMenuButton();
-        }
-        //下キー
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            ReturnToStageButton();
-        }
+       
 
         // 決定（Enter or Space）
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
