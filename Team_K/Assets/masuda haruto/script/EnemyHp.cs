@@ -66,12 +66,7 @@ public class EnemyHp : MonoBehaviour
 
 void Die()
     {
-        GameManager gm = GameObject.FindObjectOfType<GameManager>();
-
-        if (gm != null)
-        {
-            gm.EnemyDefeated(); // カウントアップを依頼
-        }
+       
 
         Debug.Log("死んだぜ!");
         Debug.Log("保存 LastClearedStage = " + currentStageNumber);
