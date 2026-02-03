@@ -351,9 +351,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 6cae7e8068853024199a12e184657ea0, type: 3}
+  m_Resource: {fileID: 8300000, guid: 03539ef759416574bba9c0910dc033ab, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -763,7 +763,6 @@ MonoBehaviour:
   EnemydamageSE: {fileID: 8300000, guid: bd890d471690ef940ab0266a9c3b75b7, type: 3}
   Enemydamage2SE: {fileID: 0}
   EnemyDieSE: {fileID: 0}
-  XP: 1
 --- !u!1 &469565392 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3288287519211427113, guid: e3ce5e75f05fbdc48a59ca5cd6c1b864, type: 3}
