@@ -3,18 +3,32 @@ using UnityEngine.Audio;
 
 public class SEobj : MonoBehaviour
 {
-      public AudioSource audioSource;
-    public AudioClip EnemyDieSE;
+    private static SEobj instance;
 
-    void Start()
+    void Awake()
     {
-        EnemyHp enemyhp = GameObject.Find("stage2_Boss").GetComponent<EnemyHp>();
-
-        enemyhp.OnDie += PlaySE;
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject); // ÉVÅ[ÉìÇÇ‹ÇΩÇ¢Ç≈Ç‡écÇÈ
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    void PlaySE()
+    public static void PlaySE(AudioClip clip, float volume = 1.0f)
     {
-        audioSource.PlayOneShot(EnemyDieSE);
+        if (clip == null) return;
+
+        GameObject seObj = new GameObject("OneShotSE");
+        AudioSource audio = seObj.AddComponent<AudioSource>();
+
+        audio.clip = clip;
+        audio.volume = volume;
+        audio.Play();
+
+        Destroy(seObj, clip.length);
     }
 }

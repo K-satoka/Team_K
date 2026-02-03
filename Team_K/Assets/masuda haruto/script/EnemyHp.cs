@@ -69,6 +69,9 @@ void Die()
        
 
         Debug.Log("死んだぜ!");
+
+        SEobj.PlaySE(EnemyDieSE);
+
         Debug.Log("保存 LastClearedStage = " + currentStageNumber);
         //次のステージの解放処理
 
