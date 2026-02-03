@@ -1119,7 +1119,6 @@ MonoBehaviour:
   EnemydamageSE: {fileID: 8300000, guid: bd890d471690ef940ab0266a9c3b75b7, type: 3}
   Enemydamage2SE: {fileID: 0}
   EnemyDieSE: {fileID: 8300000, guid: fec76fad6f7e3c94a9b44a8bc294ef56, type: 3}
-  XP: 1
 --- !u!82 &795918665
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1264,7 +1263,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b1f465ef40bea04a84dd5d956244693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  killcnt: 0
 --- !u!1 &814432660
 GameObject:
   m_ObjectHideFlags: 0
@@ -2036,7 +2034,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 3b5d1b7aa1d65ae44802cfa75960112d, type: 3}
+  m_Resource: {fileID: 8300000, guid: b4d18def0f73b034697cd7a60939f4a5, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
