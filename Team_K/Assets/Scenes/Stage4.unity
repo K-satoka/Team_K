@@ -1247,7 +1247,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4461198475684514882, guid: 76763b4a71331354aa8c00f7fe7455b6, type: 3}
       propertyPath: s4_damage
-      value: 25
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4485118485541451939, guid: 76763b4a71331354aa8c00f7fe7455b6, type: 3}
       propertyPath: m_LocalScale.x

@@ -2598,7 +2598,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4402818967661143745, guid: 44e5c9f7dfea3d44b986bfb3841894dd, type: 3}
       propertyPath: fire_damage
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5550612703933914859, guid: 44e5c9f7dfea3d44b986bfb3841894dd, type: 3}
       propertyPath: m_Mass
@@ -3730,7 +3730,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4402818967661143745, guid: 44e5c9f7dfea3d44b986bfb3841894dd, type: 3}
       propertyPath: fire_damage
-      value: 30
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5550612703933914859, guid: 44e5c9f7dfea3d44b986bfb3841894dd, type: 3}
       propertyPath: m_Constraints
@@ -3879,7 +3879,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 12f171737a247c04289b57de482a5f5f, type: 3}
     - target: {fileID: 6522112201795324727, guid: cd5d4916cfb14ab4e87def1114c0ed8d, type: 3}
       propertyPath: ice_damage
-      value: 25
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6522112201795324727, guid: cd5d4916cfb14ab4e87def1114c0ed8d, type: 3}
       propertyPath: audioSouece
